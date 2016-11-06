@@ -565,12 +565,10 @@ img {
   width: 100%;
 }
 #aa-advance-search .aa-advance-search-area {
-  background-color: rgba(221, 221, 221, 0.8);
-  border-radius: 10px 10px 0 0;
+  background-color: rgba(221, 221, 221, 0.8); 
   display: inline;
   float: left;
   margin-top: -100px;
-  min-height: 200px;
   padding: 25px 20px;
   position: relative;
   width: 100%;
@@ -3589,4 +3587,9 @@ display: flex;
     left: 38%;  
   }
   
+}
+/*custom*/
+#aa-latest-property .latest-news{
+  margin-top: 10px;
+  margin-right: 10px;
 }

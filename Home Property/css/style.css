@@ -772,7 +772,7 @@ img {
   background-color: #ff0000;
 }
 .aa-properties-item .aa-properties-item-content {
-  background-color: #fff;
+  background-color: rgba(221, 221, 221, 0.4);
   border: 1px solid #ddd;
   border-top: none;
   display: inline;
@@ -3592,4 +3592,9 @@ display: flex;
 #aa-latest-property .latest-news{
   margin-top: 10px;
   margin-right: 10px;
+}
+#aa-contact .title-result{
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
 }

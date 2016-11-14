@@ -772,7 +772,7 @@ img {
   background-color: #ff0000;
 }
 .aa-properties-item .aa-properties-item-content {
-  background-color: #fff;
+  background-color: rgba(221, 221, 221, 0.4);
   border: 1px solid #ddd;
   border-top: none;
   display: inline;
@@ -3592,4 +3592,34 @@ display: flex;
 #aa-latest-property .latest-news{
   margin-top: 10px;
   margin-right: 10px;
+}
+#aa-contact .title-result{
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+.infor-post .row span{
+  font-size: 14px; 
+
+}
+.infor-post .row{
+  border: 1px solid rgba(132, 130, 130, 0.26);
+  margin-left: 0;
+  margin-right: 0;
+}
+.infor-post .row > div{
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+.infor-post-address .col-md-2,.infor-post-address .col-xs-4, .infor-post .col-md-2, .infor-post .col-xs-4{
+  background: #F9F9F9;
+
+}
+.aa-properties-info .title-post{
+  border-bottom: 1px solid #4486EC;
+  margin-bottom: 20px;
+}
+.infor-detail .text-detail{
+  border: 1px solid rgba(132, 130, 130, 0.26);
+  padding: 10px;
 }

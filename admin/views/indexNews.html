@@ -80,7 +80,7 @@
 
 <div>
 	<form action="/admin/find-news">
-		Tìm kiếm theo thành phố:
+		Tìm kiếm theo khu vực:
 		<select name="find">
 			
 			<option  value="">Đà Nẵng</option>
@@ -88,13 +88,35 @@
 			<option  value="">Hà Nội</option>
 			
 		</select>	
-		<input type="submit" id="btnSearch" name="SearchCat" value="Tìm kiếm"/>
+		<span>---</span>
+		Tìm kiếm theo quận / huyện:
+		<select name="find">
+			
+			<option  value="">Liên Chiều</option>
+			<option  value="">Hải Châu</option>
+			<option  value="">Cẩm Lệ</option>
+			
+		</select>	
+		<span>---</span>
+		Tìm kiếm theo phường / xã:
+		<select name="find">
+			
+			<option  value="">Hòa Khánh Bắc</option>
+			<option  value="">Hòa Khánh Nam</option>
+			
+			
+		</select>	
+		
+		
+	</form>
+	<br/>
+	<form action="/admin/find-news">
 	
 		Tìm kiếm theo tên:
 		<input type="search" id="txtSearch" name="txtSearch" placeholder="Từ khóa tin tức"/>
 		<input type="submit" id="btnSearch" name="SearchName" value="Tìm kiếm"/>
 	</form>
-	
+	<br/>
 	<form action="/admin/news">
 		<input type="submit" id="showall" name="showall" value="Hiển thị tất cả"/>
 	</form>

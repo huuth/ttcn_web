@@ -142,7 +142,7 @@ img {
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 999;
 }
 #aa-header .aa-header-area {
   display: inline;
@@ -3622,4 +3622,24 @@ display: flex;
 .infor-detail .text-detail{
   border: 1px solid rgba(132, 130, 130, 0.26);
   padding: 10px;
+}
+.aa-header-right .dropdown,.aa-header-right .posting{
+  display: inline;
+}
+.aa-header-right .dropdown button{
+  background: none;
+  text-transform: uppercase;
+  padding-right: 3px;
+  color: white;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.aa-header-right .dropdown {
+  border-right: 1px solid white;
+}
+.aa-header-right .posting{
+  padding-left: 5px;
+}
+.aa-header-right .posting a{
+  color:white;
 }

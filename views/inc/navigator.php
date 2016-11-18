@@ -26,8 +26,23 @@
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="aa-header-right">
-                  <a href="index.php?ctr=auth&act=getRegister" class="aa-register">ĐĂNG KÝ</a>
-                  <a href="index.php?ctr=auth&act=getLogin" class="aa-login">ĐĂNG NHẬP</a>
+                  <?php if(isset($_SESSION['user_infor'])):?>
+                    <div class="dropdown">
+                      <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $_SESSION['user_infor']['name_display'];?>
+                      <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a href="index.php?ctr=post&act=getIndex">Tin đã đăng</a></li>
+                        <li><a href="index.php?ctr=auth&act=logout">Thoát</a></li>                        
+                      </ul>
+                    </div>
+                    <div class="posting">
+                      <a href="index.php?ctr=post&act=posting">ĐĂNG TIN</a>
+                    </div>
+                  <?php else :?>                    
+                    <a href="index.php?ctr=auth&act=getRegister" class="aa-register">ĐĂNG KÝ</a>
+                    <a href="index.php?ctr=auth&act=getLogin" class="aa-login">ĐĂNG NHẬP</a>                    
+                  <?php endif;?>
+                  
                 </div>
               </div>
             </div>

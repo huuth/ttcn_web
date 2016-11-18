@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
-include_once __DIR__ . 'config.php';
+include_once __DIR__ . '/config.php';
 class Model{
 	public function connect(){
 	    try {

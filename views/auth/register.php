@@ -10,7 +10,7 @@
                 <a class="aa-property-home" href="index.php">Phòng trọ 69</a>
                 <h4>Kết nối với chúng tôi</h4>
               </div>
-              <form class="contactform">                                                 
+              <form class="contactform" action="index.php?ctr=auth&act=postRegister" method="post">                                                 
                 <div class="aa-single-field">
                   <label for="name">Tên đăng nhập <span class="required">*</span></label>
                   <input type="text" required="required" aria-required="true" value="" name="name">
@@ -18,6 +18,14 @@
                 <div class="aa-single-field">
                   <label for="email">Email <span class="required">*</span></label>
                   <input type="email" required="required" aria-required="true" value="" name="email">
+                  <?php                   
+                    if(isset($_SESSION['existed_mail'])){
+                      if($_SESSION['existed_mail'] == 1){
+                        echo '<p style="color:red;">Email đã tồn tại</p>';
+                        unset($_SESSION['existed_mail']);
+                      }
+                    } 
+                  ?>
                 </div>
                 <div class="aa-single-field">
                   <label for="password">Mật khẩu <span class="required">*</span></label>
@@ -25,7 +33,7 @@
                 </div>
                 <div class="aa-single-field">
                   <label for="confirm-password">Xác nhận mật khẩu <span class="required">*</span></label>
-                  <input type="password" required="required" name="confirm-password"> 
+                  <input type="password" required="required"> 
                 </div>
                 <div class="aa-single-submit">
                   <input type="submit" value="Tạo tài khoản" name="submit">                    

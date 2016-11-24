@@ -21,7 +21,7 @@ class User extends Model {
 	    	return false;//error 404
 	    }
 	}
-	public function editUser($args []){
+	public function editUser($args = []){
 		try {
 			$conn = $this->connect();
 			$sql  = "UPDATE USER 

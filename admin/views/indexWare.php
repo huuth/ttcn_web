@@ -1,66 +1,12 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Quản lý phòng trọ </title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
-	<!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
-</head>
-<body>
-	<!-- Header -->
-	<div id="header">
-		<!-- Header. Status part -->
-		<div id="header-status">
-			<div class="container_12">
-				<div class="grid_4">
-					<ul class="user-pro">
-						<li><a href="loguot.jsp">Logout</a></li>
-						<li>Chào, <a href="profile.jsp">admin</a></li>
-					</ul>
-				</div>
-			</div>
-			<div style="clear:both;"></div>
-		</div> <!-- End #header-status -->
-
-		<!-- Header. Main part -->
-		<div id="header-main">
-			<div class="container_12">
-				<div class="grid_12">
-					<div id="logo">
-						<ul id="nav">
-							<li id="current"><a href="/admin/">Quản trị</a></li>
-							<li><a href="/admin/detail-user">Tài khoản</a></li>
-							<li><a href="/admin/user">Người dùng</a></li>
-						</ul>
-					</div><!-- End. #Logo -->
-				</div><!-- End. .grid_12-->
-				<div style="clear: both;"></div>
-			</div><!-- End. .container_12 -->
-		</div> <!-- End #header-main -->
-		<div style="clear: both;"></div>
-		<!-- Sub navigation -->
-		<div id="subnav">
-			<div class="container_12">
-				<div class="grid_12">
-					<ul>
-						<li id="current"><a href="/indexNews">Quản lý bài đăng</a></li>
-						<li><a href="">Loại hình cho thuê</a></li>
-						<li><a href="">Thành phố</a></li>
-						<li><a href="">Quận/Huyện</a></li>
-						<li><a href="">Phường/Xã</a></li>
-					</ul>
-				</div><!-- End. .grid_12-->
-			</div><!-- End. .container_12 -->
-			<div style="clear: both;"></div>
-		</div> <!-- End #subnav -->
-	</div> <!-- End #header -->
+<?php
+	require('inc/header.php');
+?>
 
 	<div class="container_12">
 		<div class="bottom-spacing">
 		<!-- Button -->
     	<div class="float-left">
-			<a href="" class="button">
+			<a href="addWare.php" class="button">
 				<span>Thêm phường/xã <img src="images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
@@ -120,7 +66,7 @@
 							<td>H001</td>
 							<td>TP001</td>
 							<td align="center">
-								<a href="">Sửa <img src="images/pencil.gif" alt="edit" /></a>
+								<a href="editWare.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
 								<a href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
@@ -140,7 +86,7 @@
 				<span>|</span> 
 				<a href="">4</a> 
 				<span>|</span> 
-				<a href="">5</a> 
+				<a href="">5</a>
 				<span>|</span> 
 				<a href="">6</a> 
 				<span>|</span> 
@@ -158,13 +104,6 @@
 </div>	
 	<div style="clear:both;"></div>
 	<!-- Footer -->
-	<div id="footer">
-		<div class="container_12">
-			<div class="grid_12">
-				<p>Copyright &copy; 2016. <a href="" title="Đã học là làm được">Thực Tập Công Nhân</a></p>
-			</div>
-		</div>
-		<div style="clear:both;"></div>
-	</div> <!-- End #footer -->
-</body>
-</html>            
+<?php
+	require('inc/footer.php')
+?>          

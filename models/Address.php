@@ -13,7 +13,11 @@ class Address extends Model {
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
-			return $result;
+			if($result){
+				return $result;
+			}else{
+				return false;
+			}
 		}catch(PDOException $e){
 			return false;
 		}
@@ -40,20 +44,22 @@ class Address extends Model {
 	public function getIdProvinceByName($name){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT (provinceid) FROM province WHERE name LIKE '%:name%'";
+			$sql = "SELECT (provinceid) FROM province WHERE name LIKE :name";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':name',$name);
+			$temp = "%".$name."%";
+			$stmt->bindParam(':name',$temp);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
-			$result = $stmt->fetchAll();
+			$result = $stmt->fetchAll();			
 			if($result){
-				return $result;
+				return $result[0]['provinceid'];
 			}else{
 				return false;
 			}
 		}catch(PDOException $e){
 			return false;
 		}
+	}
 	public function getArrayDistrict($provinceid){
 		try{
 			$conn = $this->connect();
@@ -63,7 +69,11 @@ class Address extends Model {
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
-			return $result;
+			if($result){
+				return $result;
+			}else{
+				return false;
+			}
 		}catch(PDOException $e){
 			return false;
 		}
@@ -90,21 +100,22 @@ class Address extends Model {
 	public function getIdDistrictByName($name){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT (districtid) FROM district WHERE name LIKE '%:name%'";
+			$sql = "SELECT (districtid) FROM district WHERE name LIKE :name";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':name',$name);
+			$temp = "%".$name."%";
+			$stmt->bindParam(':name',$temp);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				return $result;
+				return $result[0]['districtid'];
 			}else{
 				return false;
 			}
 		}catch(PDOException $e){
 			return false;
 		}
-
+	}
 	public function getArrayWard($districtid){
 		try{
 			$resultArr = array();
@@ -115,7 +126,11 @@ class Address extends Model {
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
-			return $result;
+			if($result){
+				return $result;
+			}else{
+				return false;
+			}
 			
 		}catch(PDOException $e){
 			return false;
@@ -144,14 +159,15 @@ class Address extends Model {
 	public function getIdWardtByName($name){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT (wardid) FROM ward where name LIKE '%:name%'";
+			$sql = "SELECT (wardid) FROM ward where name LIKE :name";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':name',$name);
+			$temp = "%".$name."%";
+			$stmt->bindParam(':name',$temp);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				return $result;
+				return $result[0]['wardid'];
 			}else{
 				return false;
 			}

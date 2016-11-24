@@ -7,14 +7,14 @@
 	  <!-- Button -->
 	  <div class="float-left">
 		  <a href="addNews.php" class="button">
-			<span>Thêm tin <img src="images/plus-small.gif" alt="Thêm tin"></span>
+			<span>Thêm tin <img src="views/images/plus-small.gif" alt="Thêm tin"></span>
 		  </a>
 	  </div>
 	  <div class="clear"></div>
 </div>
 
 <div>
-	<form action="/admin/find-news">
+	<form action="" method="post">
 		Tìm kiếm theo khu vực:
 		<select name="find">
 			
@@ -41,8 +41,6 @@
 			
 			
 		</select>	
-		
-		
 	</form>
 	<br/>
 	<form action="/admin/find-news">

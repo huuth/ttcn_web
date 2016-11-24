@@ -40,7 +40,7 @@ class Address extends Model {
 	public function getIdProvinceByName($name){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT (name) FROM province WHERE name LIKE '%:name%'";
+			$sql = "SELECT (provinceid) FROM province WHERE name LIKE '%:name%'";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':name',$name);
 			$stmt->execute();
@@ -90,7 +90,7 @@ class Address extends Model {
 	public function getIdDistrictByName($name){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT (name) FROM district WHERE name LIKE '%:name%'";
+			$sql = "SELECT (districtid) FROM district WHERE name LIKE '%:name%'";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':name',$name);
 			$stmt->execute();
@@ -144,7 +144,7 @@ class Address extends Model {
 	public function getIdWardtByName($name){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT (name) FROM ward where name LIKE '%:name%'";
+			$sql = "SELECT (wardid) FROM ward where name LIKE '%:name%'";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':name',$name);
 			$stmt->execute();

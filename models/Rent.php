@@ -34,16 +34,51 @@ class Rent extends Model {
 	    }
 	}
 
-	public function addImage($args,$id_rent){
+	public function addImage($args = []){
 		try{
 			$conn = $this -> connect();
-			$sql = "INSERT INTO image"
-		}
+			$sql = "INSERT INTO image (image_url,rent_id)
+					VALUES (:image_url,:rent_id)";
+			$stmt = $conn->prepare($sql);
+			$stmt->bindParam(':image_url',$args['image_url']);
+			$stmt->bindParam(':rent_id',$args['rent_id']);
+			$stmt->execute();
+		}catch(PDOException $e){	    	
+	    	return false;//error 404
+	    }
 
 	}
+	public function deleteImgByRentId($rent_id){
+		try {
+			$conn = $this->connect();
+			$sql  = "DELETE FROM image WHERE rent_id = :rent_id";
+			$stmt = $conn->prepare($sql);
+			$stmt->bindParam(':rent_id',$args['rent_id']);				
+			$stmt->execute();
+			return true;
+	    }catch(PDOException $e){	    	
+	    	return false;//error 404
+	    }
+	}
+	
+	public function getArrayImgByRentId($id){
+		try{
+			$conn = $this->connect();
+			$sql = "SELECT * FROM image WHERE rent_id=:id ";
+			$stmt = $conn->prepare($sql);
+			$stmt->bindParam(':id',$id);
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$stmt->execute();
+			$result = $stmt->fetchAll();
+			return $result;
+		}catch(PDOException $e){
+			return false;
+		}
+	}
+
 	
 	// edit information a rent
-	public function editRent($args []){
+	public function editRent($args = []){
 		try {
 			$conn = $this->connect();
 			$sql  = "UPDATE rent 
@@ -87,7 +122,7 @@ class Rent extends Model {
 	}
 
 	// get list rent
-	public function getArrayRent($args []){
+	public function getArrayRent($args = []){
 		try{
 			$conn = $this->connect();
 			$sql = "SELECT * FROM rent WHERE 1 ";

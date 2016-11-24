@@ -6,7 +6,7 @@
 		<div class="bottom-spacing">
 		<!-- Button -->
     	<div class="float-left">
-			<a href="" class="button">
+			<a href="addWare.php" class="button">
 				<span>Thêm phường/xã <img src="images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
@@ -66,7 +66,7 @@
 							<td>H001</td>
 							<td>TP001</td>
 							<td align="center">
-								<a href="">Sửa <img src="images/pencil.gif" alt="edit" /></a>
+								<a href="editWare.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
 								<a href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
@@ -86,7 +86,7 @@
 				<span>|</span> 
 				<a href="">4</a> 
 				<span>|</span> 
-				<a href="">5</a> 
+				<a href="">5</a>
 				<span>|</span> 
 				<a href="">6</a> 
 				<span>|</span> 

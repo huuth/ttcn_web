@@ -6,7 +6,7 @@
 		<div class="bottom-spacing">
 		<!-- Button -->
     	<div class="float-left">
-			<a href="" class="button">
+			<a href="addDistrict.php" class="button">
 				<span>Thêm Quận/Huyện <img src="images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
@@ -52,7 +52,7 @@
 							<td>16.1129446,108.0628078</td>
 							<td>TP001</td>
 							<td align="center">
-								<a href="">Sửa <img src="images/pencil.gif" alt="edit" /></a>
+								<a href="editDistrict.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
 								<a href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>

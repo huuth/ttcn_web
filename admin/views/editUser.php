@@ -1,21 +1,6 @@
 <?php
 	require('inc/header.php');
 ?>
-		<div style="clear: both;"></div>
-		<!-- Sub navigation -->
-		<div id="subnav">
-			<div class="container_12">
-				<div class="grid_12">
-					<ul>
-						<li><a href="indexNews.html">Tin tức</a></li>
-						<li><a href="indexCat.html">Danh mục</a></li>
-					</ul>
-
-				</div><!-- End. .grid_12-->
-			</div><!-- End. .container_12 -->
-			<div style="clear: both;"></div>
-		</div> <!-- End #subnav -->
-	</div> <!-- End #header -->
 	<div class="container_12">
 
 		<div class="grid_12">

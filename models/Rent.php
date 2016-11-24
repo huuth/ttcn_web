@@ -8,19 +8,15 @@ class Rent extends Model {
 	public function addRent($args = []){
 		try {
 			$conn = $this->connect();
-			$sql  = "INSERT INTO rent(rent_name,price,type_id,square,describe_rent,post_time,drop_time,status,user_id,province_id			,district_id,ward_id,address_detail) 
-				     VALUES (:rent_name,:price,:type_id,:square,:describe_rent,:post_time,:drop_time,:status,:user_id,
-				            :province_id,:district_id,:ward_id,:address_detail)";
+			$sql  = "INSERT INTO rent" 
+					."(rent_name,price,type_id,square,describe_rent,user_id,province_id,district_id,ward_id,address_detail)"
+					."VALUES (:rent_name,:price,:type_id,:square,:describe_rent,:user_id,:province_id,:district_id,:ward_id,:address_detail)";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':rent_name',$args['rent_name']);
-			$stmt->bindParam(':price',$args['price']);
-			$stmt->bindParam(':address',$args['address']);
+			$stmt->bindParam(':price',$args['price']);			
 			$stmt->bindParam(':type_id',$args['type_id']);
 			$stmt->bindParam(':square',$args['square']);
-			$stmt->bindParam(':describe_rent',$args['describe_rent']);
-			$stmt->bindParam(':post_time',$args['post_time']);
-			$stmt->bindParam(':drop_time',$args['drop_time']);
-			$stmt->bindParam(':status',$args['status']);
+			$stmt->bindParam(':describe_rent',$args['describe_rent']);									
 			$stmt->bindParam(':user_id',$args['user_id']);
 			$stmt->bindParam(':province_id',$args['province_id']);
 			$stmt->bindParam(':district_id',$args['district_id']);
@@ -28,7 +24,11 @@ class Rent extends Model {
 			$stmt->bindParam(':address_detail',$args['address_detail']);
 			$stmt->execute();
 			$lastId = $conn->lastInsertId();
-			return $lastId;
+			if($lastId){
+				return $lastId;
+			}else{
+				return false;
+			}
 	    }catch(PDOException $e){	    	
 	    	return false;//error 404
 	    }
@@ -81,11 +81,13 @@ class Rent extends Model {
 	public function editRent($args = []){
 		try {
 			$conn = $this->connect();
-			$sql  = "UPDATE rent 
-					 SET rent_name=:rent_name,price=:price,type_id=:type_id,square=:square,
-					 	 describe_rent=:describe_rent,post_time=:post_time,drop_time=:drop_time,status=:status,user_id=:user_id,
-					 	 province_id=:province_id,district_id=:district_id,ward_id:=ward_id,address_detail:=address_detail
-					 WHERE rent_id:rent_id"
+			$sql  = "UPDATE rent" 
+					."SET" 
+					."rent_name = :rent_name, price = :price, type_id= :type_id, square = :square," 
+					."describe_rent = :describe_rent, post_time = :post_time, drop_time = :drop_time,"
+					."status = :status, user_id = :user_id, province_id = :province_id, district_id = :district_id," 
+					."ward_id = :ward_id, address_detail = :address_detail" 
+					."WHERE rent_id = :rent_id";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':rent_name',$args['rent_name']);
 			$stmt->bindParam(':price',$args['price']);
@@ -126,41 +128,41 @@ class Rent extends Model {
 		try{
 			$conn = $this->connect();
 			$sql = "SELECT * FROM rent WHERE 1 ";
-			if (isset(args['rent_name'])){
-				$sql = $sql . " && rent_name LIKE '%" .args['rent_name'] . "%'";
+			if (isset($args['rent_name'])){
+				$sql = $sql . " && rent_name LIKE '%" .$args['rent_name'] . "%'";
 			}
-			if (isset(args['type_id'])){
-				$sql = $sql . " && type_id = " .args['type_id'];
+			if (isset($args['type_id'])){
+				$sql = $sql . " && type_id = " .$args['type_id'];
 			}
-			if(isset(args['priceFrom'])){
-				if(isset(args['priceTo'])){
-					$sql = $sql . " && price >= ".args['priceFrom']. " AND price <=" . args['priceTo'];
+			if(isset($args['priceFrom'])){
+				if(isset($args['priceTo'])){
+					$sql = $sql . " && price >= ".$args['priceFrom']. " AND price <=" . $args['priceTo'];
 				}else{
-					$sql = $sql . " && price >= ".args['priceFrom'];
+					$sql = $sql . " && price >= ".$args['priceFrom'];
 				}
 			}
-			if (isset(args['square'])){
-				$sql = $sql . " $$ square >= ". args['squareFrom']. " AND price <= ".args['priceTo'];
+			if (isset($args['square'])){
+				$sql = $sql . " $$ square >= ". $args['squareFrom']. " AND price <= ".$args['priceTo'];
 			}
-			if (isset(args['post_time_from'])){
-				if(isset(args['post_time_to'])){
-					$sql = $sql . " && post_time BETWEEN " .args['post_time_from'] . " AND " . args['post_time_to'];
+			if (isset($args['post_time_from'])){
+				if(isset($args['post_time_to'])){
+					$sql = $sql . " && post_time BETWEEN " .$args['post_time_from'] . " AND " . $args['post_time_to'];
 				}else{
-					$sql = $sql . " && post_time =" .args['post_time'];
+					$sql = $sql . " && post_time =" .$args['post_time'];
 				}
 				
 			}
-			if (isset(args['status'])){
-				$sql = $sql . " && status =" .args['status'];
+			if (isset($args['status'])){
+				$sql = $sql . " && status =" .$args['status'];
 			}
-			if (isset(args['province_id'])){
-				$sql = $sql . " && province_id = " . args['province_id'];
+			if (isset($args['province_id'])){
+				$sql = $sql . " && province_id = " . $args['province_id'];
 			}
-			if (isset(args['district_id'])){
-				$sql = $sql . " && district_id = " . args['district_id'];
+			if (isset($args['district_id'])){
+				$sql = $sql . " && district_id = " . $args['district_id'];
 			}
-			if (isset(args['ward_id'])){
-				$sql = $sql . " && ward_id = ". args['ward_id'];
+			if (isset($args['ward_id'])){
+				$sql = $sql . " && ward_id = ". $args['ward_id'];
 			}
 			$sql = $sql . " ORDER BY rent_id";
 			$stmt = $conn->prepare($sql);
@@ -188,33 +190,10 @@ class Rent extends Model {
 				return $result;
 			}else{
 				return false;
-			}
-		}
+			}		
 		}catch(PDOException $e){
 			return false;
 		}
 	}
-
-	// get rent information by user id
-	public function getRentById($user_id){
-		try{
-			$conn = $this->connect();
-			$sql = 'SELECT * FROM rent WHERE user_id = :user_id';
-			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':user_id',$user_id);
-			$stmt->execute();
-			$stmt->setFetchMode(PDO::FETCH_ASSOC);
-			$result = $stmt->fetchAll();
-			if($result){
-				return $result;
-			}else{
-				return false;
-			}
-		}
-		}catch(PDOException $e){
-			return false;
-		}
-	}
-	
 
 }

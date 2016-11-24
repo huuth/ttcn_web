@@ -17,6 +17,44 @@ class Type extends Model {
 	    	return false;//error 404
 	    }
 	}
+	public function getIdTypeByName($name){
+		try{
+			$conn = $this->connect();
+			$sql = "SELECT (type_id) FROM type WHERE type_name LIKE :name";
+			$stmt = $conn->prepare($sql);
+			$temp = "%".$name."%";
+			$stmt->bindParam(':name',$temp);
+			$stmt->execute();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();			
+			if($result){
+				return $result[0]['type_id'];
+			}else{
+				return false;
+			}
+		}catch(PDOException $e){
+			return false;
+		}
+	}
+	public function getTypeById($type_id){
+		try{
+			$conn = $this->connect();
+			$sql = "SELECT * FROM type where type_id = :id";
+			$stmt = $conn->prepare($sql);
+			$stmt->bindParam(':id',$type_id);
+			$stmt->execute();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();
+			if($result){
+				return $result;
+			}else{
+				return false;
+			}
+		}catch(PDOException $e){
+			return false;
+		}
+	}
+
 	public function editType($args = []){
 		try {
 			$conn = $this->connect();

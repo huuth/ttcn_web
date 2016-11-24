@@ -6,7 +6,7 @@
 <div class="bottom-spacing">
 	  <!-- Button -->
 	  <div class="float-left">
-		  <a href="/admin/add-news" class="button">
+		  <a href="addNews.php" class="button">
 			<span>Thêm tin <img src="images/plus-small.gif" alt="Thêm tin"></span>
 		  </a>
 	  </div>
@@ -94,8 +94,8 @@
 							</td>
 							<td align="center"><input type="checkbox" name="status" value="1"></td>
 							<td align="center">
-								<a href="/admin/edit-news?nid=&type=load">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-								<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="/admin/del-news?nid=&msg=">Xóa <img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+								<a href="editNews.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
+								<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="">Xóa <img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 						

@@ -6,7 +6,7 @@
 		<div class="bottom-spacing">
 	  <!-- Button -->
 	  <div class="float-left">
-		  <a href="" class="button">
+		  <a href="addUser.php" class="button">
 			<span>Thêm người dùng <img src="images/plus-small.gif" alt="Thêm người dùng"></span>
 		  </a>
 	  </div>
@@ -32,10 +32,10 @@
 				<tbody>
 					<tr>
 						<td class="align-center">001</td>
-						<td><a href="">thuytiendang206</a></td>
+						<td><a href="detailUser.php">thuytiendang206</a></td>
 						<td>Đặng Thị Thủy Tiên</td>
 						<td align="center">
-							<a href="">Sửa <img src="images/pencil.gif" alt="edit" /></a>
+							<a href="editUser.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
 							<a href="">Xóa <img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
 						</td>
 					</tr>

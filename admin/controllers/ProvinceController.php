@@ -6,7 +6,6 @@
 		public function getIndex(){
 			$address= new Address();
 			$data['province']=$address->getArrayProvince();
-			dump($data);
 			$this->render('indexProvince',$data);
 		}
 		public function getEdit(){

@@ -1,5 +1,6 @@
 <?php
 	require('inc/header.php');
+	require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
 ?>
 
 	<div class="container_12">
@@ -31,19 +32,19 @@
 					</thead>
 					<tbody>
 						<?php
-							foreach ($data as $key => $value) {
-							}
+							foreach ($data['province'] as $key):
 						?>
 						<tr>
-							<td class="align-center">001</td>
-							<td><a href="index.php?ctr=province&act=getEdit">Đà Nẵng</a></td>
-							<td> Thành phố</td>
+							<td class="align-center"><?php echo $key['provinceid']?></td>
+							<td><a href="index.php?ctr=province&act=getEdit"><?php echo $key['name']?></a></td>
+							<td><?php echo $key['type']?></td>
 							<td align="center">
 								<a href="index.php?ctr=province&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
 								<a onclick="return confirm('Bạn có muốn xóa hay không?')"  href="">Xóa<img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 						<?php
+							endforeach;
 						?>
 					</tbody>
 				</table>

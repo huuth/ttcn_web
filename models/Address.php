@@ -14,10 +14,8 @@ class Address extends Model {
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
-			foreach($result as $row){
-   				 $resultArr[] = $row;
-			}
-			return $resultArr;
+			
+			return $result;
 		}catch(PDOException $e){
 			return false;
 		}

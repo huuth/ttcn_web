@@ -1,5 +1,5 @@
 <?php 
-define('DB_NAME', 'TTCN');
+define('DB_NAME', 'quan_ly_phong_tro_db');
 
 /** MySQL database username */
 define('DB_USER', 'root');

@@ -6,8 +6,8 @@
 		<div class="bottom-spacing">
 		<!-- Button -->
     	<div class="float-left">
-			<a href="addProvince.php" class="button">
-				<span>Thêm tỉnh/thành phố<img src="images/plus-small.gif" alt="Thêm tin" > </span>
+			<a href="index.php?ctr=province&act=getAdd" class="button">
+				<span>Thêm tỉnh/thành phố<img src="views/images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
 	    <div class="clear"></div>
@@ -32,11 +32,11 @@
 					<tbody>
 						<tr>
 							<td class="align-center">001</td>
-							<td><a href="">Đà Nẵng</a></td>
+							<td><a href="index.php?ctr=province&act=getEdit">Đà Nẵng</a></td>
 							<td> Thành phố</td>
 							<td align="center">
-								<a href="editProvince.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-								<a onclick="return confirm('Bạn có muốn xóa hay không?')"  href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+								<a href="index.php?ctr=province&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+								<a onclick="return confirm('Bạn có muốn xóa hay không?')"  href="">Xóa<img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 					</tbody>

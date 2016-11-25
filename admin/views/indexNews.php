@@ -6,15 +6,15 @@
 <div class="bottom-spacing">
 	  <!-- Button -->
 	  <div class="float-left">
-		  <a href="addNews.php" class="button">
-			<span>Thêm tin <img src="images/plus-small.gif" alt="Thêm tin"></span>
+		  <a href="index.php?ctr=rents&act=getAdd" class="button">
+			<span>Thêm tin <img src="views/images/plus-small.gif" alt="Thêm tin"></span>
 		  </a>
 	  </div>
 	  <div class="clear"></div>
 </div>
 
 <div>
-	<form action="/admin/find-news">
+	<form action="" method="post">
 		Tìm kiếm theo khu vực:
 		<select name="find">
 			
@@ -41,8 +41,6 @@
 			
 			
 		</select>	
-		
-		
 	</form>
 	<br/>
 	<form action="/admin/find-news">
@@ -82,20 +80,20 @@
 					
 						<tr>
 							<td class="align-center">1</td>
-							<td><a href="/admin/edit-news?nid=&type=load">Bán nhà</a></td>
+							<td><a href="index.php?ctr=rents&act=getEdit">Bán nhà</a></td>
 							<td>Đà Nẵng</td>
 							<td>30/10/2016</td>
 							<td>wind</td>
 							<td align="center">
 								
 									
-									<img src="images/no_image.jpg" class="hoa" />
+									<img src="views/images/no_image.jpg" class="hoa" />
 								
 							</td>
 							<td align="center"><input type="checkbox" name="status" value="1"></td>
 							<td align="center">
-								<a href="editNews.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-								<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="">Xóa <img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+								<a href="index.php?ctr=rents&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+								<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 						

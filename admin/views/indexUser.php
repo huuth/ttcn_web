@@ -6,8 +6,8 @@
 		<div class="bottom-spacing">
 	  <!-- Button -->
 	  <div class="float-left">
-		  <a href="addUser.php" class="button">
-			<span>Thêm người dùng <img src="images/plus-small.gif" alt="Thêm người dùng"></span>
+		  <a href="index.php?ctr=user&act=getAdd" class="button">
+			<span>Thêm người dùng <img src="views/images/plus-small.gif" alt="Thêm người dùng"></span>
 		  </a>
 	  </div>
 	  <div class="clear"></div>
@@ -32,11 +32,11 @@
 				<tbody>
 					<tr>
 						<td class="align-center">001</td>
-						<td><a href="detailUser.php">thuytiendang206</a></td>
+						<td><a href="index.php?ctr=user&act=getDetail">thuytiendang206</a></td>
 						<td>Đặng Thị Thủy Tiên</td>
 						<td align="center">
-							<a href="editUser.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-							<a href="">Xóa <img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+							<a href="index.php?ctr=user&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+							<a href="">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 						</td>
 					</tr>
 				</tbody>

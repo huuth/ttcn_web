@@ -67,7 +67,7 @@
           </button>
           <!-- LOGO -->                                               
           <!-- Text based logo -->
-           <a class="navbar-brand aa-logo" href="index.php"> TRANG CHỦ <span>Property</span></a>
+           <a class="navbar-brand aa-logo" href="index.php">PHONGTRO<span>69</span></a>
            <!-- Image based logo -->
            <!-- <a class="navbar-brand aa-logo-img" href="index.html"><img src="img/logo.png" alt="logo"></a> -->
         </div>

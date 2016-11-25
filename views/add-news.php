@@ -132,12 +132,8 @@
         </div>
     </section>
     <!-- End Proerty header  -->
-
-
     <!--body-->
     <section id="aa-properties">
-
-
         <div class='nhf_body' itemscope itemtype="http://schema.org/Website">
             <div id='sunny_wall' class="large_wall">  
                 <div class="content_holder">  <div id="container" class="sunny_container"> 
@@ -157,17 +153,15 @@
                             <div class="ai_header">Nội dung tin&nbsp<span class="ai_header_notice">(Vui lòng điền đầy đủ tất cả các mục)</span></div>
 
                             <input name="check_type_diff" id="check_type_diff" value="1" type="hidden"/>
+                            
+                            
 
                             <div class="ai_row">
                                 <div class="ai_label">Tỉnh/Thành phố:</div>
                                 <div class="ai_element">
                                     <div class="div_select_long">
                                         <select name="province_id" id="category_group" sel_id="" >
-                                            <option value="0" selected="selected">&laquo;Chọn khu vực&raquo;</option>
-                                            <option value='1'  id='cat2020' >Hà Nội</option> 
-                                            <option value='2'  id='cat2010' >Hồ Chí Minh</option> 
-                                            <option value='3'  id='cat2060' >Đà Nẵng</option> 
-                                            <option value='4'  id='cat2050' >Vinh</option> 
+                                                <option value="0" selected="selected">&laquo;Chọn khu vực&raquo;</option>
                                         </select>
                                     </div>
                                 </div>
@@ -180,10 +174,6 @@
                                     <div class="div_select_long">
                                         <select name="district_id" id="category_group" sel_id="" >
                                             <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>
-                                            <option value='1'  id='cat2020' >Liên Chiều</option> 
-                                            <option value='2'  id='cat2010' >Sơn Trà</option> 
-                                            <option value='3'  id='cat2060' >Hải Châu</option> 
-                                            <option value='4'  id='cat2050' >Cẩm Lệ</option> 
                                         </select>
                                     </div>
                                 </div>
@@ -459,6 +449,7 @@
 
     <!-- Custom js -->
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/addnews.js"></script>
 
 </body>
 

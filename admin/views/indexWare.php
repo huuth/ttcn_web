@@ -7,7 +7,7 @@
 		<!-- Button -->
     	<div class="float-left">
 			<a href="addWare.php" class="button">
-				<span>Thêm phường/xã <img src="images/plus-small.gif" alt="Thêm tin" > </span>
+				<span>Thêm phường/xã <img src="views/images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
 	    <div class="clear"></div>
@@ -66,8 +66,8 @@
 							<td>H001</td>
 							<td>TP001</td>
 							<td align="center">
-								<a href="editWare.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-								<a href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+								<a href="editWare.php">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+								<a href="">Xóa<img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 					</tbody>

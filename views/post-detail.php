@@ -1,3 +1,10 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/models/User.php';
+
+//$detail = $data['ds']; dump($detail);
+?>
+
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
     <!-- Start Proerty header  -->
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/navigator.php';?>
@@ -32,43 +39,53 @@
                                 <img src="assets/img/slider/3.jpg" alt="img">
                             </div>
                             <div class="aa-properties-info">
+                            <?php   $detail = $data['rent'];
+                                    $user   = $data['user'];
+                                    $type   = $data['type'];
+                            ?>
                                 <div class="title-post">
-                                    <h3>Cho thuê phòng trọ số 27, Ngõ 307 Nguyễn Khang</h3>
+                                    <h3><?php echo $detail['rent_name'] ?></h3>
                                 </div>
                                 <div class="infor-post">
                                     <div class="row infor-post-address">                                        
                                         <div class="col-md-2 col-xs-4"><span>Địa chỉ:</span></div>
-                                        <div class="col-md-10 col-xs-8"><span>122/3 Yên Thế, Phường 2, Quận Tân Bình, Hồ Chí Minh</span></div>  
+                                        <div class="col-md-10 col-xs-8"><span><?php echo $detail['address_detail']; ?></span></div>  
                                     </div>
                                     <div class="row">                                       
                                         <div class="col-md-2 col-xs-4"><span>Loại tin rao:</span></div>
                                         <div class="col-md-4 col-xs-8">
-                                            <a href="https://phongtro123.com/cho-thue-phong-tro">Cho thuê phòng trọ</a>
+                                            <a href="https://phongtro123.com/cho-thue-phong-tro">
+                                            <?php echo $type['type_name']; ?></a>
                                         </div>                                       
                                         <div class="col-md-2 col-xs-4"><span>Ngày cập nhật:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span>Hôm nay</span></div>                                       
+                                        <div class="col-md-4 col-xs-8"><span><?php echo $detail['post_time'] ;?></span></div>                                       
                                     </div>
                                     <div class="row">                                    
                                         <div class="col-md-2 col-xs-4"><span>Người đăng:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span>0975771327 </span></div>                                                            
+                                        <div class="col-md-4 col-xs-8"><span>
+                                            <?php echo $user['username']; ?>
+                                         </span></div>                                                            
                                         <div class="col-md-2 col-xs-4"><span>Điện thoại:</span></div>
                                         <div class="col-md-4 col-xs-8">
-                                            <a href="tel:0975771327">0975771327</a>
+                                            <a href="tel:0975771327"><?php echo $user['phone']; ?>
+                                            </a>
                                         </div>                                    
                                     </div>
                                     <div class="row">                                    
                                         <div class="col-md-2 col-xs-4"><span>Email:</span></div>
                                         <div class="col-md-4 col-xs-8">
-                                            <a href="mailto:vohinh1989kute@gmail.com">vohinh1989kute@gmail.com</a>
+                                            <a href="mailto:vohinh1989kute@gmail.com"><?php echo $user['email']; ?>
+                                            </a>
                                         </div>                                                                      
                                         <div class="col-md-2 col-xs-4"><span>Đối tượng:</span></div>
                                         <div class="col-md-4 col-xs-8"><span>Tất cả </span></div>                                    
                                     </div>
                                     <div class="row">                                    
                                         <div class="col-md-2 col-xs-4"><span>Diện tích:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span>20m²</span></div>                               
+                                        <div class="col-md-4 col-xs-8"><span><?php echo $detail['square'] ." m2"; ?>
+                                        </span></div>                               
                                         <div class="col-md-2 col-xs-4"><span>Giá cho thuê:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span>Giá Thỏa Thuận</span></div>                                    
+                                        <div class="col-md-4 col-xs-8"><span><?php echo $detail['price'] ;?></span></div>                                    
                                     </div>
                                 </div>
                                 <div class="infor-detail">
@@ -76,7 +93,7 @@
                                         <h3>THÔNG TIN CHI TIẾT</h3>
                                     </div>
                                     <div class="text-detail">
-                                        Địa chỉ: ngõ 307 nguyễn khang - cầu giấy (gần cầu Cót) song song với đường Láng, gần đh giao thông vận tải, ngoại thương, ngoại giao<br>Phòng rộng: 30m2. Phòng tắm - vệ sinh riêng. Điện: 4k/1 số. Nước máy 60k/người.<br>Có nóng lạnh - chỗ để xe rộng rãi - an toàn - có camera an ninh trông xe.&nbsp;<br>11h30’ đêm khóa cổng; ai làm đêm về muộn có thể xin chìa khóa.&nbsp;<br>Nhà có thể ở từ 2-3 người thoải mái. Giá: 2,6 triệu. Đây là ảnh.&nbsp;<br>Liên hê: 0969 58 1996<br>P/s: Chỉ những bạn đang đi làm thôi ạ.
+                                        <?php echo $detail['describe_rent'] ;?>
                                     </div>
                                 </div>
                                 <!-- Properties social share -->
@@ -104,10 +121,14 @@
                                 <div class="aa-single-advance-search">
                                     <select>
                                        <option value="0" selected>Thành phố</option>
-                                        <option value="1">Đà Nẵng</option>
-                                        <option value="2">Hồ Chí Minh</option>
-                                        <option value="3">Hồ Nội</option>
-                                        <option value="4">Vinh</option>
+                                       <?php
+                                        $province = sortProvince($data['province']);
+                                        foreach ($province as $value):
+                                        ?>
+                                        <option value="<?php echo $value['provinceid']; ?>"><?php echo $value['name']; ?>
+                                        </option>
+                                        <?php endforeach; ?> 
+
                                     </select>
                                 </div>
                                 <div class="aa-single-advance-search">

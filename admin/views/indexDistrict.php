@@ -6,8 +6,8 @@
 		<div class="bottom-spacing">
 		<!-- Button -->
     	<div class="float-left">
-			<a href="addDistrict.php" class="button">
-				<span>Thêm Quận/Huyện <img src="images/plus-small.gif" alt="Thêm tin" > </span>
+			<a href="index.php?ctr=district&act=getAdd" class="button">
+				<span>Thêm Quận/Huyện <img src="views/images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
 	    <div class="clear"></div>
@@ -47,13 +47,13 @@
 					<tbody>
 						<tr>
 							<td class="align-center">001</td>
-							<td><a href="">Liên Chiểu</a></td>
+							<td><a href="index.php?ctr=district&act=getEdit">Liên Chiểu</a></td>
 							<td>Quận</td>
 							<td>16.1129446,108.0628078</td>
 							<td>TP001</td>
 							<td align="center">
-								<a href="editDistrict.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-								<a href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+								<a href="index.php?ctr=district&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+								<a href="">Xóa<img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 					</tbody>

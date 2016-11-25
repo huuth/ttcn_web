@@ -46,7 +46,7 @@ class Type extends Model {
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				return $result;
+				return $result[0];
 			}else{
 				return false;
 			}

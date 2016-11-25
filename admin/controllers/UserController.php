@@ -1,16 +1,19 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/admin/framework/controllerAdmin.php';
 	
-	class RentsController extends ControllerAdmin{
+	class UserController extends ControllerAdmin{
 		public function getIndex(){
-			$this->render('indexNews');
+			$this->render('indexUser');
+		}
+		public function getDetail(){
+			$this->render('detailUser');
 		}
 		public function getEdit(){
-			$this->render('editNews');
+			$this->render('editUser');
 		}
 		public function getAdd(){
-			$this->render('addNews');
+			$this->render('addUser');
 		}
 	}	
  //index.php?ctr=rents&act=getIndex
-?>	
+?>

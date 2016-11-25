@@ -6,8 +6,8 @@
 		<div class="bottom-spacing">
 		<!-- Button -->
     	<div class="float-left">
-			<a href="addType.php" class="button">
-				<span>Thêm loại hình thuê <img src="images/plus-small.gif" alt="Thêm tin" > </span>
+			<a href="index.php?ctr=type&act=getAdd" class="button">
+				<span>Thêm loại hình thuê <img src="views/images/plus-small.gif" alt="Thêm tin" > </span>
 		  	</a>
 	    </div>
 	    <div class="clear"></div>
@@ -31,10 +31,10 @@
 					<tbody>
 						<tr>
 							<td class="align-center">001</td>
-							<td><a href="">Nhà cho thuê</a></td>
+							<td><a href="index.php?ctr=type&act=getEdit">Nhà cho thuê</a></td>
 							<td align="center">
-								<a href="editType.php">Sửa <img src="images/pencil.gif" alt="edit" /></a>
-								<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="">Xóa<img src="images/bin.gif" width="16" height="16" alt="delete" /></a>
+								<a href="index.php?ctr=type&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+								<a onclick="return confirm('Bạn có muốn xóa hay không?')" href="">Xóa<img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
 					</tbody>

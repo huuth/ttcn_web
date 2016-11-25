@@ -26,9 +26,9 @@ class Address extends Model {
 	public function getProvinceById($id){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT * FROM province where provinceid = :id";
+			$sql = "SELECT * FROM province where provinceid =:id ";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':id',$id);
+			$stmt->bindParam(':id',$id,PDO::PARAM_STR,12);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
@@ -63,9 +63,9 @@ class Address extends Model {
 	public function getArrayDistrict($provinceid){
 		try{
 			$conn = $this->connect();
-			$sql = "SELECT * FROM district WHERE provinceid=:id ";
+			$sql = "SELECT * FROM district WHERE provinceid =:id ";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':id',$provinceid);
+			$stmt->bindParam(':id',$provinceid,PDO::PARAM_STR,12);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
@@ -84,7 +84,7 @@ class Address extends Model {
 			$conn = $this->connect();
 			$sql = "SELECT * FROM district where districtid = :id";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':id',$id);
+			$stmt->bindParam(':id',$id,PDO::PARAM_STR,12);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
@@ -122,7 +122,7 @@ class Address extends Model {
 			$conn = $this->connect();
 			$sql = "SELECT * FROM ward WHERE districtid=:id ";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':id',$districtid);
+			$stmt->bindParam(':id',$districtid,PDO::PARAM_STR,12);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
@@ -137,12 +137,12 @@ class Address extends Model {
 		}
 
 	}
-	public function getWardtById($id){
+	public function getWardById($id){
 		try{
 			$conn = $this->connect();
 			$sql = "SELECT * FROM ward where wardid = :id";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':id',$id);
+			$stmt->bindParam(':id',$id,PDO::PARAM_STR,12);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
@@ -156,7 +156,7 @@ class Address extends Model {
 		}
 
 	}
-	public function getIdWardtByName($name){
+	public function getIdWardByName($name){
 		try{
 			$conn = $this->connect();
 			$sql = "SELECT (wardid) FROM ward where name LIKE :name";

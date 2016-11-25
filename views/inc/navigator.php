@@ -67,7 +67,7 @@
           </button>
           <!-- LOGO -->                                               
           <!-- Text based logo -->
-           <a class="navbar-brand aa-logo" href="index.php"> TRANG CHỦ <span>Property</span></a>
+           <a class="navbar-brand aa-logo" href="index.php">PHONGTRO<span>69</span></a>
            <!-- Image based logo -->
            <!-- <a class="navbar-brand aa-logo-img" href="index.html"><img src="img/logo.png" alt="logo"></a> -->
         </div>
@@ -75,10 +75,8 @@
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
             <li class="active"><a href="index.php">TRANG CHỦ</a></li>
             <li><a href="">PHÒNG TRỌ</a></li>
-            <li><a href="">NHÀ NGUYÊN CĂN</a></li>                                         
-            <li><a href="">NHÀ MẶT PHỐ</a></li>
-            <li><a href="">CHUNG CƯ, CĂN HỘ</a></li>
-            <li><a href="">Ở GHÉP</a></li>          
+            <li><a href="">NHÀ NGUYÊN CĂN</a></li>                                                     
+            <li><a href="">CHUNG CƯ, CĂN HỘ</a></li>                      
           </ul>                            
         </div><!--/.nav-collapse -->       
       </div>          

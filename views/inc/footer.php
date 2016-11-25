@@ -7,6 +7,7 @@
   <script src="assets/js/bootstrap.js"></script>   
   <!-- slick slider -->
   <script type="text/javascript" src="assets/js/slick.js"></script>
+  <script type="text/javascript" src="assets/js/common.js"></script>
   <!-- Price picker slider -->
   <script type="text/javascript" src="assets/js/nouislider.js"></script>
   

@@ -21,13 +21,14 @@ class User extends Model {
 	    	return false;//error 404
 	    }
 	}
-	public function editUser($args []){
+	public function editUser($args = []){
 		try {
 			$conn = $this->connect();
 			$sql  = "UPDATE USER 
 					 SET password=:password,phone:phone,name_display:name_display,email:email,image_url:image_url,
-					 	 gender=:gender,auth=:auth,address_id=:address_id
-					 WHERE user_id:user_id"
+					 	 gender=:gender,auth=:auth,province_id=:province_id,district_id=:district_id,ward_id=:ward_id,
+					 	 address_detail=:address_detail
+					 WHERE user_id:user_id";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':password',md5($args['password']));
 			$stmt->bindParam(':phone',$args['phone']);
@@ -36,7 +37,11 @@ class User extends Model {
 			$stmt->bindParam(':image_url',$args['image_url']);
 			$stmt->bindParam(':gender',$args['gender']);
 			$stmt->bindParam(':auth',$args['auth']);
-			$stmt->bindParam(':address_id',$args['address_id']);			
+			$stmt->bindParam(':province_id',$args['province_id']);
+			$stmt->bindParam(':district_id',$args['district_id']);
+			$stmt->bindParam(':ward_id',$args['ward_id']);
+			$stmt->bindParam(':address_detail',$args['address_detail']);
+			$stmt->bindParam(':user_id',$args['user_id']);				
 			$stmt->execute();
 			return true;
 	    }catch(PDOException $e){	    	
@@ -109,17 +114,13 @@ class User extends Model {
 	
 	public function getArrayUser(){
 		try{
-			$resultArr= array();
 			$conn = $this->connect();
 			$sql = 'select * from user ';
 			$stmt = $conn->prepare($sql);
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$stmt->execute();
 			$result = $stmt->fetchAll();
-			foreach($result as $row){
-   				 $resultArr[] = $row;
-			}
-			return $resultArr;
+			return $result;
 		}catch(PDOException $e){
 			return false;
 		}

@@ -8,10 +8,8 @@ class HomeController extends Controller{
 	public function getIndex(){
 		$address = new Address();
 		$provice = $address->getArrayProvince();
-		$data = array(
-			'provice' => $provice,
-			'district'
-			);
-		$this->render('home',$provice);
+		$data['province'] = $address->getArrayProvince();
+		$this->render('home',$data);
 	}
 }
+

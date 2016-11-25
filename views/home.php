@@ -1,6 +1,8 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
+// dump($data);
+?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/navigator.php';?>
-
   <!-- Start slider  -->
   <section id="aa-slider">
     <div class="aa-slider-area"> 
@@ -53,29 +55,31 @@
             <div class="row">              
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select>
-                   <option value="0" selected>Thành phố</option>
-                    <option value="1">Đà Nẵng</option>
-                    <option value="2">Hồ Chí Minh</option>
-                    <option value="3">Hồ Nội</option>
-                    <option value="4">Vinh</option>
+                  <select id="province" name="province_id">
+                    <option value="0" selected>Thành phố</option>
+                    <?php 
+                    $province = sortProvince($data['province']);
+                    foreach ($province as $value):
+                    ?>
+                    <option value="<?php echo $value['provinceid']; ?>"><?php echo $value['name']; ?></option>                    
+                    <?php endforeach; ?>
+                    
+
+
                   </select>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select>
+                  <select id="distict" name="distict_id">
                     <option value="0" selected>Quận</option>
-                    <option value="1">Liên Chiểu</option>
-                    <option value="2">Hải Châu</option>
-                    <option value="3">Thanh Khê</option>
-                    <option value="4">Ngũ Hành Sơn</option>
+                    
                   </select>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select>
+                  <select id="ward" name="ward_id">
                     <option value="0" selected>Phường</option>
                     <option value="1">Hòa Khánh Nam</option>
                     <option value="2">Hòa Khánh Bắc</option>
@@ -541,3 +545,17 @@
 
  
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/footer.php';?>
+<?php 
+  function sortProvince($provinces){
+    $temp1 = [];
+    $temp2 = [];
+    foreach ($provinces as $province) {
+      if($province['type'] == 'Thành Phố'){
+        $temp1[] = $province;
+      }else{
+        $temp2[] = $province;
+      }
+    }
+    return array_merge($temp1,$temp2);
+  }
+ ?>

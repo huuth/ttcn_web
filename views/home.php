@@ -62,10 +62,7 @@
                     foreach ($province as $value):
                     ?>
                     <option value="<?php echo $value['provinceid']; ?>"><?php echo $value['name']; ?></option>                    
-                    <?php endforeach; ?>
-                    
-
-
+                    <?php endforeach; ?>                  
                   </select>
                 </div>
               </div>

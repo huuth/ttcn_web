@@ -186,9 +186,6 @@
                                         <div class="div_select_long">
                                             <select name="ward_id" id="category_group" sel_id="" >
                                                 <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
-                                                <option value='1'  id='cat2020' >Hòa Khánh Bắc</option> 
-                                                <option value='2'  id='cat2010' >Hòa Khánh Nam</option> 
-                                                <option value='3'  id='cat2060' >Nam Ô</option>  
                                             </select>
                                         </div>
                                     </div>

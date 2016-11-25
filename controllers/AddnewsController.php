@@ -39,7 +39,20 @@ class AddnewsController extends Controller{
 		foreach ($districtList as $dist) {
 			$id = $dist['districtid'];
 			$name = $dist['name'];
-			$res = $dist . '<option value='. $id . '>' . $name . '</option>';
+			$res = $res . '<option value='. $id . '>' . $name . '</option>';
+		}
+		echo $res;
+	}
+
+	public function getWard(){
+		$address = new Address();
+		$wardId = $_GET['id'];
+		$wardList = $address->getArrayWard($wardId);
+		$res = '';
+		foreach ($wardList as $ward) {
+			$id = $ward['wardid'];
+			$name = $ward['name'];
+			$res = $res . '<option value='. $id . '>' . $name . '</option>';
 		}
 		echo $res;
 	}

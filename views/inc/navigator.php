@@ -75,10 +75,8 @@
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
             <li class="active"><a href="index.php">TRANG CHỦ</a></li>
             <li><a href="">PHÒNG TRỌ</a></li>
-            <li><a href="">NHÀ NGUYÊN CĂN</a></li>                                         
-            <li><a href="">NHÀ MẶT PHỐ</a></li>
-            <li><a href="">CHUNG CƯ, CĂN HỘ</a></li>
-            <li><a href="">Ở GHÉP</a></li>          
+            <li><a href="">NHÀ NGUYÊN CĂN</a></li>                                                     
+            <li><a href="">CHUNG CƯ, CĂN HỘ</a></li>                      
           </ul>                            
         </div><!--/.nav-collapse -->       
       </div>          

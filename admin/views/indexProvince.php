@@ -30,6 +30,10 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php
+							foreach ($data as $key => $value) {
+							}
+						?>
 						<tr>
 							<td class="align-center">001</td>
 							<td><a href="index.php?ctr=province&act=getEdit">Đà Nẵng</a></td>
@@ -39,6 +43,8 @@
 								<a onclick="return confirm('Bạn có muốn xóa hay không?')"  href="">Xóa<img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 							</td>
 						</tr>
+						<?php
+						?>
 					</tbody>
 				</table>
 				</form>

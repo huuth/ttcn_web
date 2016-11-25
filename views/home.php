@@ -1,5 +1,5 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
-// dump($data);
+ //dump($data);
 ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/navigator.php';?>

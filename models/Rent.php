@@ -187,6 +187,23 @@ class Rent extends Model {
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
+				return $result[0];
+			}else{
+				return false;
+			}		
+		}catch(PDOException $e){
+			return false;
+		}
+	}
+	public function getTotalRent(){
+		try{
+			$conn = $this->connect();
+			$sql = 'SELECT count(*)  FROM rent ';
+			$stmt = $conn->prepare($sql);
+			$stmt->execute();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();
+			if($result){
 				return $result;
 			}else{
 				return false;
@@ -194,6 +211,7 @@ class Rent extends Model {
 		}catch(PDOException $e){
 			return false;
 		}
+
 	}
 
 }

@@ -103,7 +103,7 @@ class User extends Model {
 			$result = $stmt->fetchAll();
 			if($result){
 				unset($result[0]['password']);
-				return $result;
+				return $result[0];
 			}else{
 				return false;
 		}

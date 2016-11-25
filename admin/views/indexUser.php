@@ -15,6 +15,15 @@
 
 <div class="grid_12">
 	<!-- Example table -->
+	<?php
+		if (isset($_GET['load'])) {
+			if($_GET['load']=='edit'):
+	?>
+		<h5 style="color:red">Sửa thành công</h5>
+	<?php
+			endif;
+		}
+	?>
 	<div class="module">
 		<h2><span>Danh sách người dùng</span></h2>
 		
@@ -30,15 +39,21 @@
 					</tr>
 				</thead>
 				<tbody>
+					<?php
+						foreach ($data['user'] as $user):
+					?>
 					<tr>
-						<td class="align-center">001</td>
-						<td><a href="index.php?ctr=user&act=getDetail">thuytiendang206</a></td>
-						<td>Đặng Thị Thủy Tiên</td>
+						<td class="align-center"><?php echo $user['user_id']?></td>
+						<td><a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $user['user_id']?>"><?php echo $user['username']?></a></td>
+						<td><?php echo $user['name_display']?></td>
 						<td align="center">
-							<a href="index.php?ctr=user&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+							<a href="index.php?ctr=user&act=getEdit&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
 							<a href="">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 						</td>
 					</tr>
+					<?php
+						endforeach;
+					?>
 				</tbody>
 			</table>
 			</form>

@@ -6,10 +6,10 @@
 			<div class="module">
 				 <h2><span>Sửa tên tỉnh/thành phố</span></h2>
 				 <div class="module-body">
-					<form action="" method="post">
+					<form action="ndex.php?ctr=province&act=getIndex&load=submit" method="post">
 						<p>
 							<label>Tên tỉnh/thành phố</label>
-							<input type="text" name="tendanhmuc" value="Tên tỉnh/thành phố cần sửa" class="input-medium" />
+							<input type="text" name="tendanhmuc" value="<?php echo $data[0]['name']?>" class="input-medium" />
 						</p>
 						<fieldset>
 							<input class="submit-green" name="sua" type="submit" value="Sửa" /> 

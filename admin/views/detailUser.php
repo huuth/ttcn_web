@@ -9,14 +9,19 @@
 
 			<div class="module">
 				 <div class="module-body">
-				 	<p><strong>Username: </strong>thuytiendang206</p>
-				 	<p><strong>Họ tên: </strong>Đặng Thị Thủy Tiên</p>
-				 	<p><strong>Số điện thoại: </strong>12345789</p>
-				 	<p><strong>Email: </strong>thuytiendang206@gmail.com</p>
-				 	<p><strong>Giới tính: </strong>Nữ</p>
-				 	<p><strong>Ảnh: </strong>bla</p>
-				 	<p><strong>Quyền: </strong>admin</p>
-				 	<p><strong>Địa chỉ: </strong>gkfgsdkfgsdk</p>
+				 	<p><strong>Username: </strong><?php echo $data[0]['username']?></p>
+				 	<p><strong>Họ tên: </strong><?php echo$data[0]['name_display']?></p>
+				 	<p><strong>Số điện thoại: </strong><?php echo$data[0]['phone']?></p>
+				 	<p><strong>Email: </strong><?php echo$data[0]['email']?></p>
+				 	<p><strong>Giới tính: </strong><?php echo$data[0]['gender']?></p>
+				 	<p><strong>Ảnh: </strong><?php echo$data[0]['image_url']?></p>
+				 	<p><strong>Quyền: </strong>
+				 	    <?php 
+				 	       if ($data[0]['auth']=='0') echo "Thành viên";
+				 	       else echo "Admin";
+				 	    ?>
+				 	</p>
+				 	<p><strong>Địa chỉ: </strong><?php echo$data[0]['address_detail']?></p>
 				 </div> <!-- End .module-body -->
 
 				</div>  <!-- End .module -->

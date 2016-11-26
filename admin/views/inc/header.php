@@ -28,7 +28,7 @@
 				<div class="grid_12">
 					<div id="logo">
 						<ul id="nav">
-							<li id="current"><a href="index.php?ctr=rents&act=getIndex">Quản trị</a></li>
+							<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1">Quản trị</a></li>
 							<li><a href="index.php?ctr=user&act=getDetail">Tài khoản</a></li>
 							<li><a href="index.php?ctr=user&act=getIndex">Người dùng</a></li>
 						</ul>

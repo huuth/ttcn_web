@@ -43,7 +43,7 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<ul>
-						<li id="current"><a href="index.php?ctr=rents&act=getIndex">Quản lý bài đăng</a></li>
+						<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1">Quản lý bài đăng</a></li>
 						<li><a href="index.php?ctr=type&act=getIndex">Loại hình cho thuê</a></li>
 						<li><a href="index.php?ctr=province&act=getIndex">Thành phố</a></li>
 						<li><a href="index.php?ctr=district&act=getIndex">Quận/Huyện</a></li>

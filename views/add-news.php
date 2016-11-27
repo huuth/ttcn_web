@@ -45,6 +45,9 @@
 
   </head>
 
+    
+
+
   <body class="aa-price-range">
     <!-- Pre Loader -->
     <div id="aa-preloader-area">
@@ -132,6 +135,16 @@
         </div>
     </section>
     <!-- End Proerty header  -->
+
+                
+<!-- 
+                <form action="index.php?ctr=addnews&act=uploadImage" method="post" enctype="multipart/form-data">
+                    <input type="file" id="file" name="files[]" multiple="multiple" accept="image/*" />
+                    <input type="submit" value="Upload!" />
+                </form>
+ -->
+
+
     <!--body-->
     <section id="aa-properties">
         <div class='nhf_body' itemscope itemtype="http://schema.org/Website">
@@ -147,7 +160,7 @@
                                <div class="clear"></div>
                            </div>
                            <div class="ai_form_col">
-                            <form method="post" action="index.php?ctr=addnews&act=postNews" id="formular" name="formular"
+                            <form method="post" action="index.php?ctr=addnews&act=addNews" id="formular" name="formular"
                             enctype="multipart/form-data" onsubmit="return form_validate();">
 
                             <div class="ai_header">Nội dung tin&nbsp<span class="ai_header_notice">(Vui lòng điền đầy đủ tất cả các mục)</span></div>
@@ -197,7 +210,7 @@
                                 <div class="ai_label">Loại tin rao:</div>
                                 <div class="ai_element">
                                     <div class="div_select_long">
-                                        <select name="type_id" id="region">
+                                        <select name="type_id" id="category_group">
                                             <option value="0">&laquo;Chọn&raquo;</option>
                                             <option value="12" > Cho thuê nhà</option>
                                             <option value="13" > Bán nhà</option>
@@ -231,7 +244,7 @@
                                         </small>
                                     </div>
                                 <div class="ai_element">
-                              <textarea cols="43" rows="10" name="body" maxlength="2000" class="vietuni placeholder input_long_textarea" id="body" title="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu." placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu."></textarea>
+                              <textarea cols="43" rows="10" name="describe_rent" maxlength="2000" class="vietuni placeholder input_long_textarea" id="body" title="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu." placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu."></textarea>
                             </div>
                           <div class="clear"></div>
                           <div class="trans_price" id="tprice"></div>
@@ -258,80 +271,38 @@
              </div>
          </div>
      </div>
+             <?php
+             if(isset($_SESSION['uploadMsg'])){
+                echo '<p style="color:red;">' . $_SESSION['uploadMsg'] .'</p>';
+            } 
+            ?>
      <div class="ai_row">
         <div class="ai_label">Hình:</div>
         <div class="ai_element" style="width:663px;margin-bottom: -23px;">
             <div id="drop_zone">
                 <div id="ai_image_tip">“Trăm nghe không bằng mắt thấy”. Tin có hình được xem nhiều gấp 7 lần. <br><b>ĐĂNG HÌNH ĐỂ BÁN CHẠY HƠN!</b></div>
                 <div style="clear:both"></div>
+            
+            
+                <div class="row">
+                    <div id="img-box" class="col-md-4">
+                        <img src="data/rent-images/zzzz.jpg"> 
+                    </div>
+                </div>       
+
+                   
+
                 <div align="center" style="float:left; margin-right:10px;margin-left:7px;" data-sequence="0" class="im_upload nohistory image-placeholder image-placeholder-show" id="dummy_image_0">
-                    <input tabindex="-1" data-url="https://www2.chotot.com/upload_image.json" data-sequence="0" type="file" multiple="multiple" size="1" class="ai-general-input" id="image_0" style="display: block; cursor: pointer;">
+                    <input id="image_upload" type="file" name="files[]" multiple="multiple" accept="image/*" data-url="https://www2.chotot.com/upload_image.json" class="ai-general-input" style="display: block; cursor: pointer;">
                     <span class="validation-message" style=""></span>
                     <div class="thumb-container thumb-container-empty">
                         <div id="thumb-camera" class="thumb-camera sprite_ai_camera" style="display: block;"></div>
                         <input type="hidden" class="image_value" id="image0" value="">
                         <input type="hidden" name="image_rotate[]" class="rotate_value" id="image0_rotate" value="0">
-                        <span class="image-label">Đăng hình</span>
-                    </div>
-
-                </div>
-                <div align="center" style="float:left; margin-right:10px;" data-sequence="1" class="im_upload nohistory image-placeholder image-placeholder-show" id="dummy_image_1">
-                    <input tabindex="-1" data-url="https://www2.chotot.com/upload_image.json" data-sequence="1" type="file" multiple="multiple" size="1" class="ai-general-input" id="image_1" style="display: block; cursor: pointer;">
-                    <span class="validation-message" style=""></span>
-                    <div class="thumb-container thumb-container-empty">
-                        <div id="thumb-camera" class="thumb-camera sprite_ai_camera" style="display: block;"></div>
-                        <input type="hidden" class="image_value" id="image1" value="">
-                        <input type="hidden" name="image_rotate[]" class="rotate_value" id="image1_rotate" value="0">
-                        <span class="image-label">Đăng hình</span>
-                    </div>
-
-                </div>
-                <div align="center" style="float:left; margin-right:10px;" data-sequence="2" class="im_upload nohistory image-placeholder image-placeholder-show" id="dummy_image_2">
-                    <input tabindex="-1" data-url="https://www2.chotot.com/upload_image.json" data-sequence="2" type="file" multiple="multiple" size="1" class="ai-general-input" id="image_2" style="display: block; cursor: pointer;">
-                    <span class="validation-message" style=""></span>
-                    <div class="thumb-container thumb-container-empty">
-                        <div id="thumb-camera" class="thumb-camera sprite_ai_camera" style="display: block;"></div>
-                        <input type="hidden" class="image_value" id="image2" value="">
-                        <input type="hidden" name="image_rotate[]" class="rotate_value" id="image2_rotate" value="0">
-                        <span class="image-label">Đăng hình</span>
-                    </div>
-
-                </div>
-                <div align="center" style="float:left; margin-right:10px;margin-left:7px;" data-sequence="3" class="im_upload nohistory image-placeholder image-placeholder-show" id="dummy_image_3">
-                    <input tabindex="-1" data-url="https://www2.chotot.com/upload_image.json" data-sequence="3" type="file" multiple="multiple" size="1" class="ai-general-input" id="image_3" style="display: block; cursor: pointer;">
-                    <span class="validation-message" style=""></span>
-                    <div class="thumb-container thumb-container-empty">
-                        <div id="thumb-camera" class="thumb-camera sprite_ai_camera" style="display: block;"></div>
-                        <input type="hidden" class="image_value" id="image3" value="">
-                        <input type="hidden" name="image_rotate[]" class="rotate_value" id="image3_rotate" value="0">
-                        <span class="image-label">Đăng hình</span>
+                        <!-- <img class="rent-img" src="data\rent-images\img1.jpg" alt=""> -->
+                        <span class="image-label">Đăng hình</span>   
                     </div>
                 </div>
-               
-                <div align="center" style="float:left; margin-right:10px;" data-sequence="5" class="im_upload nohistory image-placeholder image-placeholder-show" id="dummy_image_5">
-                    <input tabindex="-1" data-url="https://www2.chotot.com/upload_image.json" data-sequence="5" type="file" multiple="multiple" size="1" class="ai-general-input" id="image_5" style="display: block; cursor: pointer;">
-                    <span class="validation-message" style=""></span>
-                    <div class="thumb-container thumb-container-empty">
-                        <div id="thumb-camera" class="thumb-camera sprite_ai_camera" style="display: block;"></div>
-                        <input type="hidden" class="image_value" id="image5" value="">
-                        <input type="hidden" name="image_rotate[]" class="rotate_value" id="image5_rotate" value="0">
-                        <span class="image-label">Đăng hình</span>
-                    </div>
-
-                </div>
-
-                <div align="center" style="float:left; margin-right:10px;" data-sequence="5" class="im_upload nohistory image-placeholder image-placeholder-show" id="dummy_image_5">
-                    <input tabindex="-1" data-url="https://www2.chotot.com/upload_image.json" data-sequence="5" type="file" multiple="multiple" size="1" class="ai-general-input" id="image_5" style="display: block; cursor: pointer;">
-                    <span class="validation-message" style=""></span>
-                    <div class="thumb-container thumb-container-empty">
-                        <div id="thumb-camera" class="thumb-camera sprite_ai_camera" style="display: block;"></div>
-                        <input type="hidden" class="image_value" id="image5" value="">
-                        <input type="hidden" name="image_rotate[]" class="rotate_value" id="image5_rotate" value="0">
-                        <span class="image-label">Đăng hình</span>
-                    </div>
-
-                </div>
-
 
                 <span id="more_img"> Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
             </div>

@@ -1,0 +1,31 @@
+.rent-img {
+	width: 100%;
+	position: absolute;
+}
+
+#img-box img {
+	height: auto;
+ 	width: 150px;
+}
+
+/* .img-box {
+	width: 64px;
+    height: 64px;
+    position: relative;
+    overflow: hidden;
+} */
+
+#img-box {
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -3px;
+	margin-top: 5px;
+
+}
+
+.im_upload {
+	clear: left !important;
+}

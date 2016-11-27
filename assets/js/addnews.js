@@ -1,6 +1,8 @@
 
 $(function(){
+    var files = [];
     ajaxP("index.php?ctr=addnews&act=getProvince","get",'select[name="province_id"]'); 
+    ajaxP("index.php?ctr=addnews&act=getType","get",'select[name="type_id"]'); 
      //
     $('select[name="province_id"]').change(function(event) {
         /* Act on the event */
@@ -20,7 +22,26 @@ $(function(){
         var wardId = $(this).find(":selected").val();
         ajaxP(url, method, selector, wardId);
     });
+    // Add events
 
+    // $('input[id="image_0"][type=file]').on('change', prepareUpload('0'));
+    // $('input[id="image_1"][type=file]').on('change', prepareUpload);
+    $('input[type=file]').on('change', function(event){
+        files = event.target.files;
+        console.log(files);
+        console.log("image0");
+        var x = document.createElement("IMG");
+        x.setAttribute("src", "data/rent-images/zzz.jpg");
+        // x.setAttribute("width", "304");
+        // x.setAttribute("width", "228");
+        document.getElementById("imgList").appendChild(x);
+    });
+
+    // Grab the files and set them to our variable
+    // function prepareUpload(id)
+    // {
+    //   console.log("image0");
+    // }
 
 });
 function ajaxP(url, method, selector, id=0){

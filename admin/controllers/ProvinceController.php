@@ -9,7 +9,13 @@
 			$this->render('indexProvince',$data);
 		}
 		public function getEdit(){
-			$this->render('editProvince');
+			if (!empty($_GET['idProvince']))
+			{
+				$idProvince=$_GET['idProvince'];
+				$address= new Address();
+				$data=$address->getProvinceById($idProvince);
+				$this->render('editProvince',$data);	
+			}
 		}
 		public function getAdd(){
 			$this->render('addProvince');

@@ -8,9 +8,9 @@
 			<div class="module">
 				 <h2><span>Sửa người dùng</span></h2>
 				 <div class="module-body">
-					<form action="" method="post">
+					<form action="index.php?ctr=user&act=getEdit&load=edit" method="post">
 						<p style='color: red' >
-							<strong>thuytiendang206</strong>
+							<strong><?php echo $data[0]['username']?></strong>
 						</p>
 						<p>
 							<label>Password</label>
@@ -18,15 +18,15 @@
 						</p>
 						<p>
 							<label>Họ và tên</label>
-							<input type="text" name="fullname" value="Đặng Thị Thủy Tiên" class="input-medium" />
+							<input type="text" name="fullname" value="<?php echo$data[0]['name_display']?>" class="input-medium" />
 						</p>
 						<p>
 							<label>SĐT</label>
-							<input type="text" name="phone" value="" class="input-medium" />
+							<input type="text" name="phone" value="<?php echo$data[0]['phone']?>" class="input-medium" />
 						</p>
 						<p>
 							<label>Email</label>
-							<input type="text" name="email" value="" class="input-medium" />
+							<input type="text" name="email" value="<?php echo$data[0]['email']?>" class="input-medium" />
 						</p>
 						<fieldset>
 							<input class="submit-green" name="suaU" type="submit" value="Sửa" /> 

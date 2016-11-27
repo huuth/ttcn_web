@@ -216,3 +216,17 @@
     </footer>
     <!-- / Footer -->
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/footer.php';?>
+<?php 
+  function sortProvince($provinces){
+    $temp1 = [];
+    $temp2 = [];
+    foreach ($provinces as $province) {
+      if($province['type'] == 'Thành Phố'){
+        $temp1[] = $province;
+      }else{
+        $temp2[] = $province;
+      }
+    }
+    return array_merge($temp1,$temp2);
+  }
+ ?>

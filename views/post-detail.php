@@ -48,44 +48,44 @@
                                 </div>
                                 <div class="infor-post">
                                     <div class="row infor-post-address">                                        
-                                        <div class="col-md-2 col-xs-4"><span>Địa chỉ:</span></div>
-                                        <div class="col-md-10 col-xs-8"><span><?php echo $detail['address_detail']; ?></span></div>  
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Địa chỉ:</span></div>
+                                        <div class="col-md-9 col-xs-7"><span><?php echo $detail['address_detail']; ?></span></div>  
                                     </div>
                                     <div class="row">                                       
-                                        <div class="col-md-2 col-xs-4"><span>Loại tin rao:</span></div>
-                                        <div class="col-md-4 col-xs-8">
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Loại tin rao:</span></div>
+                                        <div class="col-md-3 col-xs-7">
                                             <a href="https://phongtro123.com/cho-thue-phong-tro">
                                             <?php echo $type['type_name']; ?></a>
                                         </div>                                       
-                                        <div class="col-md-2 col-xs-4"><span>Ngày cập nhật:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span><?php echo $detail['post_time'] ;?></span></div>                                       
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Ngày cập nhật:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span><?php echo $detail['post_time'] ;?></span></div>                                       
                                     </div>
                                     <div class="row">                                    
-                                        <div class="col-md-2 col-xs-4"><span>Người đăng:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span>
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Người đăng:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span>
                                             <?php echo $user['username']; ?>
                                          </span></div>                                                            
-                                        <div class="col-md-2 col-xs-4"><span>Điện thoại:</span></div>
-                                        <div class="col-md-4 col-xs-8">
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Điện thoại:</span></div>
+                                        <div class="col-md-3 col-xs-7">
                                             <a href="tel:0975771327"><?php echo $user['phone']; ?>
                                             </a>
                                         </div>                                    
                                     </div>
                                     <div class="row">                                    
-                                        <div class="col-md-2 col-xs-4"><span>Email:</span></div>
-                                        <div class="col-md-4 col-xs-8">
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Email:</span></div>
+                                        <div class="col-md-3 col-xs-7">
                                             <a href="mailto:vohinh1989kute@gmail.com"><?php echo $user['email']; ?>
                                             </a>
                                         </div>                                                                      
-                                        <div class="col-md-2 col-xs-4"><span>Đối tượng:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span>Tất cả </span></div>                                    
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Đối tượng:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span>Tất cả </span></div>                                    
                                     </div>
                                     <div class="row">                                    
-                                        <div class="col-md-2 col-xs-4"><span>Diện tích:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span><?php echo $detail['square'] ." m2"; ?>
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Diện tích:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span><?php echo $detail['square'] ." m2"; ?>
                                         </span></div>                               
-                                        <div class="col-md-2 col-xs-4"><span>Giá cho thuê:</span></div>
-                                        <div class="col-md-4 col-xs-8"><span><?php echo $detail['price'] ;?></span></div>                                    
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Giá cho thuê:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span><?php echo $detail['price'] ;?></span></div>                                    
                                     </div>
                                 </div>
                                 <div class="infor-detail">
@@ -117,46 +117,25 @@
                         <!-- Start Single properties sidebar -->
                         <div class="aa-properties-single-sidebar">
                             <h3>TÌM KIẾM</h3>
-                            <form action="">
+                            <form action="">                               
                                 <div class="aa-single-advance-search">
-                                    <select>
-                                       <option value="0" selected>Thành phố</option>
-                                       <?php
-                                        $province = sortProvince($data['province']);
-                                        foreach ($province as $value):
-                                        ?>
-                                        <option value="<?php echo $value['provinceid']; ?>"><?php echo $value['name']; ?>
-                                        </option>
-                                        <?php endforeach; ?> 
-
+                                    <select id="province" name="province_id">                              
                                     </select>
-                                </div>
+                                </div>                                                               
                                 <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Quận</option>
-                                        <option value="1">Liên Chiểu</option>
-                                        <option value="2">Hải Châu</option>
-                                        <option value="3">Thanh Khê</option>
-                                        <option value="4">Ngũ Hành Sơn</option>
+                                    <select id="distict" name="district_id">    
+                                        <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>           
                                     </select>
-                                </div>
+                                </div>                                 
                                 <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Phường</option>
-                                        <option value="1">Hòa Khánh Nam</option>
-                                        <option value="2">Hòa Khánh Bắc</option>
-                                        <option value="3">Hòa Minh</option>                    
+                                    <select id="ward" name="ward_id">  
+                                        <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>             
                                     </select>
-                                </div>
+                                </div>                                  
                                 <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Chọn loại phòng</option>
-                                        <option value="1">Nhà trọ, Phòng trọ</option>
-                                        <option value="2">Chung cư, căn hộ</option>
-                                        <option value="3">Nhà nguyên căn</option>
-                                        <option value="4">Nhà mặt phố</option>
+                                    <select name="type_id">                    
                                     </select>
-                                </div>
+                                </div>                                 
                                 <div class="aa-single-advance-search">
                                     <select>
                                         <option value="0" selected>Giá thấp nhất</option>
@@ -166,9 +145,9 @@
                                         <option value="4">từ 3 - 7 triệu</option>
                                         <option value="4">trên 7 triệu</option>
                                     </select>
-                                </div>
+                                </div>                                  
                                 <div class="aa-single-advance-search">
-                                    <input type="submit" value="TÌM KIẾM" class="aa-search-btn">
+                                    <input type="submit" name="search" value="TÌM KIẾM" class="aa-search-btn">
                                 </div>
                             </form>
                         </div>

@@ -162,12 +162,12 @@
                   </a>
                   <div class="aa-properties-item-content">
                     <div class="aa-properties-info">
-                      <?php echo $rent['address_detail']; ?>
+                      <?php echo mb_substr($rent['address_detail'],0,40,"utf-8"); ?>
                     </div>
                     <div class="aa-properties-about">
                       <h3>
                         <a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>">
-                          <?php echo substr($rent['rent_name'],0,60); ?>  
+                          <?php echo mb_substr($rent['rent_name'],0,60,"utf-8"); ?>  
                         </a>
                       </h3>                      
                     </div>

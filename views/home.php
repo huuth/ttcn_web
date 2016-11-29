@@ -55,43 +55,27 @@
             <div class="row">              
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select id="province" name="province_id">
-                    <option value="0" selected>Thành phố</option>
-                    <?php 
-                    $province = sortProvince($data['province']);
-                    foreach ($province as $value):
-                    ?>
-                    <option value="<?php echo $value['provinceid']; ?>"><?php echo $value['name']; ?></option>                    
-                    <?php endforeach; ?>                  
+                  <select id="province" name="province_id">                              
                   </select>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select id="distict" name="distict_id">
-                    <option value="0" selected>Quận</option>
-                    
+                  <select id="distict" name="district_id">    
+                    <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>                             
                   </select>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select id="ward" name="ward_id">
-                    <option value="0" selected>Phường</option>
-                    <option value="1">Hòa Khánh Nam</option>
-                    <option value="2">Hòa Khánh Bắc</option>
-                    <option value="3">Hòa Minh</option>                    
+                  <select id="ward" name="ward_id">  
+                    <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>                              
                   </select>
                 </div>
               </div>
               <div class="col-md-2">
                  <div class="aa-single-advance-search">
-                  <select>
-                    <option value="0" selected>Chọn loại phòng</option>
-                    <option value="1">Nhà trọ, Phòng trọ</option>
-                    <option value="2">Chung cư, căn hộ</option>
-                    <option value="3">Nhà nguyên căn</option>
-                    <option value="4">Nhà mặt phố</option>
+                  <select name="type_id">                    
                   </select>
                 </div>
               </div>
@@ -125,381 +109,86 @@
     <div class="container">
       <div>
         <!-- Nav tabs -->
+        <!-- $typeId = $type['type_id'];
+      $typeName = $type['type_name']; -->
         <ul class="nav nav-tabs" role="tablist">
           <li><h3 class="latest-news">TIN MỚI NHẤT</h3></li>
-          <li role="presentation" class="active"><a href="#motel" aria-controls="motel" role="tab" data-toggle="tab">Phòng trọ, nhà trọ</a></li>
-          <li role="presentation"><a href="#apartment" aria-controls="apartment" role="tab" data-toggle="tab">Chung cư, căn hộ</a></li>
-          <li role="presentation"><a href="#house" aria-controls="house" role="tab" data-toggle="tab">Nhà nguyên căn</a></li>
-          <li role="presentation"><a href="#house-street" aria-controls="house-street" role="tab" data-toggle="tab">Nhà mặt phố</a></li>
+          <?php if(isset($data['typeList'])): ?>
+
+          <?php 
+            $count = 0; 
+            foreach ($data['typeList'] as $type){
+              if($count == 0){
+                echo '<li role="presentation" class="active"><a href="#id_'.$type['type_id'].'" aria-controls="motel" role="tab" data-toggle="tab">'.$type['type_name'].'</a></li>';
+              }else{
+                echo '<li role="presentation"><a href="#id_'.$type['type_id'].'" aria-controls="motel" role="tab" data-toggle="tab">'.$type['type_name'].'</a></li>';
+              }
+              $count++;
+            }
+          ?>
+
+          <?php else:?>
+            <li role="presentation" class="active"><a href="#motel" aria-controls="motel" role="tab" data-toggle="tab">Phòng trọ, nhà trọ</a></li>
+            <li role="presentation"><a href="#apartment" aria-controls="apartment" role="tab" data-toggle="tab">Chung cư, căn hộ</a></li>
+            <li role="presentation"><a href="#house" aria-controls="house" role="tab" data-toggle="tab">Nhà nguyên căn</a></li>
+            <li role="presentation"><a href="#house-street" aria-controls="house-street" role="tab" data-toggle="tab">Nhà mặt phố</a></li>
+          <?php endif;?>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="motel">
+        <?php 
+          if(isset($data['arrayRent'])): 
+          $count = 0;
+          foreach ($data['arrayRent'] as $key => $arrayRent)://foreach 1            
+          $count++;
+        ?>
+          <div role="tabpanel" class="tab-pane <?php if($count == 1) echo 'active';?>" id="<?php echo 'id_' . $key; ?>">  
             <div class="aa-latest-properties-content">
               <div class="row">
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/1.jpg" alt="img">
-                    </a>                
-                    <div class="aa-tag for-rent">
-                      For Rent
-                    </div>    
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                                          
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $35000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
+              <?php foreach ($arrayRent as $key => $rent):                
+               ?>
+              <div class="col-md-4">
+                <article class="aa-properties-item">
+                  <a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>" class="aa-properties-item-img">
+                    <?php 
+                    if(empty($data['arrayImg'][$rent['rent_id']])){
+                      echo '<img src="assets/img/item/default.png" alt="img">';
+                    }else{
+                      $img = $data['arrayImg'][$rent['rent_id']];
+                      echo '<img src="'. $img[0]['image_url'] .'" alt="img">';                      
+                    }
+                    ?>                      
+                  </a>
+                  <div class="aa-properties-item-content">
+                    <div class="aa-properties-info">
+                      <?php echo $rent['address_detail']; ?>
                     </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/2.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-rent">
-                      For Rent
+                    <div class="aa-properties-about">
+                      <h3>
+                        <a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>">
+                          <?php echo substr($rent['rent_name'],0,50); ?>  
+                        </a>
+                      </h3>                      
                     </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $11000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
+                    <div class="aa-properties-detial">
+                      <span class="aa-price">
+                        <?php echo $rent['price']; ?>
+                      </span>
+                      <a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>" class="aa-secondary-btn">Chi tiết</a>
                     </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/3.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag sold-out">
-                      Sold Out
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $15000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>            
-          </div>
-          <!--  -->
-          <div role="tabpanel" class="tab-pane" id="apartment">
-            <div class="aa-latest-properties-content">
-              <div class="row">
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/1.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-sale">
-                      For Sale 2
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $35000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/2.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-rent">
-                      For Rent
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $11000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/3.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag sold-out">
-                      Sold Out
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $15000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--  -->
-          <div role="tabpanel" class="tab-pane" id="house">
-            <div class="aa-latest-properties-content">
-              <div class="row">
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/1.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-sale">
-                      For Sale 3
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $35000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/2.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-rent">
-                      For Rent
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $11000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/3.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag sold-out">
-                      Sold Out
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $15000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">Chi tiết</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--  -->
-          <div role="tabpanel" class="tab-pane" id="house-street">
-            <div class="aa-latest-properties-content">
-              <div class="row">
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/1.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-sale">
-                      For Sale 4
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $35000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">View Details</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/2.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag for-rent">
-                      For Rent
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $11000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">View Details</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-                <div class="col-md-4">
-                  <article class="aa-properties-item">
-                    <a href="#" class="aa-properties-item-img">
-                      <img src="assets/img/item/3.jpg" alt="img">
-                    </a>
-                    <div class="aa-tag sold-out">
-                      Sold Out
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
-                      </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">Appartment Title</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
-                      </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          $15000
-                        </span>
-                        <a href="#" class="aa-secondary-btn">View Details</a>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  </div> 
+                </article> <!--article  -->
+              </div><!-- col-md-4 -->
 
+              <?php endforeach; ?>
+              </div><!-- row -->
+            </div>
+          </div><!-- tabpanel -->
+
+        <?php endforeach;?> <!-- foreach 1 -->
+        <?php endif; ?>          
+        </div>
       </div>
     </div>
   </section>

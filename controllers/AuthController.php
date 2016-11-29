@@ -36,7 +36,8 @@ class AuthController extends Controller{
 		if(isset($_POST['submit'])){
 			// var_dump($_POST);
 			if(!empty($_POST['name'])){
-				$args['name'] = $_POST['name'];
+				$args['username'] = $_POST['name'];
+				$args['name_display'] = $args['username'];
 				$count++;
 			}
 			if(!empty($_POST['password'])){

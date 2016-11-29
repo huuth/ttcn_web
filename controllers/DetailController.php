@@ -13,11 +13,20 @@ class DetailController extends Controller{
 			$user = new User();
 			$type = new Type();
 			$address = new Address();
-			$data['rent'] = $rent -> getRentById(12);
-			$data['user'] = $user -> getUserById($data['rent']['user_id']);
-			$data['type'] = $type -> getTypeById($data['rent']['type_id']);
-			$data['province'] = $address->getArrayProvince();
-			$this->render('post-detail',$data);
+			if(isset($_GET['rent_id'])){
+				$data['rent'] = $rent -> getRentById($_GET['rent_id']);
+				if(empty($data['rent'])){
+					$this->redirect('ctr=error&act=error404');
+				}else{
+					$data['user'] = $user -> getUserById($data['rent']['user_id']);
+					$data['type'] = $type -> getTypeById($data['rent']['type_id']);
+					$data['province'] = $address->getArrayProvince();
+					$this->render('post-detail',$data);			
+				}
+			}else{
+				$this->redirect('ctr=error&act=error404');
+			}
+			
 		
 	}
 	

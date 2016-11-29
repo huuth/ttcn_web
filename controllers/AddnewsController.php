@@ -115,7 +115,7 @@ class AddnewsController extends Controller{
 		$address = new Address();
 		$distId = $_GET['id'];
 		$districtList = $address->getArrayDistrict($distId);
-		$res = '';
+		$res = '<option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>';
 		foreach ($districtList as $dist) {
 			$id = $dist['districtid'];
 			$name = $dist['name'];
@@ -140,7 +140,7 @@ class AddnewsController extends Controller{
 	public function getType(){
 		$typeModel = new Type();
 		$typeList = $typeModel -> getArrayType();
-		$res = '<option value="0">&laquo;Chọn&raquo;</option>';
+		$res = '<option value="0">&laquo;Chọn loai tin&raquo;</option>';
 		foreach ($typeList as $type) {
 			$typeId = $type['type_id'];
 			$typeName = $type['type_name'];

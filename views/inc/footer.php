@@ -13,6 +13,6 @@
   
   <!-- Custom js -->
   <script src="assets/js/custom.js"></script> 
-
+  <script src="assets/js/addnews.js"></script>
   </body>
 </html>

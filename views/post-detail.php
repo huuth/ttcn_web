@@ -2,7 +2,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/models/User.php';
 
-//$detail = $data['ds']; dump($detail);
+//$detail = $data['image']; dump($detail);
 ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
@@ -34,11 +34,11 @@
                         <!-- Start properties content body -->
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
-                                <?php $image = $data['image']; 
-                                    foreach ($image as $img) ?>
-                                <img src="assets/img/slider/1.jpg" alt="img">
-                                <img src="assets/img/slider/2.jpg" alt="img">
-                                <img src="assets/img/slider/3.jpg" alt="img">
+                                <?php if(!empty($data['rent']['img'])): ?>
+                                    <?php foreach ($data['rent']['img'] as  $img): ?>
+                                        <img src="<?php echo $img['image_url'] ?>" alt="img">    
+                                    <?php endforeach; ?>
+                                <?php endif; ?>                                
                             </div>
                             <div class="aa-properties-info">
                             <?php   $detail = $data['rent'];
@@ -197,17 +197,3 @@
     </footer>
     <!-- / Footer -->
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/footer.php';?>
-<?php 
-  function sortProvince($provinces){
-    $temp1 = [];
-    $temp2 = [];
-    foreach ($provinces as $province) {
-      if($province['type'] == 'Thành Phố'){
-        $temp1[] = $province;
-      }else{
-        $temp2[] = $province;
-      }
-    }
-    return array_merge($temp1,$temp2);
-  }
- ?>

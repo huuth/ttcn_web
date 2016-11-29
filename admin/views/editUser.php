@@ -8,17 +8,17 @@
 			<div class="module">
 				 <h2><span>Sửa người dùng</span></h2>
 				 <div class="module-body">
-					<form action="index.php?ctr=user&act=editUser" method="post">
+					<form action="index.php?ctr=user&act=editUser&idUser=<?php echo $data['user_id']?>" method="post">
 						<p style='color: red' >
 							<strong><?php echo $data['username']?></strong>
 						</p>
 						<p>
 							<label>Password</label>
-							<input type="password" name="password" id="password"value="" class="input-medium" />
+							<input type="password" name="password" id="password" value="" class="input-medium" />
 						</p>
 						<p>
 							<label>confirmPassword</label>
-							<input type="password" name="confirmPassword" id="confirmPassword" value="" onChange="checkPasswordMatch();" class="input-medium" />
+							<input type="password" name="confirmPassword" id="confirmPassword" value="" required="required" class="input-medium" />
 						</p>
 						 <p><div class="registrationFormAlert" id="divCheckPasswordMatch"></div></p>
 						<p>

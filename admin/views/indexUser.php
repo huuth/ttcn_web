@@ -16,12 +16,28 @@
 <div class="grid_12">
 	<!-- Example table -->
 	<?php
-		if (isset($_GET['load'])) {
-			if($_GET['load']=='edit'):
-	?>
-		<h5 style="color:red">Sửa thành công</h5>
-	<?php
-			endif;
+		if (isset($_GET['load'])){
+			if($_GET['load']=='edit'){
+				if($_GET['check']=='true'){
+				?>
+					<h5 style="color:red">Sửa thành công</h5>
+				<?php
+				}else{
+				?>
+					<h5 style="color:red">Sửa thất bại</h5>
+				<?php	
+				}
+			}else if ($_GET['load']=='add'){
+				if($_GET['check']=='true'){
+				?>
+					<h5 style="color:red">Thêm thành công</h5>
+				<?php
+				}else{
+				?>
+					<h5 style="color:red">Thêm thất bại</h5>
+				<?php	
+				}
+			}
 		}
 	?>
 	<div class="module">

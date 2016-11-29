@@ -23,8 +23,8 @@
 			}
 		}
 		public function editUser(){
-			$idUser=0;
-			$userName=trim($_POST['username']);
+			$idUser=$_GET['user_id'];
+			$userName='';
 			$pass=$_POST['password'];
 			$name_display=trim($_POST['fullname']);
 			$phone=trim($_POST['phone']);
@@ -36,8 +36,10 @@
 						'email' => $email,
 						'auth' => $auth);
 			$user=new User();
-			$check=$user -> editUser();
-			$this->redirect('ctr=user&act=getIndex&load=edit&check=$check');
+			dump($arg);
+			$check=$user -> editUser($arg);
+			$converted_check=$check ? 'true' : 'false';
+			$this->redirect('ctr=user&act=getIndex&load=edit&check='.$converted_check);
 		}
 		public function getAdd(){
 			$this->render('addUser');
@@ -57,8 +59,8 @@
 						'auth' => $auth);
 			$user=new User();
 			$check=$user->addUser($arg);
-			dump($arg);
-			$this->redirect('ctr=user&act=getIndex&load=add&check=$check');
+			$converted_check=$check ? 'true' : 'false';
+			$this->redirect('ctr=user&act=getIndex&load=add&check='.$converted_check);
 
 		}
 		public function delUser(){

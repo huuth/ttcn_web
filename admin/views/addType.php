@@ -10,7 +10,7 @@
 		 <h2><span>Thêm loại hình</span></h2>
 			
 		 <div class="module-body">
-			<form action="" method="post">
+			<form action="index.php?ctr=type&act=addType" method="post">
 				<p>
 					<label>Tên loại hình cho thuê</label>
 					<input type="text" name="tendanhmuc" value="" class="input-medium" />

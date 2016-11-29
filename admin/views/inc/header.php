@@ -45,9 +45,6 @@
 					<ul>
 						<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1">Quản lý bài đăng</a></li>
 						<li><a href="index.php?ctr=type&act=getIndex">Loại hình cho thuê</a></li>
-						<li><a href="index.php?ctr=province&act=getIndex">Thành phố</a></li>
-						<li><a href="index.php?ctr=district&act=getIndex">Quận/Huyện</a></li>
-						<li><a href="index.php?ctr=ware&act=getIndex">Phường/Xã</a></li>
 						<li><a href="index.php?ctr=user&act=getIndex">Người dùng</a></li>
 					</ul>
 				</div><!-- End. .grid_12-->

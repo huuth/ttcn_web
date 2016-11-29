@@ -220,9 +220,24 @@
                                 <div class="clear"></div>
                                 <div class="trans_price" id="tprice"></div>
                             </div>
-                            <div class="clear"></div>               
-                            <div id="category_contents" class="maintext">                       
+                            <div class="clear"></div>        
+
+                            <div id="category_contents" class="maintext"> 
                                 <div class="form_table margin_bottom cat_data">
+                                    <div class="ai_row">
+                                       <div class="ai_label ai_label_subject" style="margin-top: 0px;">Số nhà
+                                           <small class="input_count">
+                                            <span id="subject_counter"></span>
+                                            </small>
+                                        </div>
+                                        <div class="ai_element">
+                                          <input class="input_short" type="text"  class="vietuni"
+                                          id="address_detail" name="address_detail" size="46" maxlength="50" value="" 
+                                          title="Nhập số nhà, tên đường" placeholder="Nhập số nhà, tên đường."/>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="trans_price" id="tprice"></div>
+                                    </div>
                                     <div class="ai_row">
                                        <div class="ai_label ai_label_subject" style="margin-top: 0px;">Tựa đề:
                                            <small class="input_count">
@@ -234,31 +249,31 @@
                                           id="subject" name="rent_name" size="46" maxlength="50" value="" 
                                           title="Dùng tiếng việt có dấu." placeholder="Dùng tiếng việt có dấu."/>
                                         </div>
-                                  <div class="clear"></div>
-                                  <div class="trans_price" id="tprice"></div>
-                                </div>
-                                <div class="ai_row">
-                                    <div class="ai_label">Nội dung tin:
-                                        <small class="input_count">
-                                            <span id="body_counter"></span>
-                                        </small>
+                                        <div class="clear"></div>
+                                        <div class="trans_price" id="tprice"></div>
                                     </div>
+                                    <div class="ai_row">
+                                        <div class="ai_label">Nội dung tin:
+                                            <small class="input_count">
+                                                <span id="body_counter"></span>
+                                            </small>
+                                        </div>
+                                        <div class="ai_element">
+                                            <textarea cols="43" rows="10" name="describe_rent" maxlength="2000" class="vietuni placeholder input_long_textarea" id="body" title="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu." placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu."></textarea>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="trans_price" id="tprice"></div>
+                                    </div>
+                              <div class="ai_row" id="price_box" style="display: table-row;">
+                                <div class="ai_label">Giá:</div>
                                 <div class="ai_element">
-                              <textarea cols="43" rows="10" name="describe_rent" maxlength="2000" class="vietuni placeholder input_long_textarea" id="body" title="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu." placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu."></textarea>
-                            </div>
-                          <div class="clear"></div>
-                          <div class="trans_price" id="tprice"></div>
-                      </div>
-                      <div class="ai_row" id="price_box" style="display: table-row;">
-                        <div class="ai_label">Giá:</div>
-                        <div class="ai_element">
 
-                         <input name="price" class="input_short" size="12" maxlength="19" value="" id="price" type="text"  />
-                         <div class="fleft">&nbsp;đ</div>
+                                 <input name="price" class="input_short" size="12" maxlength="19" value="" id="price" type="text"  />
+                                 <div class="fleft">&nbsp;</div>
 
-                     </div>
-                     <div class="clear"></div>
-                     <div class="trans_price" id="tprice"></div>
+                             </div>
+                             <div class="clear"></div>
+                             <div class="trans_price" id="tprice"></div>
                  </div>
 
                  <div class="ai_row" id="price_box" style="display: table-row;">
@@ -284,11 +299,11 @@
                 <div style="clear:both"></div>
             
             
-                <div class="row">
+                <!-- <div class="row">
                     <div id="img-box" class="col-md-4">
                         <img src="data/rent-images/zzzz.jpg"> 
                     </div>
-                </div>       
+                </div>     -->   
 
                    
 

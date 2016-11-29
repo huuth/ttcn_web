@@ -23,20 +23,31 @@
 			}
 		}
 		public function editUser(){
-			$idUser=$_GET['user_id'];
-			$userName='';
+			$idUser=$_GET['idUser'];
 			$pass=$_POST['password'];
 			$name_display=trim($_POST['fullname']);
 			$phone=trim($_POST['phone']);
 			$email=trim($_POST['email']);
 			$auth=$_POST['auth'];
-			$arg = array('username' => $userName,
-						'password' => $pass,
+			$image_url='12';
+			$gender='f';
+			$province_id='0';
+			$district_id='1';
+			$ward_id='0';
+			$address_detail='0';
+			$arg = array('password' => $pass,
+						'phone' =>$phone,
 						'name_display' => $name_display,
 						'email' => $email,
-						'auth' => $auth);
+						'image_url' => $image_url,
+						'gender' => $gender,
+						'auth' => $auth,
+						'province_id' => $province_id,
+						'district_id' => $district_id,
+						'ward_id' => $ward_id,
+						'address_detail' => $address_detail,
+						'user_id' => $idUser);
 			$user=new User();
-			dump($arg);
 			$check=$user -> editUser($arg);
 			$converted_check=$check ? 'true' : 'false';
 			$this->redirect('ctr=user&act=getIndex&load=edit&check='.$converted_check);

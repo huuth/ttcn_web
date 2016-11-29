@@ -24,11 +24,11 @@ class User extends Model {
 	public function editUser($args = []){
 		try {
 			$conn = $this->connect();
-			$sql  = "UPDATE USER 
-					 SET password=:password,phone:phone,name_display:name_display,email:email,image_url:image_url,
-					 	 gender=:gender,auth=:auth,province_id=:province_id,district_id=:district_id,ward_id=:ward_id,
-					 	 address_detail=:address_detail
-					 WHERE user_id:user_id";
+			$sql  = "UPDATE USER" 
+					 ." SET password =:password,phone=:phone,name_display =:name_display,email =:email,image_url =:image_url,"
+					 ."gender =:gender,auth =:auth,province_id =:province_id,district_id =:district_id,ward_id =:ward_id,"
+					 ."address_detail =:address_detail"
+					 ." WHERE user_id =:user_id";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':password',md5($args['password']));
 			$stmt->bindParam(':phone',$args['phone']);
@@ -44,7 +44,7 @@ class User extends Model {
 			$stmt->bindParam(':user_id',$args['user_id']);				
 			$stmt->execute();
 			return true;
-	    }catch(PDOException $e){	    	
+	    }catch(PDOException $e){	   
 	    	return false;//error 404
 	    }
 	}

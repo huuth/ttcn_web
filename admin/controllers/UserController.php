@@ -21,14 +21,50 @@
 				$data=$user->getUserById($_GET['idUser']);
 				$this->render('editUser',$data);
 			}
-			if ($_GET['load']=='edit'){
-				$user=new User();
-				$check=
-				$this->redirect('ctr=user&act=getIndex&load=edit');
-			}
+		}
+		public function editUser(){
+			$idUser=$_GET['user_id'];
+			$userName='';
+			$pass=$_POST['password'];
+			$name_display=trim($_POST['fullname']);
+			$phone=trim($_POST['phone']);
+			$email=trim($_POST['email']);
+			$auth=$_POST['auth'];
+			$arg = array('username' => $userName,
+						'password' => $pass,
+						'name_display' => $name_display,
+						'email' => $email,
+						'auth' => $auth);
+			$user=new User();
+			dump($arg);
+			$check=$user -> editUser($arg);
+			$converted_check=$check ? 'true' : 'false';
+			$this->redirect('ctr=user&act=getIndex&load=edit&check='.$converted_check);
 		}
 		public function getAdd(){
 			$this->render('addUser');
+		}
+		public function addUser(){
+			$idUser=0;
+			$userName=trim($_POST['username']);
+			$pass=$_POST['password'];
+			$name_display=trim($_POST['fullname']);
+			$phone=trim($_POST['phone']);
+			$email=trim($_POST['email']);
+			$auth=0;
+			$arg = array('username' => $userName,
+						'password' => $pass,
+						'name_display' => $name_display,
+						'email' => $email,
+						'auth' => $auth);
+			$user=new User();
+			$check=$user->addUser($arg);
+			$converted_check=$check ? 'true' : 'false';
+			$this->redirect('ctr=user&act=getIndex&load=add&check='.$converted_check);
+
+		}
+		public function delUser(){
+			$this->redirect('ctr=user&act=getIndex&load=del');
 		}
 	}	
  //index.php?ctr=rents&act=getIndex

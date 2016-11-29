@@ -10,7 +10,7 @@
 		 <h2><span>Thêm người dùng</span></h2>
 			
 		 <div class="module-body">
-			<form action="" method="post">
+			<form action="index.php?ctr=user&act=addUser" method="post">
 				<p>
 					<label>Tên người dùng</label>
 					<input type="text" name="username" value="" class="input-medium" />

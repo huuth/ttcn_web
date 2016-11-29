@@ -20,7 +20,7 @@ class DetailController extends Controller{
 				}else{
 					$data['user'] = $user -> getUserById($data['rent']['user_id']);
 					$data['type'] = $type -> getTypeById($data['rent']['type_id']);
-					$data['province'] = $address->getArrayProvince();
+					$data['image']= $rent -> getArrayImgByRentId($_GET['rent_id']);
 					$this->render('post-detail',$data);			
 				}
 			}else{

@@ -48,7 +48,7 @@
 						<td><?php echo $user['name_display']?></td>
 						<td align="center">
 							<a href="index.php?ctr=user&act=getEdit&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
-							<a href="">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
+							<a href="index.php?ctr=user&act=delUser&idUser=<?php echo $user['user_id']?>">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 						</td>
 					</tr>
 					<?php

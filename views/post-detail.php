@@ -34,6 +34,8 @@
                         <!-- Start properties content body -->
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
+                                <?php $image = $data['image']; 
+                                    foreach ($image as $img) ?>
                                 <img src="assets/img/slider/1.jpg" alt="img">
                                 <img src="assets/img/slider/2.jpg" alt="img">
                                 <img src="assets/img/slider/3.jpg" alt="img">

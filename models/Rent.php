@@ -24,6 +24,7 @@ class Rent extends Model {
 			$stmt->bindParam(':address_detail',$args['address_detail']);
 			$stmt->execute();
 			$lastId = $conn->lastInsertId();
+			$this -> addImage ($args['image_url'],$lastId);
 			if($lastId){
 				return $lastId;
 			}else{
@@ -34,15 +35,17 @@ class Rent extends Model {
 	    }
 	}
 
-	public function addImage($args = []){
+	public function addImage($args = [], $rent_id){
 		try{
 			$conn = $this -> connect();
-			$sql = "INSERT INTO image (image_url,rent_id)
+			foreach ($args as $img ) {
+				$sql = "INSERT INTO image (image_url,rent_id)
 					VALUES (:image_url,:rent_id)";
-			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':image_url',$args['image_url']);
-			$stmt->bindParam(':rent_id',$args['rent_id']);
-			$stmt->execute();
+				$stmt = $conn->prepare($sql);
+				$stmt->bindParam(':image_url',$img);
+				$stmt->bindParam(':rent_id',$rent_id);
+				$stmt->execute();
+			}
 		}catch(PDOException $e){	    	
 	    	return false;//error 404
 	    }

@@ -28,6 +28,10 @@
                   ?>
                 </div>
                 <div class="aa-single-field">
+                  <label for="password">Số điện thoại <span class="required">*</span></label>
+                  <input type="password" required="required" name="password"> 
+                </div>
+                <div class="aa-single-field">
                   <label for="password">Mật khẩu <span class="required">*</span></label>
                   <input type="password" required="required" name="password"> 
                 </div>

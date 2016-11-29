@@ -167,13 +167,21 @@
                     <div class="aa-properties-about">
                       <h3>
                         <a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>">
-                          <?php echo substr($rent['rent_name'],0,50); ?>  
+                          <?php echo substr($rent['rent_name'],0,60); ?>  
                         </a>
                       </h3>                      
                     </div>
                     <div class="aa-properties-detial">
                       <span class="aa-price">
-                        <?php echo $rent['price']; ?>
+                        <?php 
+                          $temp = $rent['price']/1000000;
+                          if($temp >= 1){
+                            echo $temp . ' triệu VND';
+                          }else{
+                            $temp = $rent['price']/1000;
+                            echo $temp . ' nghìn VND';
+                          }
+                        ?>
                       </span>
                       <a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>" class="aa-secondary-btn">Chi tiết</a>
                     </div>

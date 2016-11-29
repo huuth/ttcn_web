@@ -34,9 +34,11 @@
                         <!-- Start properties content body -->
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
-                                <?php foreach ($data['rent']['img'] as  $img): ?>
-                                    <img src="<?php echo $img['image_url'] ?>" alt="img">    
-                                <?php endforeach; ?>
+                                <?php if(!empty($data['rent']['img'])): ?>
+                                    <?php foreach ($data['rent']['img'] as  $img): ?>
+                                        <img src="<?php echo $img['image_url'] ?>" alt="img">    
+                                    <?php endforeach; ?>
+                                <?php endif; ?>                                
                             </div>
                             <div class="aa-properties-info">
                             <?php   $detail = $data['rent'];

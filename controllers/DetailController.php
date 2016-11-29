@@ -9,19 +9,23 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/models/Address.php';
 */
 class DetailController extends Controller{
 	public function getIndex(){
-			$rent = new Rent();
-			$user = new User();
-			$type = new Type();
-			$address = new Address();
+			$rentModel = new Rent();
+			$userModel = new User();
+			$typeModel = new Type();
+			$addressModel = new Address();
 			if(isset($_GET['rent_id'])){
-				$data['rent'] = $rent -> getRentById($_GET['rent_id']);
+				$data['rent'] = $rentModel -> getRentById($_GET['rent_id']);
 				if(empty($data['rent'])){
 					$this->redirect('ctr=error&act=error404');
 				}else{
-					$data['user'] = $user -> getUserById($data['rent']['user_id']);
-					$data['type'] = $type -> getTypeById($data['rent']['type_id']);
-					$data['image']= $rent -> getArrayImgByRentId($_GET['rent_id']);
-					$this->render('post-detail',$data);			
+					$data['user'] = $userModel -> getUserById($data['rent']['user_id']);
+					$data['type'] = $typeModel -> getTypeById($data['rent']['type_id']);
+										
+					$data['rent']['img'] = $rentModel->getArrayImgByRentId($data['rent']['rent_id']);
+					$district = $addressModel->getDistrictById($data['rent']['district_id']);
+					$province = $addressModel->getProvinceById($data['rent']['province_id']);
+					$data['rent']['address_detail'] .= ', Quận '.  $district['name'] . ', ' . $province['name'];				
+					$this->render('post-detail',$data);	
 				}
 			}else{
 				$this->redirect('ctr=error&act=error404');

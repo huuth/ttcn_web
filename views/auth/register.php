@@ -1,3 +1,28 @@
+<script language="JavaScript">
+    function checkinput(){
+        password=document.form.password;
+        confirm=document.form.confirm;
+        phone=document.form.phone;
+        reg1=/^[0-9A-Za-z]+[0-9A-Za-z_]*@[\w\d.]+.\w{2,4}$/;
+        if(password.value.length<6){
+          alert("Mật khẩu phải có ít nhất 6 ký tự");
+            confirm.focus();
+            return false;
+        }
+        if(confirm.value!==password.value){
+            alert("Xác nhận mật khẩu không khớp");
+            confirm.focus();
+            return false;
+        }
+        
+        if(isNaN(phone.value)){
+            alert("Vui lòng nhập số điện thoại hợp lệ");
+            phone.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
 
   <section id="aa-signin">
@@ -10,7 +35,7 @@
                 <a class="aa-property-home" href="index.php">Phòng trọ 69</a>
                 <h4>Kết nối với chúng tôi</h4>
               </div>
-              <form class="contactform" action="index.php?ctr=auth&act=postRegister" method="post">                                                 
+              <form class="contactform" name="form" action="index.php?ctr=auth&act=postRegister" method="post" onsubmit="return checkinput();">                                                 
                 <div class="aa-single-field">
                   <label for="name">Tên đăng nhập <span class="required">*</span></label>
                   <input type="text" required="required" aria-required="true" value="" name="name">
@@ -28,12 +53,17 @@
                   ?>
                 </div>
                 <div class="aa-single-field">
+                  <label for="password">Số điện thoại <span class="required">*</span></label>
+
+                  <input type="text" required="required" name="phone"> 
+                </div>
+                <div class="aa-single-field">
                   <label for="password">Mật khẩu <span class="required">*</span></label>
                   <input type="password" required="required" name="password"> 
                 </div>
                 <div class="aa-single-field">
                   <label for="confirm-password">Xác nhận mật khẩu <span class="required">*</span></label>
-                  <input type="password" required="required"> 
+                  <input type="password" required="required" name="confirm"> 
                 </div>
                 <div class="aa-single-submit">
                   <input type="submit" value="Tạo tài khoản" name="submit">                    

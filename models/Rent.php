@@ -164,7 +164,11 @@ class Rent extends Model {
 			if (isset($args['ward_id'])){
 				$sql = $sql . " && ward_id = ". $args['ward_id'];
 			}
+
 			$sql = $sql . " ORDER BY rent_id";
+			if(isset($args['limit'])){
+				$sql = $sql . " limit " . $args['limit'];
+			}
 			$stmt = $conn->prepare($sql);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);

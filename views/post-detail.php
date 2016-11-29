@@ -34,19 +34,9 @@
                         <!-- Start properties content body -->
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
-<<<<<<< .mine
-                                
                                 <?php foreach ($data['rent']['img'] as  $img): ?>
                                     <img src="<?php echo $img['image_url'] ?>" alt="img">    
                                 <?php endforeach; ?>
-
-=======
-                                <?php $image = $data['image']; 
-                                    foreach ($image as $img) ?>
-                                <img src="assets/img/slider/1.jpg" alt="img">
-                                <img src="assets/img/slider/2.jpg" alt="img">
-                                <img src="assets/img/slider/3.jpg" alt="img">
->>>>>>> .theirs
                             </div>
                             <div class="aa-properties-info">
                             <?php   $detail = $data['rent'];

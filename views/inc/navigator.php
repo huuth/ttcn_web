@@ -74,9 +74,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
             <li class="active"><a href="index.php">TRANG CHỦ</a></li>
-            <li><a href="">PHÒNG TRỌ</a></li>
-            <li><a href="">NHÀ NGUYÊN CĂN</a></li>                                                     
-            <li><a href="">CHUNG CƯ, CĂN HỘ</a></li>                      
+            <?php if(isset($_SESSION['typeList'])): ?>
+              <?php foreach($_SESSION['typeList'] as $type): ?>
+              <li><a style="text-transform: uppercase;" href="index.php?ctr=search&act=getRent&type_id=<?php echo $type['type_id'];?>"><?php echo $type['type_name']; ?></a></li>
+            <?php endforeach; ?>
+            <?php endif; ?>                      
           </ul>                            
         </div><!--/.nav-collapse -->       
       </div>          

@@ -1,11 +1,15 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/framework/base/Controller.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
 session_start();
 $ctr = 'home';
 if (isset($_GET['ctr'])) {
   $ctr = $_GET['ctr'];
 }
-
+// 
+$typeModel1 = new Type();
+$_SESSION['typeList'] = $typeModel1 -> getArrayType();
+// 
 $controllerName = ucfirst($ctr) . 'Controller'; // UserController
 $redirect = new Controller();
 if (file_exists(__DIR__ . '/controllers/'.$controllerName.'.php')) {

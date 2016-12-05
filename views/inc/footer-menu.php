@@ -12,12 +12,12 @@
             </div>            
             <div class="col-md-9 col-sm-12 col-xs-12">
               <div class="aa-footer-right">
-                <a href="#">TRANG CHỦ</a>
-                <?php if(isset($data['typeList'])): ?>
-                  <?php foreach($data['typeList'] as $type): ?>
+                <a href="#">TRANG CHỦ</a>                
+                <?php if(isset($_SESSION['typeList'])): ?>
+                  <?php foreach($_SESSION['typeList'] as $type): ?>
                   <a style="text-transform: uppercase;" href="index.php?ctr=search&act=getRent&type_id=<?php echo $type['type_id'];?>"><?php echo $type['type_name']; ?></a>
-                  <?php endforeach; ?>
-                <?php endif; ?>     
+                <?php endforeach; ?>
+                <?php endif; ?>   
               </div>
             </div>            
           </div>

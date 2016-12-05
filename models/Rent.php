@@ -168,17 +168,17 @@ class Rent extends Model {
 				$sql = $sql . " && ward_id = ". $args['ward_id'];
 			}
 			if (isset($args['limit'])){
-				if(empty($args['limit']['currentPage'])){
-					$sql = $sql . " ORDER BY rent_id LIMIT ".'20';
+				if(empty($args['limit']['currentPage']) && $args['limit']['currentPage'] != 0){
+					$sql = $sql . " ORDER BY rent_id desc LIMIT ".'20';
 				}else{
-					$sql = $sql . " ORDER BY rent_id LIMIT ".$args['limit']['currentPage'];
+					$sql = $sql . " ORDER BY rent_id desc LIMIT ".$args['limit']['currentPage'];
 				}
 				if(!empty($args['limit']['numberPage'])){					
-					$sql = $sql . ", ".$args['limit']['numberPage'];
+					$sql = $sql . " , ".$args['limit']['numberPage'];
 				}
 				
 			}
-			
+			//return $sql;
 			$stmt = $conn->prepare($sql);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -256,7 +256,7 @@ class Rent extends Model {
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				return $result;
+				return intval($result[0]['totalPage']);
 			}else{
 				return false;
 			}		
@@ -264,6 +264,5 @@ class Rent extends Model {
 			return false;
 		}
 
-	}
-
+	}	
 }

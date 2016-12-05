@@ -29,3 +29,8 @@
 .im_upload {
 	clear: left !important;
 }
+
+/*========*/
+.paging > li > a{
+	padding: 6px 7px !important;
+}

@@ -12,7 +12,7 @@ class HomeController extends Controller{
 		$rentModel = new Rent();
 		$addressModel = new Address();
 		$data['type_list'] = $typeModel -> getArrayType();
-		$args['limit'] = 6;
+		$args['limit']['currentPage'] = 6;
 		$arrayRents = [];
 		foreach ($data['type_list'] as $type) {
 			$args['type_id'] = $type['type_id'];

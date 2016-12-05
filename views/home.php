@@ -85,11 +85,11 @@
                  <div class="aa-single-advance-search">
                   <select name="price">
                     <option value="0" selected>&laquo;Giá thấp nhất&raquo;</option>
-                    <option value="{'priceFrom':0,'priceTo':500000}">dưới 500 ngàn</option>
-                    <option value="{'priceFrom':500000,'priceTo':1000000}">từ 500 ngàn - 1 triệu</option>
-                    <option value="{'priceFrom':1000000,'priceTo':3000000}">từ 1 - 3 triệu</option>
-                    <option value="{'priceFrom':3000000,'priceTo':7000000}">từ 3 - 7 triệu</option>
-                    <option value="{'priceFrom':7000000}">trên 7 triệu</option>
+                    <option value="priceFrom:0,priceTo:500000">dưới 500 ngàn</option>
+                    <option value="priceFrom:500000,priceTo:1000000">từ 500 ngàn - 1 triệu</option>
+                    <option value="priceFrom:1000000,priceTo:3000000">từ 1 - 3 triệu</option>
+                    <option value="priceFrom:3000000,priceTo:7000000">từ 3 - 7 triệu</option>
+                    <option value="priceFrom:7000000,priceTo:">trên 7 triệu</option>
                   </select>
                 </div>
               </div>

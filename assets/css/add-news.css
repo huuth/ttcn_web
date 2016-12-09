@@ -66,12 +66,35 @@
           transform: translate(-50%,-50%);
 }
 
-#msg-max-image {
-  display: none;
-  color: red;
-}
 
 /*========*/
 .paging > li > a{
 	padding: 6px 7px !important;
 }
+
+.nhf_body{
+  margin-bottom: 0px;
+}
+
+#aa-properties {
+  padding-bottom: 25px;
+}
+
+.unit_text{
+  display: inline-block;
+  padding-top: 5px;
+  color: #999;
+  margin-left: 5px;
+}
+
+.sunny_container{
+  padding-bottom: 30px !important;
+}
+
+.warning_validate {
+  display: none;
+  color: red;
+  padding-top: 5px;
+
+}
+

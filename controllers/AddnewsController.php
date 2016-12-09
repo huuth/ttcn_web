@@ -15,7 +15,12 @@ class AddnewsController extends Controller{
 	}
 
 	public function addNews(){
-		$userId = 123;
+		// if (!isset($_POST['user_id'])){
+		// 	$this->render('error-404');
+		// 	return;
+		// }
+		// $user_id = $_POST['user_id'];
+		$user_id = 1234;
 		$rent_name = $_POST['rent_name'];
 		$describe_rent = $_POST['describe_rent'];
 		$price = $_POST['price'];
@@ -23,39 +28,40 @@ class AddnewsController extends Controller{
 		$province_id = $_POST['province_id'];
 		$district_id = $_POST['district_id'];
 		$ward_id = $_POST['ward_id'];
+		$address_detail = $_POST['address_detail'];
 		$type_id = $_POST['type_id'];
 
-		$args = array("userId" => $userId,
+		$listImage = $this -> uploadImageToData();
+
+		$args = array("user_id" => $user_id,
 					"rent_name" => $rent_name,
 					"describe_rent" => $describe_rent,
-					"price" => $price,"square" => $square,
+					"price" => $price,
+					"square" => $square,
 					"province_id" => $province_id,
 					"district_id" => $district_id,
 					"ward_id" => $ward_id,
-					"type_id" => $type_id);
+					"address_detail" => $address_detail,
+					"type_id" => $type_id,
+					"image_url" => $listImage);
 
 		$rentModel = new Rent();
 		$rentId = $rentModel -> addRent($args);
-
-		$thisCtr = new AddnewsController();
-
-		$thisCtr -> uploadImage($rentId);
-
 		$this->redirect('ctr=addnews&act=getAddNews');
 	}
 
-	public function uploadImage($rentId){
-		$thisCtr = new AddnewsController();
-		$listImage = $thisCtr -> uploadImageToData();
+	// public function uploadImage($rentId){
+	// 	//$thisCtr = new AddnewsController();
+	// 	$listImage = $this -> uploadImageToData();
 
-		$args = array("rent_id" => $rentId, "image_url" => $listImage);
-		$rentModel = new Rent();
-		$rentModel -> addImage($args);
-	}
+	// 	//$args = array("rent_id" => $rentId, "image_url" => $listImage);
+	// 	// $rentModel = new Rent();
+	// 	// $rentModel -> addImage($args);
+	// }
 
 	public function uploadImageToData(){
 		$valid_formats = array("jpg", "png", "gif", "bmp");
-		$max_file_size = 2048*1028; //100 kb
+		$max_file_size = 2048*1028; 
 		$path = "data/rent-images/"; // Upload directory
 		$count = 0;
 		$listImage = array();
@@ -76,19 +82,19 @@ class AddnewsController extends Controller{
 						continue; // Skip invalid file formats
 					}
 			        else{ // No error found! Move uploaded files 
-			        	array_push($listImage, $path.$name);
-			            if(move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path.$name))
-			            $count++; // Number of successfully uploaded file
+			        	
+			            if(move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path.$name)){
+			            	array_push($listImage, $path.$name);
+			            	$count++; // Number of successfully uploaded file
+			        	}
 			        }
 			    }
 			}
 		}
-		foreach ($listImage as $n) {
-			$message = $message . $n . ",";
-		}
-		return $message;
-		// $_SESSION['uploadMsg'] = $message . "RUN";
-		// $this->redirect('ctr=addnews&act=getAddNews');
+		// foreach ($listImage as $n) {
+		// 	$message = $message . $n . ",";
+		// }
+		return $listImage;
 	}
 
 	public function postNews(){

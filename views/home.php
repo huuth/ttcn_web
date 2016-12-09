@@ -48,52 +48,54 @@
     <div class="container">
       <div class="aa-advance-search-area">
         <div class="form">
-        <form action="index.php?ctr=search&act=getIndex" method="get" accept-charset="utf-8">
+        <form action="index.php" method="get" accept-charset="utf-8">
           <input type="hidden" name="ctr" value="search">
-          <input type="hidden" name="act" value="getIndex">
+          <input type="hidden" name="act" value="getRent">
           <div class="aa-advance-search-top">
-            <div class="row">              
-              <div class="col-md-2">
+            <div class="row" style="margin-bottom: 10px;">              
+              <div class="col-md-4">
                 <div class="aa-single-advance-search">
                   <select id="province" name="province_id">                              
                   </select>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <div class="aa-single-advance-search">
                   <select id="distict" name="district_id">    
                     <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>                             
                   </select>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <div class="aa-single-advance-search">
                   <select id="ward" name="ward_id">  
                     <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>                              
                   </select>
                 </div>
               </div>
-              <div class="col-md-2">
+            </div>
+            <div class="row">
+              <div class="col-md-4">
                  <div class="aa-single-advance-search">
                   <select name="type_id">                    
                   </select>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                  <div class="aa-single-advance-search">
-                  <select>
-                    <option value="0" selected>Giá thấp nhất</option>
-                    <option value="1">dưới 500 ngàn</option>
-                    <option value="2">từ 500 ngàn - 1 triệu</option>
-                    <option value="3">từ 1 - 3 triệu</option>
-                    <option value="4">từ 3 - 7 triệu</option>
-                    <option value="4">trên 7 triệu</option>
+                  <select name="price">
+                    <option value="0" selected>&laquo;Giá thấp nhất&raquo;</option>
+                    <option value="priceFrom:0,priceTo:500000">dưới 500 ngàn</option>
+                    <option value="priceFrom:500000,priceTo:1000000">từ 500 ngàn - 1 triệu</option>
+                    <option value="priceFrom:1000000,priceTo:3000000">từ 1 - 3 triệu</option>
+                    <option value="priceFrom:3000000,priceTo:7000000">từ 3 - 7 triệu</option>
+                    <option value="priceFrom:7000000,priceTo:">trên 7 triệu</option>
                   </select>
                 </div>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <div class="aa-single-advance-search">
-                  <input class="aa-search-btn" type="submit" value="Tìm kiếm">
+                  <button class="aa-search-btn" type="submit">Tìm kiếm</button>
                 </div>
               </div>
             </div>
@@ -146,7 +148,9 @@
           <div role="tabpanel" class="tab-pane <?php if($count == 1) echo 'active';?>" id="<?php echo 'id_' . $key; ?>">  
             <div class="aa-latest-properties-content">
               <div class="row">
-              <?php foreach ($arrayRent as $key => $rent):                
+              <?php 
+              foreach ($arrayRent as $key => $rent): 
+              if($rent['status'] == 1):
                ?>
               <div class="col-md-4">
                 <article class="aa-properties-item">
@@ -189,7 +193,10 @@
                 </article> <!--article  -->
               </div><!-- col-md-4 -->
 
-              <?php endforeach; ?>
+              <?php 
+              endif;
+              endforeach; 
+              ?>
               </div><!-- row -->
             </div>
           </div><!-- tabpanel -->
@@ -201,41 +208,7 @@
     </div>
   </section>
   
-  <!-- Footer -->
-  <footer id="aa-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-        <div class="aa-footer-area">
-          <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="aa-footer-left">
-               <p>Designed by <a rel="nofollow" href="#"></a>Team KIKA</p>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="aa-footer-middle">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-                <a href="#"><i class="fa fa-youtube"></i></a>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-              <div class="aa-footer-right">
-                <a href="#">TRANG CHỦ</a>
-                <a href="#">HỔ TRỢ</a>                
-                <a href="#">HỎI ĐÁP</a>
-                <a href="#">LIÊN HỆ</a>
-              </div>
-            </div>            
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </footer>
-  <!-- / Footer -->
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/footer-menu.php';?> 
 
  
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/footer.php';?>

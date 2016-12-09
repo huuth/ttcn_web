@@ -48,7 +48,11 @@ class AuthController extends Controller{
 				$args['email'] = $_POST['email'];
 				$count++;
 			}
-			if($count == 3){
+			if(!empty($_POST['phone'])){
+				$args['phone'] = $_POST['phone'];
+				$count++;
+			}
+			if($count == 4){			
 				$args['auth'] = 0;
 				$check = $user->getUser($args['email']);
 				if( $check == -1 ){//error 404	

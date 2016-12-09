@@ -6,10 +6,10 @@
 			<div class="module">
 				 <h2><span>Sửa tên loại hình</span></h2>
 				 <div class="module-body">
-					<form action="" method="post">
+					<form action="index.php?ctr=type&act=editType&idType=<?php echo $data['type_id']?>" method="post">
 						<p>
 							<label>Tên loại hình</label>
-							<input type="text" name="tendanhmuc" value="Tên cần sửa" class="input-medium" />
+							<input type="text" name="tendanhmuc" value="<?php echo$data['type_name']?>" class="input-medium" />
 						</p>
 						<fieldset>
 							<input class="submit-green" name="sua" type="submit" value="Sửa" /> 

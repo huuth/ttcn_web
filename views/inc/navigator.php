@@ -17,10 +17,10 @@
                 <div class="aa-header-left">
                   <div class="aa-telephone-no">
                     <span class="fa fa-phone"></span>
-                    1-900-6969-969
+                    1-900-6996
                   </div>
                   <div class="aa-email hidden-xs">
-                    <span class="fa fa-envelope-o"></span> info@KIKA.com
+                    <span class="fa fa-envelope-o"></span> infor@phongtro69.com
                   </div>
                 </div>              
               </div>
@@ -32,11 +32,12 @@
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu">
                         <li><a href="index.php?ctr=post&act=getIndex">Tin đã đăng</a></li>
+                        <li><a href="index.php?ctr=post&act=getIndex">Thông tin cá nhân</a></li>
                         <li><a href="index.php?ctr=auth&act=logout">Thoát</a></li>                        
                       </ul>
                     </div>
                     <div class="posting">
-                      <a href="index.php?ctr=post&act=posting">ĐĂNG TIN</a>
+                      <a href="index.php?ctr=addnews&act=getAddNews">ĐĂNG TIN</a>
                     </div>
                   <?php else :?>                    
                     <a href="index.php?ctr=auth&act=getRegister" class="aa-register">ĐĂNG KÝ</a>
@@ -73,10 +74,25 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
-            <li class="active"><a href="index.php">TRANG CHỦ</a></li>
-            <li><a href="">PHÒNG TRỌ</a></li>
-            <li><a href="">NHÀ NGUYÊN CĂN</a></li>                                                     
-            <li><a href="">CHUNG CƯ, CĂN HỘ</a></li>                      
+            <?php 
+              $classCss='';
+              if($_SERVER["REQUEST_URI"] == '/index.php' ||  $_SERVER["REQUEST_URI"] == '/' || $_SERVER["REQUEST_URI"] == '' || $_SERVER["REQUEST_URI"] == '/index.php?ctr=home&act=getIndex'){
+                $classCss = 'active';
+              }              
+            ?>                        
+            <li class="<?php echo $classCss ?>"><a href="index.php">TRANG CHỦ</a></li>
+            <?php if(isset($_SESSION['typeList'])): ?>
+              <?php 
+                  foreach($_SESSION['typeList'] as $type): 
+                    if(isset($_GET['type_id']) && ($_GET['type_id'] == $type['type_id'])){
+                      $classCss = 'active';
+                    }else{
+                      $classCss = '';
+                    }
+              ?>
+              <li class="<?php echo $classCss; ?>"><a style="text-transform: uppercase;" href="index.php?ctr=search&act=getRent&type_id=<?php echo $type['type_id'];?>"><?php echo $type['type_name']; ?></a></li>
+            <?php endforeach; ?>
+            <?php endif; ?>                      
           </ul>                            
         </div><!--/.nav-collapse -->       
       </div>          

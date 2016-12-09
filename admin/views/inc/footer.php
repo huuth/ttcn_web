@@ -6,5 +6,11 @@
 		</div>
 		<div style="clear:both;"></div>
 	</div> <!-- End #footer -->
+	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+	  <script src="/admin/views/js/jquery.min.js"></script>   
+	  <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- js moi add vo duoi nay -->
+ 	<script src="/admin/views/js/addnews.js"></script>
+	<!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
 </body>
 </html>

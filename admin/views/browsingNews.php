@@ -15,7 +15,7 @@
 			<form id='fn' name='fn' action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">
 				<div class="aa-properties-content">
                         <!-- Start properties content body -->
-
+                        
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
                                 <?php if(!empty($data['rent']['img'])): ?>

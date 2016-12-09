@@ -5,7 +5,6 @@
 	<title>Quản lý phòng trọ </title>
 	<link rel="stylesheet" type="text/css" href="views/css/styles.css" media="screen" />
 
-
 </head>
 <body>
 	<!-- Header -->

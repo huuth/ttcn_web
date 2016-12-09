@@ -2,6 +2,8 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/admin/framework/controllerAdmin.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/models/Rent.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/models/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/models/Address.php';
 	require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
 	class RentsController extends ControllerAdmin{
 		public function getIndex(){
@@ -32,10 +34,27 @@
 			$this->render('indexNews',$data);
 		}
 		public function browsingPage(){
-			$rent= new Rent();
-			$data = $rent->getRentById($_GET['idRent']);
-			
-			$this->render('browsingNews',$data);
+		
+			$rentModel = new Rent();
+			$userModel = new User();
+			$typeModel = new Type();
+			$addressModel = new Address();
+			if(isset($_GET['idRent'])){
+				$data['rent'] = $rentModel -> getRentById($_GET['idRent']);
+				if(empty($data['rent'])){
+					$this->redirect('ctr=error&act=error404');
+				}else{
+					$data['user'] = $userModel -> getUserById($data['rent']['user_id']);
+					$data['type'] = $typeModel -> getTypeById($data['rent']['type_id']);					
+					$data['rent']['img'] = $rentModel->getArrayImgByRentId($data['rent']['rent_id']);
+					$district = $addressModel->getDistrictById($data['rent']['district_id']);
+					$province = $addressModel->getProvinceById($data['rent']['province_id']);
+					$data['rent']['address_detail'] .= ', Quận '.  $district['name'] . ', ' . $province['name'];				
+					$this->render('browsingNews',$data);	
+				}
+			}else{
+				$this->redirect('ctr=error&act=error404');
+			}
 		}
 	}	
  //index.php?ctr=rents&act=getIndex

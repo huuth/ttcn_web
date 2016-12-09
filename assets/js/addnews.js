@@ -28,10 +28,12 @@ $(function(){
     // $('input[id="image_1"][type=file]').on('change', prepareUpload);
     $('input[type=file]').on('change', function(event){
         files = event.target.files;
+        console.log(event.target.files);
         if (files.length > 9){
             document.getElementById("msg-max-image").setAttribute("style", "display: block;");
             document.getElementById("image-upload").innerHTML = '';
             for (var i=0; i<9; i++){
+
                 var img = document.createElement("IMG");
                 img.setAttribute("src", URL.createObjectURL(files[i]));
 

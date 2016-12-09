@@ -46,7 +46,7 @@
 				}else{
 					$data['user'] = $userModel -> getUserById($data['rent']['user_id']);
 					$data['type'] = $typeModel -> getTypeById($data['rent']['type_id']);					
-					$data['rent']['img'] = $rentModel->getArrayImgByRentId($data['rent']['idRent']);
+					$data['rent']['img'] = $rentModel->getArrayImgByRentId($data['rent']['rent_id']);
 					$district = $addressModel->getDistrictById($data['rent']['district_id']);
 					$province = $addressModel->getProvinceById($data['rent']['province_id']);
 					$data['rent']['address_detail'] .= ', Quận '.  $district['name'] . ', ' . $province['name'];				

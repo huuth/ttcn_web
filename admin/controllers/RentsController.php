@@ -34,7 +34,7 @@
 		public function browsingPage(){
 			$rent= new Rent();
 			$data = $rent->getRentById($_GET['idRent']);
-			dump($data);
+			
 			$this->render('browsingNews',$data);
 		}
 	}	

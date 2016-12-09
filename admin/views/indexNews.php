@@ -69,7 +69,7 @@
 						?>
 							<tr>
 								<td class="align-center"><?php echo $value["rent_id"] ?></td>
-								<td><a href="index.php?ctr=rents&act=browsingPage&idRent=<?php echo $value["rent_id"] ?>"><?php echo $value["rent_name"] ?></a></td>
+								<td><a href="index.php?ctr=rents&act=browsingPage&currentPage=<?php echo $_GET['currentPage'] ?>&idRent=<?php echo $value["rent_id"] ?>"><?php echo $value["rent_name"] ?></a></td>
 								<td><?php echo $value["price"] ?> VNĐ</td>
 								<td><?php echo $value["address_detail"] ?></td>
 								<td><?php echo $value["post_time"] ?></td>

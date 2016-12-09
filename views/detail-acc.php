@@ -1,7 +1,12 @@
 
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/navigator.php';?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/navigator.php';
+   require_once $_SERVER['DOCUMENT_ROOT'].'/models/Rent.php';
+   require_once $_SERVER['DOCUMENT_ROOT'].'/models/User.php';
+   require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
+   require_once $_SERVER['DOCUMENT_ROOT'].'/models/Address.php';?>
+
 <section id="aa-property-header">
         <div class="container1">
             <div class="row">
@@ -40,21 +45,18 @@
          </div> -->
       </div>
       <div class="edit-infor" style=" width: 25%; padding: 0 0 0 30px; margin: auto">
-         <form class="content" method="post" action="/customer/account/edit" id="edit-account">
-   <input type="hidden" name="TIKI_CSRF_TOKEN" value="078b94f5d7412d499b1bfe32b79e7d8c">
+         <form class="content" method="post" action="" id="edit-account">
    <div class="form-group gender-select-wrap" id="register_name">
       <label class="control-label" for="pasword">Giới tính:</label>
       <div class="input-wrap">
          <div class="row">
             <div class="col-xs-4">
                <label for="male" class="icheck-wrap gender-select">
-                  <div class="iradio_square-blue" style="position: relative;"><input type="radio" name="gender" value="on" id="male" class="gender" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
                   Nam
                </label>
             </div>
             <div class="col-xs-4">
                <label for="female" class="icheck-wrap gender-select">
-                  <div class="iradio_square-blue checked" style="position: relative;"><input type="radio" name="gender" value="off" id="female" class="gender" checked="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
                   Nữ
                </label>
             </div>
@@ -65,7 +67,14 @@
    <div class="form-group">
       <label class="control-label" for="full_name">Họ Tên </label>
       <div class="input-wrap">
-         <input type="text" name="full_name" class="form-control" id="full_name" value="Phương Thảo" placeholder="Họ tên">
+         <input type="text" enable name="full_name" class="form-control" id="full_name" value="Phương Thảo" placeholder="Họ tên">
+         <span class="help-block"></span>
+      </div>
+   </div>
+   <div class="form-group">
+      <label class="control-label" for="full_name">Số điện thoại </label>
+      <div class="input-wrap">
+         <input type="text" enable name="full_name" class="form-control" id="phone" value="0123456789" >
          <span class="help-block"></span>
       </div>
    </div>
@@ -77,7 +86,7 @@
       <div class="input-wrap">
          <div id="birthday-picker" class="birthday-picker">
             <fieldset class="birthday-picker">
-               <select class="birth-day form-control" name="birth[day]">
+               <select class="birth-day form-control" style="display: inline-block;" name="birth[day]">
                   <option value="0">Ngày</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -111,7 +120,7 @@
                   <option value="30">30</option>
                   <option value="31">31</option>
                </select>
-               <select class="birth-month form-control" name="birth[month]">
+               <select class="birth-month form-control" style="display: inline-block;" name="birth[month]">
                   <option value="0">Tháng</option>
                   <option value="1">01</option>
                   <option value="2">02</option>
@@ -126,7 +135,7 @@
                   <option value="11">11</option>
                   <option value="12">12</option>
                </select>
-               <select class="birth-year form-control" name="birth[year]">
+               <select class="birth-year form-control" style="display: inline-block;" name="birth[year]">
                   <option value="0">Năm</option>
                   <option value="2016">2016</option>
                   <option value="2015">2015</option>
@@ -265,7 +274,6 @@
    <div class="form-group">
       <div class="input-wrap">
          <label for="change-password" class="icheck-wrap">
-            <div class="icheckbox_square-blue"><input type="checkbox" id="change-password" class="icheck js-icheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
             Thay đổi mật khẩu.
          </label>
       </div>
@@ -307,6 +315,7 @@
             <a href="/sales/order/history">Xem tất cả</a>
          </div>
          <div>
+
             <table class="table" border="1px">
                <thead>
                   <tr>
@@ -316,41 +325,19 @@
                      </th>
                      <th>Ngày đăng</th>
                      <th>Tên tin</th>
-                     <th>Trạng thái</th>
+                     <th width="150px">Trạng thái</th>
                   </tr>
                </thead>
+               <?php 
+                  foreach($data['user']['rent'] as $rent):?>
                <tbody>
                   <tr>
-                     <td><a href="/sales/order/view?code=81432288">81432288</a></td>
-                     <td>04/07/2016</td>
-                     <td>Nước Xịt Khoáng Evoluderm 400ml - 7084  ...và 01 sản phẩm khác</td>
-                     <td><span class="color-2">Giao hàng thành công</span></td>
+                     <td><a href="/sales/order/view?code=81432288"><?php echo $rent['rent_id']?></a></td>
+                     <td><?php echo $rent['post_time']?></td>
+                     <td><?php echo $rent['rent_name']?></td>
+                     <td><span class="color-2">Đã duyệt</span></td>
                   </tr>
-                  <tr>
-                     <td><a href="/sales/order/view?code=10931028">10931028</a></td>
-                     <td>21/06/2016</td>
-                     <td>Kem Chống Nắng Trắng Da Cathy Doll L-Glutathione Magic Cream SPF50 PA+++ (138ml) ...và 01 sản phẩm khác</td>
-                     <td><span class="color-2">Giao hàng thành công</span></td>
-                  </tr>
-                  <tr>
-                     <td><a href="/sales/order/view?code=13957025">13957025</a></td>
-                     <td>22/04/2016</td>
-                     <td>Mặt Nạ Sữa Chua Vedette Nha Đam 8ml...và 01 sản phẩm khác</td>
-                     <td><span class="color-2">Giao hàng thành công</span></td>
-                  </tr>
-                  <tr>
-                     <td><a href="/sales/order/view?code=50263752">50263752</a></td>
-                     <td>13/04/2016</td>
-                     <td>Kem Chống Nắng Trang Điểm BB Cream L'oreal SPF50/PA+++ UVP (30ml)</td>
-                
-                     <td><span class="color-2">Giao hàng thành công</span></td>
-                  </tr>
-                  <tr>
-                     <td><a href="/sales/order/view?code=74052196">74052196</a></td>
-                     <td>24/03/2016</td>
-                     <td>Bộ Đôi Kem Dưỡng Ngày Và Sửa Rửa Mặt White Perfect Dewy L'oreal 50ml</td>
-                     <td><span class="color-2">Giao hàng thành công</span></td>
-                  </tr>
+                  <?php endforeach; ?>
                </tbody>
             </table>
          </div>

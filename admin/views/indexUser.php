@@ -51,6 +51,7 @@
 						<th style="width:5%; text-align: center;">ID</th>
 						<th>Username</th>
 						<th style="width:25%">Họ Tên</th>
+						<th style="width:15%; text-align: center;">Quyền</th>
 						<th style="width:15%; text-align: center;">Chức năng</th>
 					</tr>
 				</thead>
@@ -62,6 +63,12 @@
 						<td class="align-center"><?php echo $user['user_id']?></td>
 						<td><a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $user['user_id']?>"><?php echo $user['username']?></a></td>
 						<td><?php echo $user['name_display']?></td>
+						<td align="center">
+							<?php
+								if ($user['auth']=='0') echo "Thành viên";
+								else echo "Admin";
+							?>
+						</td>
 						<td align="center">
 							<a href="index.php?ctr=user&act=getEdit&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
 							<a href="index.php?ctr=user&act=delUser&idUser=<?php echo $user['user_id']?>">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>

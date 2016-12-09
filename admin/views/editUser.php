@@ -1,3 +1,27 @@
+<script language="JavaScript">
+	    function checkinput(){
+	        password=document.form.password;
+	        confirm=document.form.confirm;
+	        phone=document.form.phone;
+	        if(password.value.length<6){
+	          alert("Mật khẩu phải có ít nhất 6 ký tự");
+	            confirm.focus();
+	            return false;
+	        }
+	        if(confirm.value!==password.value){
+	            alert("Xác nhận mật khẩu không khớp");
+	            confirm.focus();
+	            return false;
+	        }
+	        
+	        if( (isNaN(phone.value)) || (phone.value.length < 8)) {
+	            alert("Vui lòng nhập số điện thoại hợp lệ");
+	            phone.focus();
+	            return false;
+	        }
+	        return true;
+	    }
+</script>
 <?php
 	require('inc/header.php');
 ?>
@@ -8,30 +32,29 @@
 			<div class="module">
 				 <h2><span>Sửa người dùng</span></h2>
 				 <div class="module-body">
-					<form action="index.php?ctr=user&act=editUser&idUser=<?php echo $data['user_id']?>" method="post">
+					<form name="form" action="index.php?ctr=user&act=editUser&idUser=<?php echo $data['user_id']?>" method="post" onsubmit="return checkinput();">
 						<p style='color: red' >
 							<strong><?php echo $data['username']?></strong>
 						</p>
 						<p>
 							<label>Password</label>
-							<input type="password" name="password" id="password" value="" class="input-medium" />
+							<input type="password" name="password" id="password" value="" class="input-medium" required="required"/>
 						</p>
 						<p>
-							<label>confirmPassword</label>
-							<input type="password" name="confirmPassword" id="confirmPassword" value="" required="required" class="input-medium" />
+							<label>Confirm Password</label>
+							<input type="password" required="required" name="confirm" id="confirmPassword" value="" class="input-medium" />
 						</p>
-						 <p><div class="registrationFormAlert" id="divCheckPasswordMatch"></div></p>
 						<p>
-							<label>Họ và tên</label>
-							<input type="text" name="fullname" value="<?php echo$data['name_display']?>" class="input-medium" />
+							<label>Họ và tên ( tên hiện thị) </label>
+							<input type="text" name="fullname" required="required" value="<?php echo $data['name_display']?>" class="input-medium" />
 						</p>
 						<p>
 							<label>SĐT</label>
-							<input type="text" name="phone" value="<?php echo$data['phone']?>" class="input-medium" />
+							<input type="text" required="required" name="phone" value="<?php echo $data['phone']?>" class="input-medium" />
 						</p>
 						<p>
 							<label>Email</label>
-							<input type="text" name="email" value="<?php echo$data['email']?>" class="input-medium" />
+							<input type="email" required="required" name="email" value="<?php echo $data['email']?>" class="input-medium" />
 						</p>
 						<p>
 							<label>Quyền truy cập </label>
@@ -69,17 +92,6 @@
 	</div>    
 	<div style="clear:both;"></div>
 	<!-- Footer -->
-	<script type="text/javascript">
-		function checkPasswordMatch() {
-   			var password = $("#password").val();
-		    var confirmPassword = $("#confirmPassword").val();
-
-		    if (password != confirmPassword)
-		        $("#divCheckPasswordMatch").html("Passwords do not match!");
-		    else
-		        $("#divCheckPasswordMatch").html("Passwords match.");
-		}
-	</script>
 <?php
 	require('inc/footer.php')
 ?>

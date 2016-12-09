@@ -14,8 +14,20 @@
 			<div class="container_12">
 				<div class="grid_4">
 					<ul class="user-pro">
-						<li><a href="index.php">Logout</a></li>
-						<li>Chào, <a href="index.php?ctr=user&act=getDetail">admin</a></li>
+						<?php 
+							if (!isset($_SESSION['user_infor_ad'])){
+						?>
+						<li><a href="index.php?ctr=login&act=getIndex">Login</a></li>
+						<?php
+							}else if (isset($_SESSION['user_infor_ad'])){ 
+						?>
+							<li><a href="index.php?ctr=login&act=getOut">Logout</a></li>
+							<li>Chào, <a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $_SESSION['user_infor_ad']['user_id'] ?>"><?php echo $_SESSION['user_infor_ad']['name_display'] ?></a></li>
+						<?php		
+							}
+						?>
+						<!--<li><a href="index.php">Logout</a></li>-->
+						<!--<li>Chào, <a href="index.php?ctr=user&act=getDetail">admin</a></li>-->
 					</ul>
 				</div>
 			</div>
@@ -28,8 +40,8 @@
 				<div class="grid_12">
 					<div id="logo">
 						<ul id="nav">
-							<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1">Quản trị</a></li>
-							<li><a href="index.php?ctr=user&act=getDetail">Tài khoản</a></li>
+							<li id="current"><a href="index.php">Quản trị</a></li>
+							<li><a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $_SESSION['user_infor_ad']['user_id'] ?>">Tài khoản</a></li>
 							<li><a href="index.php?ctr=user&act=getIndex">Người dùng</a></li>
 						</ul>
 					</div><!-- End. #Logo -->

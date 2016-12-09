@@ -45,15 +45,13 @@
 					$this->redirect('ctr=error&act=error404');
 				}else{
 					$data['user'] = $userModel -> getUserById($data['rent']['user_id']);
-					$data['type'] = $typeModel -> getTypeById($data['rent']['type_id']);
-										
+					$data['type'] = $typeModel -> getTypeById($data['rent']['type_id']);					
 					$data['rent']['img'] = $rentModel->getArrayImgByRentId($data['rent']['idRent']);
 					$district = $addressModel->getDistrictById($data['rent']['district_id']);
 					$province = $addressModel->getProvinceById($data['rent']['province_id']);
 					$data['rent']['address_detail'] .= ', Quận '.  $district['name'] . ', ' . $province['name'];				
 					$this->render('browsingNews',$data);	
 				}
-				dump($data);
 			}else{
 				$this->redirect('ctr=error&act=error404');
 			}

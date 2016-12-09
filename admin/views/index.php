@@ -3,6 +3,13 @@
 ?>
 	<div class="container_12">
 		<!-- Account overview -->
+		<?php
+			if (!isset($_SESSION['user_infor_ad'])){
+		?>
+			<h5 style="color:red"> Vui lòng đăng nhập để vào trang</h5>
+		<?php
+			}
+		?>
 		<div class="grid_main_r" style="float:left">
 			<div class="module">
 				<h2><span>Quản trị hệ thống</span></h2>

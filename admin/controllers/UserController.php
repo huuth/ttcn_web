@@ -5,8 +5,20 @@
 	class UserController extends ControllerAdmin{
 		public function getIndex(){
 			$user=new User();
-			$data['user']=$user->getArrayUser();
-			$this->render('indexUser',$data);
+			if (isset($_GET['currentPage'])){
+				$currentPage=($_GET['currentPage']-1)*10;
+				$numberPage=10;
+				
+				$arg = array(
+					'limit' => array(
+						'currentPage' => $currentPage, 
+						'numberPage' => $numberPage
+					)
+				);
+				$data['totalRows']=$user->getTotalUser($arg);
+				$data['user']=$user->getArrayUser($arg);
+				$this->render('indexUser',$data);
+			}
 		}
 		public function getDetail(){
 			if (!empty($_GET['idUser'])){
@@ -23,6 +35,7 @@
 			}
 		}
 		public function editUser(){
+			$currentPage=$_GET['currentPage'];
 			$idUser=$_GET['idUser'];
 			$pass=$_POST['password'];
 			$name_display=trim($_POST['fullname']);
@@ -50,12 +63,13 @@
 			$user=new User();
 			$check=$user -> editUser($arg);
 			$converted_check=$check ? 'true' : 'false';
-			$this->redirect('ctr=user&act=getIndex&load=edit&check='.$converted_check);
+			$this->redirect('ctr=user&act=getIndex&load=edit&currentPage='.$currentPage.'&check='.$converted_check);
 		}
 		public function getAdd(){
 			$this->render('addUser');
 		}
 		public function addUser(){
+			$currentPage=$_GET['currentPage'];
 			$idUser=0;
 			$userName=trim($_POST['username']);
 			$pass=$_POST['password'];
@@ -71,7 +85,7 @@
 			$user=new User();
 			$check=$user->addUser($arg);
 			$converted_check=$check ? 'true' : 'false';
-			$this->redirect('ctr=user&act=getIndex&load=add&check='.$converted_check);
+			$this->redirect('ctr=user&act=getIndex&load=add&currentPage='.$currentPage.'&check='.$converted_check);
 
 		}
 		public function delUser(){

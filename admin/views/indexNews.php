@@ -6,46 +6,7 @@
 ?>
 
 <div class="container_12">
-	<div class="bottom-spacing">
-		  <!-- Button -->
-		  <div class="float-left">
-			  <a href="index.php?ctr=rents&act=addPage" class="button">
-				<span>Thêm tin <img src="views/images/plus-small.gif" alt="Thêm tin"></span>
-			  </a>
-		  </div>
-		  <div class="clear"></div>
-	</div>
 	
-	<!-- <div>
-		<form action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">
-			<div >
-	            <div >Tỉnh/Thành phố:</div>
-	            <select name="province_id" id="category_group" sel_id="" ></select>
-	        </div>
-	        <div >
-	            <div >Quận / Huyện:</div>
-                <div >
-                    <select name="district_id" id="category_group" sel_id="" >
-                        <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>
-                    </select>
-                </div>
-	            
-	            
-	        </div>
-	        <div >
-	            <div >Phường / Xã:</div>
-	                
-                
-                    <select name="ward_id" id="category_group" sel_id="" >
-                        <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
-                    </select>
-                
-	                
-	            
-	        </div>
-	    </form>
-	</div> -->
-
 	<div>
 		<form action="" method="post">
 			Tìm kiếm theo khu vực:
@@ -60,16 +21,17 @@
 			<select name="ward_id" id="category_group" sel_id="" >
                         <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
                     </select>
-			</select>	
+			</select>
 		</form>
 		<br/>
-		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=" method="POST">
+		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo $data['keyWord'] ?>" method="POST">
+
 			Tìm kiếm theo tên:
 			<input type="search" id="txtSearch" name="txtSearch" placeholder="Từ khóa tin tức" value="<?php if(!empty($_POST['txtSearch'])) echo $_POST['txtSearch'] ?>"/>
 			<input type="submit" id="btnSearch" name="SearchName" value="Tìm kiếm"/>
 		</form>
 		<br/>
-		<form action="index.php?ctr=rents&act=getIndex&currentPage=1"  method="POST">
+		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo "" ?>"  method="POST">
 			<input type="submit" id="" name="" value="Hiển thị tất cả"/>
 		</form>
 	</div>
@@ -95,7 +57,7 @@
 
 							<th style="width:16%; text-align: center;">Hình ảnh</th>
 							<th style="width:5%; text-align: center;">Duyệt</th>
-							<th style="width:11%; text-align: center;">Chức năng</th>
+							
 						</tr>
 					</thead>
 					
@@ -107,19 +69,32 @@
 						?>
 							<tr>
 								<td class="align-center"><?php echo $value["rent_id"] ?></td>
-								<td><a href="index.php?ctr=rents&act=editPage&idRent=<?php echo $value["rent_id"] ?>"><?php echo $value["rent_name"] ?></a></td>
+								<td><a href="index.php?ctr=rents&act=browsingPage&currentPage=<?php echo $_GET['currentPage'] ?>&idRent=<?php echo $value["rent_id"] ?>"><?php echo $value["rent_name"] ?></a></td>
 								<td><?php echo $value["price"] ?> VNĐ</td>
 								<td><?php echo $value["address_detail"] ?></td>
 								<td><?php echo $value["post_time"] ?></td>
-						
+								<?php
+								require_once $_SERVER['DOCUMENT_ROOT'].'/models/Rent.php';
+								$rent = new Rent(); 
+								$arImage = $rent->getArrayImgByRentId($value["rent_id"]);
+								if($arImage==null){
+								?>
 								<td align="center">
 										<img src="views/images/no_image.jpg" class="hoa" />
 								</td>
-								<td align="center"><input type="checkbox" name="status" value="1"></td>
+								<?php
+								}else{
+								?>
 								<td align="center">
-									<a href="index.php?ctr=rents&act=editPage&idRent=<?php echo $value["rent_id"] ?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
-									<a onclick="return confirm('B?n có mu?n xóa hay không?')" href="">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
+										<img src="<?php echo $arImage[0]['image_url'] ?>" class="hoa" />
 								</td>
+								<?php
+								}
+
+								?>
+								<td align="center"><input disabled type="checkbox" name="status" value="1"
+								<?php if($value["status"]==1) echo "checked=\"checked\"" ?>
+								></td>
 							</tr>
 						<?php
 							}
@@ -143,11 +118,11 @@
 								{
 									if($_GET['currentPage']==$i){
 						?>
-									<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+									<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
 									<?php
 										}else{
 									?>
-									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
 						<?php
 										}
 								}
@@ -156,18 +131,18 @@
 									$back = $currentPage-5;
 									if(($currentPage-5)<1) $back=3;
 									?>
-									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $back ?>">...</a>
+									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $back ?>&keyWord=<?php echo $data['keyWord'] ?>">...</a>
 									<?php
 									$page_for = $currentPage;
 									if(($currentPage==($totalPage-1))||($currentPage==($totalPage))) $page_for=$totalPage-2;
 									for($i=$page_for-2;$i<=$page_for+2;$i++){
 										if($_GET['currentPage']==$i){
 										?>
-											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
 											<?php
 												}else{
 											?>
-											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($i!=$currentPage+2) echo "|" ?>
+											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($i!=$currentPage+2) echo "|" ?>
 										<?php
 										}
 									}
@@ -175,24 +150,24 @@
 										$more=$currentPage+5;
 										if(($currentPage+5)>$totalPage) $more=$totalPage-2;
 										?>
-											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $more ?>">...</a>
+											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $more ?>&keyWord=<?php echo $data['keyWord'] ?>">...</a>
 										<?php
 									}
 								}else{
 									for($i=1;$i<=5;$i++){
 										if($_GET['currentPage']==$i){
 										?>
-											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
+											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
 											<?php
 										}else{
 											?>
-											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
+											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
 
 									<?php
 										}
 									}
 									?>
-										<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $currentPage+5 ?>">...</a>
+										<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $currentPage+5 ?>&keyWord=<?php echo $data['keyWord'] ?>">...</a>
 									<?php
 								}
 							}

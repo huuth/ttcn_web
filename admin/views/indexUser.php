@@ -6,7 +6,7 @@
 		<div class="bottom-spacing">
 	  <!-- Button -->
 	  <div class="float-left">
-		  <a href="index.php?ctr=user&act=getAdd" class="button">
+		  <a href="index.php?ctr=user&act=getAdd&currentPage=<?php echo $_GET['currentPage']?>" class="button">
 			<span>Thêm người dùng <img src="views/images/plus-small.gif" alt="Thêm người dùng"></span>
 		  </a>
 	  </div>
@@ -51,6 +51,7 @@
 						<th style="width:5%; text-align: center;">ID</th>
 						<th>Username</th>
 						<th style="width:25%">Họ Tên</th>
+						<th style="width:15%; text-align: center;">Quyền</th>
 						<th style="width:15%; text-align: center;">Chức năng</th>
 					</tr>
 				</thead>
@@ -63,8 +64,14 @@
 						<td><a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $user['user_id']?>"><?php echo $user['username']?></a></td>
 						<td><?php echo $user['name_display']?></td>
 						<td align="center">
-							<a href="index.php?ctr=user&act=getEdit&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
-							<a href="index.php?ctr=user&act=delUser&idUser=<?php echo $user['user_id']?>">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
+							<?php
+								if ($user['auth']=='0') echo "Thành viên";
+								else echo "Admin";
+							?>
+						</td>
+						<td align="center">
+							<a href="index.php?ctr=user&act=getEdit&currentPage=<?php echo $_GET['currentPage']?>&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+							<a href="index.php?ctr=user&act=delUser&currentPage=<?php echo $_GET['currentPage']?>&idUser=<?php echo $user['user_id']?>">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 						</td>
 					</tr>
 					<?php
@@ -78,25 +85,71 @@
 		 <div class="pagination">           
 			<div class="numbers">
 				<span>Trang:</span> 
-				<a href="">1</a> 
-				<span>|</span> 
-				<a href="">2</a> 
-				<span>|</span> 
-				<span class="current">3</span> 
-				<span>|</span> 
-				<a href="">4</a> 
-				<span>|</span> 
-				<a href="">5</a> 
-				<span>|</span> 
-				<a href="">6</a> 
-				<span>|</span> 
-				<a href="">7</a>
-				<span>|</span> 
-				<a href="">8</a> 
-				<span>|</span> 
-				<a href="">9</a>
-				<span>|</span> 
-				<a href="">10</a>   
+				<?php
+							$totalRows = $data["totalRows"];
+							$currentPage = $_GET["currentPage"];
+							$totalPage =(int)($totalRows/10)+1;
+							
+							if($totalPage<=5){
+
+								for($i=1;$i<=($totalPage);$i++)
+								{
+									if($_GET['currentPage']==$i){
+						?>
+									<a style="font: bold; color: red;" href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+									<?php
+										}else{
+									?>
+									<a  href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+						<?php
+										}
+								}
+							}else{
+								if(($currentPage>3)&&($currentPage<=$totalPage)){
+									$back = $currentPage-5;
+									if(($currentPage-5)<1) $back=3;
+									?>
+									<a  href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $back ?>">...</a>
+									<?php
+									$page_for = $currentPage;
+									if(($currentPage==($totalPage-1))||($currentPage==($totalPage))) $page_for=$totalPage-2;
+									for($i=$page_for-2;$i<=$page_for+2;$i++){
+										if($_GET['currentPage']==$i){
+										?>
+											<a style="font: bold; color:red;" href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+											<?php
+												}else{
+											?>
+											<a  href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if($i!=$currentPage+2) echo "|" ?>
+										<?php
+										}
+									}
+									if($currentPage<$totalPage-2){
+										$more=$currentPage+5;
+										if(($currentPage+5)>$totalPage) $more=$totalPage-2;
+										?>
+											<a  href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $more ?>">...</a>
+										<?php
+									}
+								}else{
+									for($i=1;$i<=5;$i++){
+										if($_GET['currentPage']==$i){
+										?>
+											<a style="font: bold; color: red;" href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
+											<?php
+										}else{
+											?>
+											<a  href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $i ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
+
+									<?php
+										}
+									}
+									?>
+										<a  href="index.php?ctr=user&act=getIndex&currentPage=<?php echo $currentPage+5 ?>">...</a>
+									<?php
+								}
+							}
+						?>
 			</div>	
 		</div> 
 			<div style="clear: both;"></div> 

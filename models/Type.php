@@ -60,7 +60,7 @@ class Type extends Model {
 			$conn = $this->connect();
 			$sql  = "UPDATE TYPE 
 					 SET type_name=:type_name
-					 WHERE type_id:type_id";
+					 WHERE type_id=:type_id";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':type_name',$args['type_name']);
 			$stmt->bindParam(':type_id',$args['type_id']);				
@@ -75,7 +75,7 @@ class Type extends Model {
 			$conn = $this->connect();
 			$sql  = "DELETE FROM type WHERE type_id = :type_id";
 			$stmt = $conn->prepare($sql);
-			$stmt->bindParam(':type_id',$args['type_id']);				
+			$stmt->bindParam(':type_id',$id);				
 			$stmt->execute();
 			return true;
 	    }catch(PDOException $e){	    	

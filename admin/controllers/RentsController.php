@@ -67,8 +67,8 @@
 			//dump($status);
 			$arg= array('status' => $status, 'rent_id'=>$idRent);
 			$rentModel= new Rent();
-			$check=$rentModel->browsingNew();
-			dump($check);
+			$check=$rentModel->browsingNew($arg);
+			//dump($check);
 			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=');
 
 		}

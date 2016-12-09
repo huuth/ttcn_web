@@ -9,74 +9,79 @@
 		<div class="grid_12">
 
 	<div class="module">
-		 <h2><span>Thêm tin tức</span></h2>		
+		 <h2><span>Duyệt tin tức</span></h2>		
 		 <div class="module-body">
 			<form id='fn' name='fn' action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">
-				<p>
-					<label>Tên tin</label>
-					<input type="text" name="rent_name" value="" class="input-medium" />
-				</p>
-				<p>
-					<label>Giá</label>
-					<input type="text" name="price" value="" class="input-medium" />
-				</p>
-				<p>
-					<label>Loại tin</label>
-					<select  name="type_id" class="input-short">
-					<?php 
-
-						foreach ($data["type"] as $value) {
-												
-					 ?>
-						<option selected :'selected' value=""><?php echo $value['type_name'] ?></option>
-						
-					<?php
-						}
-					?>
-					</select>
-				</p>
-				<p>
-					<label>Hình ảnh</label>
-					<input type="file"  name="hinhanh" value="" />
-					<br><br>
-					   <img style='width:100px; height:100px' alt="Ảnh ảnh" src="">
-				</p>
-				<p>
-					<label>Diện tích</label>
-					<input type="text" name="square" value="5000" class="input-medium" />
-				</p>
-				<p>
-					<label>Tỉnh/thành phố </label>
-					<select  name="province_id" class="input-short">
-						<option value="1">Đà Nẵng</option>
-						<option value="2">Hồ Chí Minh</option>
-						<option value="3">Hà Nội</option>
-						<option value="4">Đà Lạt</option>
-					</select>
-				</p>
-				<p>
-					<label>Quận/huyện</label>
-					<select  name="district_id" class="input-short">
-						<option value="1">Sơn Trà</option>
-					</select>
-				</p>
-				<p>
-					<label>Phường/ xã</label>
-					<select  name="ward_id" class="input-short">
-						<option value="1">bla bla</option>
-					</select>
-				</p>
-				<p>
-					<label>Mô tả</label>
-					<textarea id="mota" name="describe_rent" value="" rows="7" cols="90" class="input-medium" > bla bla</textarea>
-				</p>
-				<p>
-					<input type="checkbox" name="status" value="1"> Status 
-				</p>
-				<fieldset>
-					<input class="submit-green" name="them" type="submit" value="Thêm tin" /> 
-					<input class="submit-gray" name="reset" type="reset" value="Nhập lại" />
-				</fieldset>
+				<div class="aa-properties-content">
+                        <!-- Start properties content body -->
+                        <div class="aa-properties-details">
+                            <div class="aa-properties-details-img">
+                                <?php if(!empty($data['rent']['img'])): ?>
+                                    <?php foreach ($data['rent']['img'] as  $img): ?>
+                                        <img src="<?php echo $img['image_url'] ?>" alt="img">    
+                                    <?php endforeach; ?>
+                                <?php endif; ?>                                
+                            </div>
+                            <div class="aa-properties-info">
+                            <?php   $detail = $data['rent'];
+                                    $user   = $data['user'];
+                                    $type   = $data['type'];
+                            ?>
+                                <div class="title-post">
+                                    <h3><?php echo $detail['rent_name'] ?></h3>
+                                </div>
+                                <div class="infor-post">
+                                    <div class="row infor-post-address">                                        
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Địa chỉ:</span></div>
+                                        <div class="col-md-9 col-xs-7"><span><?php echo $detail['address_detail']; ?></span></div>  
+                                    </div>
+                                    <div class="row">                                       
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Loại tin rao:</span></div>
+                                        <div class="col-md-3 col-xs-7">
+                                            <a href="https://phongtro123.com/cho-thue-phong-tro">
+                                            <?php echo $type['type_name']; ?></a>
+                                        </div>                                       
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Ngày cập nhật:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span><?php echo $detail['post_time'] ;?></span></div>                                       
+                                    </div>
+                                    <div class="row">                                    
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Người đăng:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span>
+                                            <?php echo $user['username']; ?>
+                                         </span></div>                                                            
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Điện thoại:</span></div>
+                                        <div class="col-md-3 col-xs-7">
+                                            <a href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?></a>
+                                        </div>                                    
+                                    </div>
+                                    <div class="row">                                    
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Email:</span></div>
+                                        <div class="col-md-3 col-xs-7">
+                                            <a href="mailto:vohinh1989kute@gmail.com"><?php echo $user['email']; ?>
+                                            </a>
+                                        </div>                                                                      
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Đối tượng:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span>Tất cả </span></div>                                    
+                                    </div>
+                                    <div class="row">                                    
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Diện tích:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span><?php echo $detail['square'] ." m2"; ?>
+                                        </span></div>                               
+                                        <div class="col-md-3 col-xs-5 color-col"><span>Giá cho thuê:</span></div>
+                                        <div class="col-md-3 col-xs-7"><span><?php echo $detail['price'] ;?></span></div>                                    
+                                    </div>
+                                </div>
+                                <div class="infor-detail">
+                                    <div class="title-post">
+                                        <h3>THÔNG TIN CHI TIẾT</h3>
+                                    </div>
+                                    <div class="text-detail">
+                                        <?php echo $detail['describe_rent'] ;?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 			</form>
 		 </div> <!-- End .module-body -->
 

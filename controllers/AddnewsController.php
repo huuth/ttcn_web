@@ -15,11 +15,11 @@ class AddnewsController extends Controller{
 	}
 
 	public function addNews(){
-		// if (!isset($_POST['user_id'])){
-		// 	$this->render('error-404');
+		// if (!isset($_SESSION['userInfor']['user_id'])){
+		// 	$this->redirect('ctr=auth&act=getLogin');
 		// 	return;
 		// }
-		// $user_id = $_POST['user_id'];
+		// $user_id = $_SESSION['userInfor']['user_id'];
 		$user_id = 1234;
 		$rent_name = $_POST['rent_name'];
 		$describe_rent = $_POST['describe_rent'];
@@ -66,14 +66,23 @@ class AddnewsController extends Controller{
 		$count = 0;
 		$listImage = array();
 		$message;
+
+		
+
 		if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST"){
 			// Loop $_FILES to exeicute all files
-			foreach ($_FILES['files']['name'] as $f => $name) {     
-			    if ($_FILES['files']['error'][$f] == 4) {
+			$fileList = $_FILES['files'];
+
+			$index = count($fileList['name']);
+			if (count($fileList['name']) > 9)
+				$index = 9;
+			for ($i=0; $i < $index; $i++) { 
+				$name = $fileList['name'][$i];
+			    if ($fileList['error'][$i] == 4) {
 			        continue; // Skip file if any error found
 			    }	       
-			    if ($_FILES['files']['error'][$f] == 0) {	           
-			        if ($_FILES['files']['size'][$f] > $max_file_size) {
+			    if ($fileList['error'][$i] == 0) {	           
+			        if ($fileList['size'][$i] > $max_file_size) {
 			            $message = "$name is too large!.";
 			            continue; // Skip large files
 			        }
@@ -83,11 +92,12 @@ class AddnewsController extends Controller{
 					}
 			        else{ // No error found! Move uploaded files 
 			        	
-			            if(move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path.$name)){
+			            if(move_uploaded_file($fileList["tmp_name"][$i], $path.$name)){
 			            	array_push($listImage, $path.$name);
 			            	$count++; // Number of successfully uploaded file
 			        	}
 			        }
+
 			    }
 			}
 		}

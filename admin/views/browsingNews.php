@@ -3,6 +3,7 @@
 ?>
 <?php
 	require('inc/header.php');
+
 ?>
 	<div class="container_12">
 
@@ -14,6 +15,7 @@
 			<form id='fn' name='fn' action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">
 				<div class="aa-properties-content">
                         <!-- Start properties content body -->
+
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
                                 <?php if(!empty($data['rent']['img'])): ?>
@@ -23,7 +25,8 @@
                                 <?php endif; ?>                                
                             </div>
                             <div class="aa-properties-info">
-                            <?php   $detail = $data['rent'];
+                            <?php   
+                            		$detail = $data['rent'];
                                     $user   = $data['user'];
                                     $type   = $data['type'];
                             ?>

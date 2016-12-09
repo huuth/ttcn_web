@@ -69,8 +69,7 @@
                                          </span></div>                                                            
                                         <div class="col-md-3 col-xs-5 color-col"><span>Điện thoại:</span></div>
                                         <div class="col-md-3 col-xs-7">
-                                            <a href="tel:0975771327"><?php echo $user['phone']; ?>
-                                            </a>
+                                            <a href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?></a>
                                         </div>                                    
                                     </div>
                                     <div class="row">                                    

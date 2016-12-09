@@ -15,7 +15,7 @@ class AddnewsController extends Controller{
 	}
 
 	public function addNews(){
-		$userId = 123;
+		$userId = $_SESSION['userInfor']['user_id'];
 		$rent_name = $_POST['rent_name'];
 		$describe_rent = $_POST['describe_rent'];
 		$price = $_POST['price'];
@@ -25,14 +25,17 @@ class AddnewsController extends Controller{
 		$ward_id = $_POST['ward_id'];
 		$type_id = $_POST['type_id'];
 
-		$args = array("userId" => $userId,
+		$args = array(
+					"user_id" => $userId,
 					"rent_name" => $rent_name,
 					"describe_rent" => $describe_rent,
-					"price" => $price,"square" => $square,
+					"price" => $price,
+					"square" => $square,
 					"province_id" => $province_id,
 					"district_id" => $district_id,
 					"ward_id" => $ward_id,
-					"type_id" => $type_id);
+					"type_id" => $type_id
+		);
 
 		$rentModel = new Rent();
 		$rentId = $rentModel -> addRent($args);

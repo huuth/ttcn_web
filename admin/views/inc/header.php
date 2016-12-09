@@ -6,6 +6,9 @@
 	<title>Quản lý phòng trọ </title>
 	<link rel="stylesheet" type="text/css" href="views/css/styles.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="views/css/bootstrap.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="views/css/slick.css" media="screen" />
+	<link href="views/css/font-awesome.css" rel="stylesheet">
+	<link href="views/css/custom.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Header -->

@@ -1361,6 +1361,7 @@ a.dashboard-module span {
   height: 50px;
   top: 47%;
   width: 50px;
+  background-color: #59abe3 !important;
 }
 .aa-properties-details .aa-properties-info {
   display: inline;

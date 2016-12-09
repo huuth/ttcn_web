@@ -56,6 +56,22 @@
 				$this->redirect('ctr=error&act=error404');
 			}
 		}
+		public function browsingNew(){
+			$idRent=$_GET['idRent'];
+			$status=0;
+			if(isset($_POST['-1'])){
+				$status=-1;
+			}else if (isset($_POST['1'])){
+				$status=1;
+			}
+			//dump($status);
+			$arg= array('status' => $status, 'rent_id'=>$idRent);
+			$rentModel= new Rent();
+			$check=$rentModel->browsingNew();
+			dump($check);
+			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=');
+
+		}
 	}	
  //index.php?ctr=rents&act=getIndex
 ?>	

@@ -11,7 +11,22 @@
 
 	<div class="module">
 		 <h2><span>Duyệt tin tức</span></h2>		
-		 <div class="module-body">
+		 <div class="browsing">
+            <span>Bài đăng 
+            <?php
+                if ($data['rent']['status']==0) echo " đang bị ẩn";
+                if ($data['rent']['status']==1) echo " đang được đăng tải";
+                if ($data['rent']['status']==-1) echo " không được duyệt đăng";
+            ?>
+            <br>
+            </span>
+             <form action="index.php?ctr=rents&act=browsingNew&idRent=<?php echo $data['rent']['rent_id'] ?>" method="post">
+                <input class="submit-green" name="1" type="submit" value="DUYỆT ĐĂNG" />
+                <input class="submit-gray" name="0" type="submit" value="ẨN BÀI" />
+                <input class="submit-blue" name="-1" type="submit" value="KHÔNG DUYỆT" /> 
+             </form>
+         </div>
+        <div>
 			<!--<form id='fn' name='fn' action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">-->
 				<div class="aa-properties-content">
                         <!-- Start properties content body -->
@@ -30,7 +45,7 @@
                                     $type   = $data['type'];
                             ?>
                                 <div class="title-post">
-                                    <h3><?php echo $detail['rent_name'] ?></h3>
+                                    <h3 style="color: yellowgreen"><?php echo $detail['rent_name'] ?></h3>
                                 </div>
                                 <div class="infor-post">
                                     <div class="row infor-post-address">                                        
@@ -75,7 +90,7 @@
                                 </div>
                                 <div class="infor-detail">
                                     <div class="title-post">
-                                        <h3>THÔNG TIN CHI TIẾT</h3>
+                                        <h3 style="color: yellowgreen;">THÔNG TIN CHI TIẾT</h3>
                                     </div>
                                     <div class="text-detail">
                                         <?php echo $detail['describe_rent'] ;?>
@@ -83,9 +98,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
 			<!--</form>-->
-		 </div> <!-- End .module-body -->
+		</div> <!-- End .module-body -->
 
 	</div>  <!-- End .module -->
 	<div style="clear:both;"></div>

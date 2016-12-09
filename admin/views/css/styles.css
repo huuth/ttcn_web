@@ -1475,12 +1475,14 @@ a.dashboard-module span {
   padding-top: 7px;
 }
 .color-col{
-  background: #F9F9F9;
+  background: #CACACA;
 
 }
 .aa-properties-info .title-post{
   border-bottom: 1px solid #4486EC;
   margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .infor-detail .text-detail{
   border: 1px solid rgba(132, 130, 130, 0.26);
@@ -1516,5 +1518,24 @@ a.dashboard-module span {
 }
 .navbar{
   margin-top: 0px !important;
+
+}
+.browsing{
+	margin-top: 50px;
+    margin-bottom: 20px;
+}
+.submit-blue{
+	/*background: url(../images/submit-green-bg.gif) top left repeat-x;*/
+    background-color: #F07421;
+    border: 0;
+    border-top: 1px solid #B96126;
+    border-left: 1px solid #B96126;
+    border-right: 1px solid #EA7120;
+    border-bottom: 1px solid #EA7120;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 2px 12px;
+    margin: 0px 10px 0 0;
+    cursor: pointer;
 }
 /*===============end browsing news====================*/

@@ -32,8 +32,9 @@
 			$this->render('indexNews',$data);
 		}
 		public function browsingPage(){
-			$type = new Type();
-			$data['type'] = $type->getArrayType();
+			$rent= new Rent();
+			$data = $rent->getRentById($_GET['idRent']);
+			dump($data);
 			$this->render('browsingNews',$data);
 		}
 	}	

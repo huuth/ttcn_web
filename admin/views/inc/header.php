@@ -1,10 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Quản lý phòng trọ </title>
 	<link rel="stylesheet" type="text/css" href="views/css/styles.css" media="screen" />
-
+	<link rel="stylesheet" type="text/css" href="views/css/bootstrap.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="views/css/slick.css" media="screen" />
+	<link href="views/css/font-awesome.css" rel="stylesheet">
+	<link href="views/css/custom.css" rel="stylesheet">
 </head>
 <body>
 	<!-- Header -->
@@ -42,7 +46,6 @@
 						<ul id="nav">
 							<li id="current"><a href="index.php">Quản trị</a></li>
 							<li><a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $_SESSION['user_infor_ad']['user_id'] ?>">Tài khoản</a></li>
-							<li><a href="index.php?ctr=user&act=getIndex&currentPage=1">Người dùng</a></li>
 						</ul>
 					</div><!-- End. #Logo -->
 				</div><!-- End. .grid_12-->
@@ -56,6 +59,7 @@
 				<div class="grid_12">
 					<ul>
 						<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo "" ?>&province_id=0&district_id=0&ward_id=0">Quản lý bài đăng</a></li>
+
 						<li><a href="index.php?ctr=type&act=getIndex">Loại hình cho thuê</a></li>
 						<li><a href="index.php?ctr=user&act=getIndex&currentPage=1">Người dùng</a></li>
 					</ul>

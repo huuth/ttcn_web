@@ -13,6 +13,7 @@ class User extends Model {
 			$stmt->bindParam(':username',$args['username']);
 			$stmt->bindParam(':password',md5($args['password']));
 			$stmt->bindParam(':name_display',$args['name_display']);
+			$stmt->bindParam(':phone',$args['phone']);
 			$stmt->bindParam(':email',$args['email']);
 			$stmt->bindParam(':auth',$args['auth']);	
 			$stmt->bindParam(':phone',$args['phone']);					

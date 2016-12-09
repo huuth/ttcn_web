@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="aa-property-header-inner">
-                        <h2>Thông tin chi tiết</h2>
+                        <h2>ĐĂNG TIN PHÒNG/NHÀ CHO THUÊ</h2>
                         <ol class="breadcrumb">
                             <li><a href="#">TRANG CHỦ</a></li>
                             <li class="active">Đăng tin</li>
@@ -44,7 +44,7 @@
                                <div class="clear"></div>
                            </div>
                            <div class="ai_form_col">
-                            <form method="post" action="index.php?ctr=addnews&act=addNews" id="formular" name="formular"
+                            <form method="post" action="index.php?ctr=addnews&act=addNews" id="formular_m" name="formular_m"
                             enctype="multipart/form-data" onsubmit="return form_validate();">
 
                             <div class="ai_header">Nội dung tin&nbsp;<span class="ai_header_notice">(Vui lòng điền đầy đủ tất cả các mục)</span></div>
@@ -59,6 +59,9 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div id="province_validate" class="warning_validate">
+                                    <span>*Chọn tỉnh/thành phố</span>
+                                </div>
                                 <div class="clear"></div>
                                 <div class="trans_price" id="tprice"></div>
                             </div>
@@ -70,6 +73,9 @@
                                             <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div id="district_validate" class="warning_validate">
+                                    <span>*Chọn quận/huyện</span>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="trans_price" id="tprice"></div>
@@ -83,6 +89,9 @@
                                             </select>
                                         </div>
                                     </div>
+                                <div id="ward_validate" class="warning_validate">
+                                    <span >*Chọn phường/xã</span>
+                                </div>
                                 <div class="clear"></div>
                                 <div class="trans_price" id="tprice"></div>
                             </div>
@@ -94,6 +103,9 @@
                                         <select name="type_id" id="category_group">                                           
                                         </select>
                                     </div>
+                                </div>
+                                <div id="type_validate" class="warning_validate">
+                                    <span>*Loại tin</span>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="trans_price" id="tprice"></div>
@@ -148,8 +160,8 @@
                                 <div class="ai_label">Giá:</div>
                                 <div class="ai_element">
 
-                                 <input name="price" class="input_short" size="12" maxlength="19" value="" id="price" type="text" placeholder="VND/tháng" required="required"/>
-                                 <div class="fleft">&nbsp;</div>
+                                 <input name="price" class="input_short" size="12" maxlength="19" value="" id="price" type="number" step=any min="0" placeholder="0.00" required="required"/>
+                                 <span class="unit_text">VND/tháng</span>
                              </div>
                              <div class="clear"></div>
                              <div class="trans_price" id="tprice"></div>
@@ -158,7 +170,8 @@
                  <div class="ai_row" id="price_box" style="display: table-row;">
                     <div class="ai_label">Diện tích:</div>
                     <div class="ai_element">
-                     <input name="square" class="input_short" size="12" maxlength="19" value="" id="price" type="text" placeholder="m2"/>
+                     <input name="square"  class="input_short" size="12" maxlength="19" value="" id="price" type="number" step=any min="0" placeholder="0.00"/>
+                     <span class="unit_text">m&sup2;</span>
                  </div>
                  <div class="clear"></div>
                  <div class="trans_price" id="tprice"></div>
@@ -172,7 +185,9 @@
                 <div id="ai_image_tip">“Trăm nghe không bằng mắt thấy”. Tin có hình được xem nhiều gấp 7 lần. <br><b>ĐĂNG HÌNH ĐỂ THU HÚT HƠN!</b></div>
                 <div style="clear:both"></div>
                 
-                <span id="msg-max-image">*Chỉ được chọn tối đa 9 hình.</span>
+                <div id="msg-max-image" class="warning_validate">
+                    <span>*Chỉ được chọn tối đa 9 hình.</span>
+                </div>
                 <div id="image-upload" class="image-upload">
                     <!-- <div class="thumb">
                       <img src="" />

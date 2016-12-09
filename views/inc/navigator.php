@@ -17,10 +17,10 @@
                 <div class="aa-header-left">
                   <div class="aa-telephone-no">
                     <span class="fa fa-phone"></span>
-                    1-900-6969-969
+                    1-900-6996
                   </div>
                   <div class="aa-email hidden-xs">
-                    <span class="fa fa-envelope-o"></span> info@KIKA.com
+                    <span class="fa fa-envelope-o"></span> infor@phongtro69.com
                   </div>
                 </div>              
               </div>
@@ -32,11 +32,12 @@
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu">
                         <li><a href="index.php?ctr=post&act=getIndex">Tin đã đăng</a></li>
+                        <li><a href="index.php?ctr=post&act=getIndex">Thông tin cá nhân</a></li>
                         <li><a href="index.php?ctr=auth&act=logout">Thoát</a></li>                        
                       </ul>
                     </div>
                     <div class="posting">
-                      <a href="index.php?ctr=post&act=posting">ĐĂNG TIN</a>
+                      <a href="index.php?ctr=addnews&act=getAddNews">ĐĂNG TIN</a>
                     </div>
                   <?php else :?>                    
                     <a href="index.php?ctr=auth&act=getRegister" class="aa-register">ĐĂNG KÝ</a>

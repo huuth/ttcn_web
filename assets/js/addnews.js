@@ -28,13 +28,35 @@ $(function(){
     // $('input[id="image_1"][type=file]').on('change', prepareUpload);
     $('input[type=file]').on('change', function(event){
         files = event.target.files;
-        console.log(files);
-        console.log("image0");
-        var x = document.createElement("IMG");
-        x.setAttribute("src", "data/rent-images/zzz.jpg");
-        // x.setAttribute("width", "304");
-        // x.setAttribute("width", "228");
-        document.getElementById("imgList").appendChild(x);
+        if (files.length > 9){
+            document.getElementById("msg-max-image").setAttribute("style", "display: block;");
+            document.getElementById("image-upload").innerHTML = '';
+            for (var i=0; i<9; i++){
+                var img = document.createElement("IMG");
+                img.setAttribute("src", URL.createObjectURL(files[i]));
+
+                var div = document.createElement("DIV");
+                div.setAttribute("class", "thumb");
+                div.appendChild(img);
+                
+                document.getElementById("image-upload").appendChild(div);
+            }
+        }
+        else {
+            // console.log(files);
+            // console.log("image0");
+            document.getElementById("image-upload").innerHTML = '';
+            for (var i=0; i<files.length; i++){
+                var img = document.createElement("IMG");
+                img.setAttribute("src", URL.createObjectURL(files[i]));
+
+                var div = document.createElement("DIV");
+                div.setAttribute("class", "thumb");
+                div.appendChild(img);
+                
+                document.getElementById("image-upload").appendChild(div);
+            }
+        }
     });
 
     // Grab the files and set them to our variable

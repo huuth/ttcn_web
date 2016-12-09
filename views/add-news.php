@@ -47,17 +47,15 @@
                             <form method="post" action="index.php?ctr=addnews&act=addNews" id="formular" name="formular"
                             enctype="multipart/form-data" onsubmit="return form_validate();">
 
-                            <div class="ai_header">Nội dung tin&nbsp<span class="ai_header_notice">(Vui lòng điền đầy đủ tất cả các mục)</span></div>
+                            <div class="ai_header">Nội dung tin&nbsp;<span class="ai_header_notice">(Vui lòng điền đầy đủ tất cả các mục)</span></div>
 
                             <input name="check_type_diff" id="check_type_diff" value="1" type="hidden"/>
-                            
-                            
-
+    
                             <div class="ai_row">
                                 <div class="ai_label">Tỉnh/Thành phố:</div>
                                 <div class="ai_element">
-                                    <div class="div_select_long">
-                                        <select name="province_id" id="category_group" sel_id="" >                             
+                                    <div class="div_select_custom">
+                                        <select name="province_id" id="category_group" sel_id="">                             
                                         </select>
                                     </div>
                                 </div>
@@ -67,7 +65,7 @@
                             <div class="ai_row">
                                 <div class="ai_label">Quận / Huyện:</div>
                                 <div class="ai_element">
-                                    <div class="div_select_long">
+                                    <div class="div_select_custom">
                                         <select name="district_id" id="category_group" sel_id="" >
                                             <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>
                                         </select>
@@ -79,7 +77,7 @@
                             <div class="ai_row">
                                 <div class="ai_label">Phường / Xã:</div>
                                     <div class="ai_element">
-                                        <div class="div_select_long">
+                                        <div class="div_select_custom">
                                             <select name="ward_id" id="category_group" sel_id="" >
                                                 <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
                                             </select>
@@ -92,7 +90,7 @@
                             <div class="ai_row">
                                 <div class="ai_label">Loại tin rao:</div>
                                 <div class="ai_element">
-                                    <div class="div_select_long">
+                                    <div class="div_select_custom">
                                         <select name="type_id" id="category_group">                                           
                                         </select>
                                     </div>
@@ -104,20 +102,22 @@
 
                             <div id="category_contents" class="maintext"> 
                                 <div class="form_table margin_bottom cat_data">
+                                    
                                     <div class="ai_row">
-                                       <div class="ai_label ai_label_subject" style="margin-top: 0px;">Số nhà
+                                       <div class="ai_label ai_label_subject" style="margin-top: 0px;">Địa chỉ chi tiết:
                                            <small class="input_count">
                                             <span id="subject_counter"></span>
                                             </small>
                                         </div>
                                         <div class="ai_element">
                                           <input class="input_short" type="text"  class="vietuni"
-                                          id="address_detail" name="address_detail" size="46" maxlength="50" value="" 
-                                          title="Nhập số nhà, tên đường" placeholder="Nhập số nhà, tên đường."/>
+                                          id="subject" name="address_detail" size="46" maxlength="46" value="" 
+                                          title="Số nhà, tên đường." placeholder="Số nhà, tên đường." required="required"/>
                                         </div>
                                         <div class="clear"></div>
                                         <div class="trans_price" id="tprice"></div>
                                     </div>
+
                                     <div class="ai_row">
                                        <div class="ai_label ai_label_subject" style="margin-top: 0px;">Tựa đề:
                                            <small class="input_count">
@@ -126,8 +126,8 @@
                                         </div>
                                         <div class="ai_element">
                                           <input class="input_short" type="text"  class="vietuni"
-                                          id="subject" name="rent_name" size="46" maxlength="50" value="" 
-                                          title="Dùng tiếng việt có dấu." placeholder="Dùng tiếng việt có dấu."/>
+                                          id="subject" name="rent_name" size="46" maxlength="46" value="" 
+                                          title="Dùng tiếng việt có dấu." placeholder="Dùng tiếng việt có dấu." required="required"/>
                                         </div>
                                         <div class="clear"></div>
                                         <div class="trans_price" id="tprice"></div>
@@ -148,9 +148,8 @@
                                 <div class="ai_label">Giá:</div>
                                 <div class="ai_element">
 
-                                 <input name="price" class="input_short" size="12" maxlength="19" value="" id="price" type="text"  />
+                                 <input name="price" class="input_short" size="12" maxlength="19" value="" id="price" type="text" placeholder="VND/tháng" required="required"/>
                                  <div class="fleft">&nbsp;</div>
-
                              </div>
                              <div class="clear"></div>
                              <div class="trans_price" id="tprice"></div>
@@ -159,26 +158,35 @@
                  <div class="ai_row" id="price_box" style="display: table-row;">
                     <div class="ai_label">Diện tích:</div>
                     <div class="ai_element">
-                     <input name="square" class="input_short" size="12" maxlength="19" value="" id="price" type="text"  />
+                     <input name="square" class="input_short" size="12" maxlength="19" value="" id="price" type="text" placeholder="m2"/>
                  </div>
                  <div class="clear"></div>
                  <div class="trans_price" id="tprice"></div>
              </div>
          </div>
      </div>
-             <?php
-             if(isset($_SESSION['uploadMsg'])){
-                echo '<p style="color:red;">' . $_SESSION['uploadMsg'] .'</p>';
-            } 
-            ?>
      <div class="ai_row">
         <div class="ai_label">Hình:</div>
         <div class="ai_element" style="width:663px;margin-bottom: -23px;">
             <div id="drop_zone">
-                <div id="ai_image_tip">“Trăm nghe không bằng mắt thấy”. Tin có hình được xem nhiều gấp 7 lần. <br><b>ĐĂNG HÌNH ĐỂ BÁN CHẠY HƠN!</b></div>
+                <div id="ai_image_tip">“Trăm nghe không bằng mắt thấy”. Tin có hình được xem nhiều gấp 7 lần. <br><b>ĐĂNG HÌNH ĐỂ THU HÚT HƠN!</b></div>
                 <div style="clear:both"></div>
-            
-            
+                
+                <span id="msg-max-image">*Chỉ được chọn tối đa 9 hình.</span>
+                <div id="image-upload" class="image-upload">
+                    <!-- <div class="thumb">
+                      <img src="" />
+                    </div>
+                    <div class="thumb">
+                      <img src="" alt="Image" />
+                    </div>
+                    <div class="thumb">
+                      <img src="" alt="Image" />
+                    </div>
+                    <div class="thumb">
+                      <img src="" alt="Image" />
+                    </div> -->
+                </div>
                 <!-- <div class="row">
                     <div id="img-box" class="col-md-4">
                         <img src="data/rent-images/zzzz.jpg"> 
@@ -199,7 +207,7 @@
                     </div>
                 </div>
 
-                <span id="more_img"> Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</span>
+                <span id="more_img"> Đăng nhiều hình thật nhanh bằng cách nhấn nút phía trên rồi chọn nhiều hình cùng lúc. Chỉ được chọn tối đa 9 hình.</span>
             </div>
 
             <div class="aiupload-right">

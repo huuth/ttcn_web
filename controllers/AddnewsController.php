@@ -15,7 +15,12 @@ class AddnewsController extends Controller{
 	}
 
 	public function addNews(){
-		$user_id = 123;
+		// if (!isset($_POST['user_id'])){
+		// 	$this->render('error-404');
+		// 	return;
+		// }
+		// $user_id = $_POST['user_id'];
+		$user_id = 1234;
 		$rent_name = $_POST['rent_name'];
 		$describe_rent = $_POST['describe_rent'];
 		$price = $_POST['price'];
@@ -37,30 +42,25 @@ class AddnewsController extends Controller{
 					"ward_id" => $ward_id,
 					"address_detail" => $address_detail,
 					"type_id" => $type_id,
-					"listImage" => $listImage);
+					"image_url" => $listImage);
 
 		$rentModel = new Rent();
 		$rentId = $rentModel -> addRent($args);
-
-		// $thisCtr = new AddnewsController();
-
-		// $thisCtr -> uploadImage($rentId);
-
 		$this->redirect('ctr=addnews&act=getAddNews');
 	}
 
-	public function uploadImage($rentId){
-		//$thisCtr = new AddnewsController();
-		$listImage = $this -> uploadImageToData();
+	// public function uploadImage($rentId){
+	// 	//$thisCtr = new AddnewsController();
+	// 	$listImage = $this -> uploadImageToData();
 
-		//$args = array("rent_id" => $rentId, "image_url" => $listImage);
-		// $rentModel = new Rent();
-		// $rentModel -> addImage($args);
-	}
+	// 	//$args = array("rent_id" => $rentId, "image_url" => $listImage);
+	// 	// $rentModel = new Rent();
+	// 	// $rentModel -> addImage($args);
+	// }
 
 	public function uploadImageToData(){
 		$valid_formats = array("jpg", "png", "gif", "bmp");
-		$max_file_size = 2048*1028; //100 kb
+		$max_file_size = 2048*1028; 
 		$path = "data/rent-images/"; // Upload directory
 		$count = 0;
 		$listImage = array();

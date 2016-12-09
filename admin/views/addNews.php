@@ -1,4 +1,6 @@
-
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
+ // dump($data);
+?>
 <?php
 	require('inc/header.php');
 ?>
@@ -9,21 +11,28 @@
 	<div class="module">
 		 <h2><span>Thêm tin tức</span></h2>		
 		 <div class="module-body">
-			<form id='fn' name='fn' action="" enctype="multipart/form-data" method="post">
+			<form id='fn' name='fn' action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">
 				<p>
 					<label>Tên tin</label>
-					<input type="text" name="tentin" value="" class="input-medium" />
+					<input type="text" name="rent_name" value="" class="input-medium" />
 				</p>
 				<p>
 					<label>Giá</label>
-					<input type="text" name="gia" value="" class="input-medium" />
+					<input type="text" name="price" value="" class="input-medium" />
 				</p>
 				<p>
-					<label>Danh mục tin</label>
-					<select  name="danhmuc" class="input-short">
-						<option selected :'selected' value="">Phòng trọ</option>
-						<option selected :'selected' value="">Căn hộ</option>
-						<option selected :'selected' value="">Bla bla</option>
+					<label>Loại tin</label>
+					<select  name="type_id" class="input-short">
+					<?php 
+
+						foreach ($data["type"] as $value) {
+												
+					 ?>
+						<option selected :'selected' value=""><?php echo $value['type_name'] ?></option>
+						
+					<?php
+						}
+					?>
 					</select>
 				</p>
 				<p>
@@ -34,11 +43,11 @@
 				</p>
 				<p>
 					<label>Diện tích</label>
-					<input type="text" name="dientich" value="5000" class="input-medium" />
+					<input type="text" name="square" value="5000" class="input-medium" />
 				</p>
 				<p>
 					<label>Tỉnh/thành phố </label>
-					<select  name="danhmuc" class="input-short">
+					<select  name="province_id" class="input-short">
 						<option value="1">Đà Nẵng</option>
 						<option value="2">Hồ Chí Minh</option>
 						<option value="3">Hà Nội</option>
@@ -47,19 +56,19 @@
 				</p>
 				<p>
 					<label>Quận/huyện</label>
-					<select  name="danhmuc" class="input-short">
+					<select  name="district_id" class="input-short">
 						<option value="1">Sơn Trà</option>
 					</select>
 				</p>
 				<p>
 					<label>Phường/ xã</label>
-					<select  name="danhmuc" class="input-short">
+					<select  name="ward_id" class="input-short">
 						<option value="1">bla bla</option>
 					</select>
 				</p>
 				<p>
 					<label>Mô tả</label>
-					<textarea id="mota" name="mota" value="" rows="7" cols="90" class="input-medium" > bla bla</textarea>
+					<textarea id="mota" name="describe_rent" value="" rows="7" cols="90" class="input-medium" > bla bla</textarea>
 				</p>
 				<p>
 					<input type="checkbox" name="status" value="1"> Status 

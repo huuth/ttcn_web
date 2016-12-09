@@ -145,7 +145,7 @@ class Rent extends Model {
 				}
 			}
 			if (isset($args['square'])){
-				$sql = $sql . " $$ square >= ". $args['squareFrom']. " AND price <= ".$args['priceTo'];
+				$sql = $sql . " && square >= ". $args['squareFrom']. " AND price <= ".$args['priceTo'];
 			}
 			if (isset($args['post_time_from'])){
 				if(isset($args['post_time_to'])){
@@ -167,11 +167,18 @@ class Rent extends Model {
 			if (isset($args['ward_id'])){
 				$sql = $sql . " && ward_id = ". $args['ward_id'];
 			}
-
-			$sql = $sql . " ORDER BY rent_id";
-			if(isset($args['limit'])){
-				$sql = $sql . " limit " . $args['limit'];
+			if (isset($args['limit'])){
+				if(empty($args['limit']['currentPage']) && $args['limit']['currentPage'] != 0){
+					$sql = $sql . " ORDER BY rent_id desc LIMIT ".'20';
+				}else{
+					$sql = $sql . " ORDER BY rent_id desc LIMIT ".$args['limit']['currentPage'];
+				}
+				if(!empty($args['limit']['numberPage'])){					
+					$sql = $sql . " , ".$args['limit']['numberPage'];
+				}
+				
 			}
+			//return $sql;
 			$stmt = $conn->prepare($sql);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -202,16 +209,54 @@ class Rent extends Model {
 			return false;
 		}
 	}
-	public function getTotalRent(){
+	public function getTotalRent($args = []){
 		try{
 			$conn = $this->connect();
-			$sql = 'SELECT count(*)  FROM rent ';
+			$sql = 'SELECT count(*) AS totalRows FROM rent WHERE 1 ';
+
+			if (isset($args['rent_name'])){
+				$sql = $sql . " && rent_name LIKE '%" .$args['rent_name'] . "%'";
+			}
+			if (isset($args['type_id'])){
+				$sql = $sql . " && type_id = " .$args['type_id'];
+			}
+			if(isset($args['priceFrom'])){
+				if(isset($args['priceTo'])){
+					$sql = $sql . " && price >= ".$args['priceFrom']. " AND price <=" . $args['priceTo'];
+				}else{
+					$sql = $sql . " && price >= ".$args['priceFrom'];
+				}
+			}
+			if (isset($args['square'])){
+				$sql = $sql . " $$ square >= ". $args['squareFrom']. " AND price <= ".$args['priceTo'];
+			}
+			if (isset($args['post_time_from'])){
+				if(isset($args['post_time_to'])){
+					$sql = $sql . " && post_time BETWEEN " .$args['post_time_from'] . " AND " . $args['post_time_to'];
+				}else{
+					$sql = $sql . " && post_time =" .$args['post_time'];
+				}
+				
+			}
+			if (isset($args['status'])){
+				$sql = $sql . " && status =" .$args['status'];
+			}
+			if (isset($args['province_id'])){
+				$sql = $sql . " && province_id = " . $args['province_id'];
+			}
+			if (isset($args['district_id'])){
+				$sql = $sql . " && district_id = " . $args['district_id'];
+			}
+			if (isset($args['ward_id'])){
+				$sql = $sql . " && ward_id = ". $args['ward_id'];
+			}
+
 			$stmt = $conn->prepare($sql);
 			$stmt->execute();
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				return $result;
+				return intval($result[0]['totalRows']);
 			}else{
 				return false;
 			}		
@@ -219,6 +264,5 @@ class Rent extends Model {
 			return false;
 		}
 
-	}
-
+	}	
 }

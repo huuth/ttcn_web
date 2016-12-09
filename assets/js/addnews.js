@@ -3,7 +3,7 @@ $(function(){
     var files = [];
     ajaxP("index.php?ctr=addnews&act=getProvince","get",'select[name="province_id"]'); 
     ajaxP("index.php?ctr=addnews&act=getType","get",'select[name="type_id"]'); 
-     //
+     
     $('select[name="province_id"]').change(function(event) {
         /* Act on the event */
         var url = "index.php?ctr=addnews&act=getDistrict";

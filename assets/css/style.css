@@ -568,7 +568,7 @@ img {
   background-color: rgba(221, 221, 221, 0.8); 
   display: inline;
   float: left;
-  margin-top: -100px;
+  margin-top: -200px;
   padding: 25px 20px;
   position: relative;
   width: 100%;
@@ -3647,6 +3647,13 @@ display: flex;
   color:white;
 }
 .aa-properties-item .aa-properties-item-content .aa-properties-about h3{
-  font-size: 18px !important;
+  font-size: 16px !important;
   text-transform: uppercase;
+}
+.aa-properties-item .aa-properties-item-img img{
+  width: 360px;
+    height: 220px;
+}
+.navbar{
+  margin-top: 0px !important;
 }

@@ -70,3 +70,8 @@
   display: none;
   color: red;
 }
+
+/*========*/
+.paging > li > a{
+	padding: 6px 7px !important;
+}

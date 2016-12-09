@@ -2,7 +2,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/models/User.php';
 
-//$detail = $data['ds']; dump($detail);
+//$detail = $data['image']; dump($detail);
 ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
@@ -34,11 +34,11 @@
                         <!-- Start properties content body -->
                         <div class="aa-properties-details">
                             <div class="aa-properties-details-img">
-                                <?php $image = $data['image']; 
-                                    foreach ($image as $img) ?>
-                                <img src="assets/img/slider/1.jpg" alt="img">
-                                <img src="assets/img/slider/2.jpg" alt="img">
-                                <img src="assets/img/slider/3.jpg" alt="img">
+                                <?php if(!empty($data['rent']['img'])): ?>
+                                    <?php foreach ($data['rent']['img'] as  $img): ?>
+                                        <img src="<?php echo $img['image_url'] ?>" alt="img">    
+                                    <?php endforeach; ?>
+                                <?php endif; ?>                                
                             </div>
                             <div class="aa-properties-info">
                             <?php   $detail = $data['rent'];
@@ -69,8 +69,7 @@
                                          </span></div>                                                            
                                         <div class="col-md-3 col-xs-5 color-col"><span>Điện thoại:</span></div>
                                         <div class="col-md-3 col-xs-7">
-                                            <a href="tel:0975771327"><?php echo $user['phone']; ?>
-                                            </a>
+                                            <a href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?></a>
                                         </div>                                    
                                     </div>
                                     <div class="row">                                    
@@ -113,48 +112,8 @@
                         </div>
                     </div>
                 </div>
-                    <!-- Start properties sidebar -->
-                <div class="col-md-4">
-                    <aside class="aa-properties-sidebar">
-                        <!-- Start Single properties sidebar -->
-                        <div class="aa-properties-single-sidebar">
-                            <h3>TÌM KIẾM</h3>
-                            <form action="">                               
-                                <div class="aa-single-advance-search">
-                                    <select id="province" name="province_id">                              
-                                    </select>
-                                </div>                                                               
-                                <div class="aa-single-advance-search">
-                                    <select id="distict" name="district_id">    
-                                        <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>           
-                                    </select>
-                                </div>                                 
-                                <div class="aa-single-advance-search">
-                                    <select id="ward" name="ward_id">  
-                                        <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>             
-                                    </select>
-                                </div>                                  
-                                <div class="aa-single-advance-search">
-                                    <select name="type_id">                    
-                                    </select>
-                                </div>                                 
-                                <div class="aa-single-advance-search">
-                                    <select>
-                                        <option value="0" selected>Giá thấp nhất</option>
-                                        <option value="1">dưới 500 ngàn</option>
-                                        <option value="2">từ 500 ngàn - 1 triệu</option>
-                                        <option value="3">từ 1 - 3 triệu</option>
-                                        <option value="4">từ 3 - 7 triệu</option>
-                                        <option value="4">trên 7 triệu</option>
-                                    </select>
-                                </div>                                  
-                                <div class="aa-single-advance-search">
-                                    <input type="submit" name="search" value="TÌM KIẾM" class="aa-search-btn">
-                                </div>
-                            </form>
-                        </div>
-                    </aside>
-                </div>
+                <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/form-search.php'; ?>
+                
             </div>            
         </div>
     </section>
@@ -197,17 +156,3 @@
     </footer>
     <!-- / Footer -->
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/footer.php';?>
-<?php 
-  function sortProvince($provinces){
-    $temp1 = [];
-    $temp2 = [];
-    foreach ($provinces as $province) {
-      if($province['type'] == 'Thành Phố'){
-        $temp1[] = $province;
-      }else{
-        $temp2[] = $province;
-      }
-    }
-    return array_merge($temp1,$temp2);
-  }
- ?>

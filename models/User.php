@@ -8,13 +8,14 @@ class User extends Model {
 	public function addUser($args = []){
 		try {
 			$conn = $this->connect();
-			$sql  = "INSERT INTO USER (username,password,name_display,email,auth) VALUES (:username,:password,:name_display,:email,:auth)";
+			$sql  = "INSERT INTO USER (username,password,name_display,email,auth,phone) VALUES (:username,:password,:name_display,:email,:auth,:phone)";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':username',$args['username']);
 			$stmt->bindParam(':password',md5($args['password']));
 			$stmt->bindParam(':name_display',$args['name_display']);
 			$stmt->bindParam(':email',$args['email']);
-			$stmt->bindParam(':auth',$args['auth']);			
+			$stmt->bindParam(':auth',$args['auth']);	
+			$stmt->bindParam(':phone',$args['phone']);					
 			$stmt->execute();
 			return true;
 	    }catch(PDOException $e){	    	
@@ -24,11 +25,11 @@ class User extends Model {
 	public function editUser($args = []){
 		try {
 			$conn = $this->connect();
-			$sql  = "UPDATE USER 
-					 SET password=:password,phone:phone,name_display:name_display,email:email,image_url:image_url,
-					 	 gender=:gender,auth=:auth,province_id=:province_id,district_id=:district_id,ward_id=:ward_id,
-					 	 address_detail=:address_detail
-					 WHERE user_id:user_id";
+			$sql  = "UPDATE USER" 
+					 ." SET password =:password,phone=:phone,name_display =:name_display,email =:email,image_url =:image_url,"
+					 ."gender =:gender,auth =:auth,province_id =:province_id,district_id =:district_id,ward_id =:ward_id,"
+					 ."address_detail =:address_detail"
+					 ." WHERE user_id =:user_id";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':password',md5($args['password']));
 			$stmt->bindParam(':phone',$args['phone']);
@@ -44,7 +45,7 @@ class User extends Model {
 			$stmt->bindParam(':user_id',$args['user_id']);				
 			$stmt->execute();
 			return true;
-	    }catch(PDOException $e){	    	
+	    }catch(PDOException $e){	   
 	    	return false;//error 404
 	    }
 	}

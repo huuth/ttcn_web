@@ -42,7 +42,7 @@
 						<ul id="nav">
 							<li id="current"><a href="index.php">Quản trị</a></li>
 							<li><a href="index.php?ctr=user&act=getDetail&idUser=<?php echo $_SESSION['user_infor_ad']['user_id'] ?>">Tài khoản</a></li>
-							<li><a href="index.php?ctr=user&act=getIndex">Người dùng</a></li>
+							<li><a href="index.php?ctr=user&act=getIndex&currentPage=1">Người dùng</a></li>
 						</ul>
 					</div><!-- End. #Logo -->
 				</div><!-- End. .grid_12-->
@@ -57,7 +57,7 @@
 					<ul>
 						<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1">Quản lý bài đăng</a></li>
 						<li><a href="index.php?ctr=type&act=getIndex">Loại hình cho thuê</a></li>
-						<li><a href="index.php?ctr=user&act=getIndex">Người dùng</a></li>
+						<li><a href="index.php?ctr=user&act=getIndex&currentPage=1">Người dùng</a></li>
 					</ul>
 				</div><!-- End. .grid_12-->
 			</div><!-- End. .container_12 -->

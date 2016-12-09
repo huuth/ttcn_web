@@ -113,15 +113,44 @@ class User extends Model {
 		}
 	}
 	
-	public function getArrayUser(){
+	public function getArrayUser($args = []){
 		try{
 			$conn = $this->connect();
-			$sql = 'select * from user ';
+			$sql = "SELECT * from user where 1";
+			if (isset($args['limit'])){
+				if(empty($args['limit']['currentPage']) && $args['limit']['currentPage'] != 0){
+					$sql = $sql . " ORDER BY user_id desc LIMIT ".'20';
+				}else{
+					$sql = $sql . " ORDER BY user_id desc LIMIT ".$args['limit']['currentPage'];
+				}
+				if(!empty($args['limit']['numberPage'])){					
+					$sql = $sql . " , ".$args['limit']['numberPage'];
+				}
+				
+			}
 			$stmt = $conn->prepare($sql);
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$stmt->execute();
 			$result = $stmt->fetchAll();
 			return $result;
+		}catch(PDOException $e){
+			return false;
+		}
+
+	}
+	public function getTotalUser(){
+		try{
+			$conn = $this->connect();
+			$sql = "SELECT count(*) AS totalRows FROM user ";
+			$stmt = $conn->prepare($sql);
+			$stmt->execute();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();
+			if($result){
+				return ($result[0]['totalRows']);
+			}else{
+				return false;
+			}		
 		}catch(PDOException $e){
 			return false;
 		}

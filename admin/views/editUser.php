@@ -32,7 +32,7 @@
 			<div class="module">
 				 <h2><span>Sửa người dùng</span></h2>
 				 <div class="module-body">
-					<form name="form" action="index.php?ctr=user&act=editUser&idUser=<?php echo $data['user_id']?>" method="post" onsubmit="return checkinput();">
+					<form name="form" action="index.php?ctr=user&act=editUser&currentPage=<?php echo $_GET['currentPage']?>&idUser=<?php echo $data['user_id']?>" method="post" onsubmit="return checkinput();">
 						<p style='color: red' >
 							<strong><?php echo $data['username']?></strong>
 						</p>

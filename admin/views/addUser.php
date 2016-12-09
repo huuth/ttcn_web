@@ -36,7 +36,7 @@
 		 <h2><span>Thêm người dùng</span></h2>
 			
 		 <div class="module-body">
-			<form action="index.php?ctr=user&act=addUser" name="form" method="post" onsubmit="return checkinput();">
+			<form action="index.php?ctr=user&act=addUser&currentPage=<?php echo $_GET['currentPage']?>" name="form" method="post" onsubmit="return checkinput();">
 				<p>
 					<label>Tên người dùng</label>
 					<input type="text" name="username" value="" class="input-medium" />

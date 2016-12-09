@@ -9,53 +9,72 @@
 	<div class="bottom-spacing">
 		  <!-- Button -->
 		  <div class="float-left">
-			  <a href="index.php?ctr=rents&act=getAdd" class="button">
+			  <a href="index.php?ctr=rents&act=addPage" class="button">
 				<span>Thêm tin <img src="views/images/plus-small.gif" alt="Thêm tin"></span>
 			  </a>
 		  </div>
 		  <div class="clear"></div>
 	</div>
+	
+	<!-- <div>
+		<form action="index.php?ctr=rents&act=getAdd" enctype="multipart/form-data" method="post">
+			<div >
+	            <div >Tỉnh/Thành phố:</div>
+	            <select name="province_id" id="category_group" sel_id="" ></select>
+	        </div>
+	        <div >
+	            <div >Quận / Huyện:</div>
+                <div >
+                    <select name="district_id" id="category_group" sel_id="" >
+                        <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>
+                    </select>
+                </div>
+	            
+	            
+	        </div>
+	        <div >
+	            <div >Phường / Xã:</div>
+	                
+                
+                    <select name="ward_id" id="category_group" sel_id="" >
+                        <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
+                    </select>
+                
+	                
+	            
+	        </div>
+	    </form>
+	</div> -->
 
 	<div>
 		<form action="" method="post">
 			Tìm kiếm theo khu vực:
-			<select name="find">
-				
-				<option  value="">Ðà Nẵng</option>
-				<option  value="">Hồ Chí Minh</option>
-				<option  value="">Hà Nội</option>
-				
-			</select>	
+			<select name="province_id" id="category_group" sel_id="" ></select>
 			<span>---</span>
 			Tìm kiếm theo quận / huyện:
-			<select name="find">
-				
-				<option  value="">Liên Chiểu</option>
-				<option  value="">Hải Châu</option>
-				<option  value="">Cẩm Lệ</option>
-				
-			</select>	
+			<select name="district_id" id="category_group" sel_id="" >
+                        <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>
+                    </select>
 			<span>---</span>
 			Tìm kiếm theo phường / xã:
-			<select name="find">
-				
-				<option  value="">Hòa Khánh Bắc</option>
-				<option  value="">Hòa Khánh Nam</option>
-				
-				
+			<select name="ward_id" id="category_group" sel_id="" >
+                        <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
+                    </select>
 			</select>	
 		</form>
 		<br/>
-		<form action="index.php?ctr=rents&act=getIndex&currentPage=1" method="POST">
+		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=" method="POST">
 			Tìm kiếm theo tên:
-			<input type="search" id="txtSearch" name="txtSearch" placeholder="Từ khóa tin tức"/>
+			<input type="search" id="txtSearch" name="txtSearch" placeholder="Từ khóa tin tức" value="<?php if(!empty($_POST['txtSearch'])) echo $_POST['txtSearch'] ?>"/>
 			<input type="submit" id="btnSearch" name="SearchName" value="Tìm kiếm"/>
 		</form>
 		<br/>
-		<form action="/admin/newsindex.php?ctr=rents&act=getIndex&currentPage=1">
-			<input type="submit" id="showall" name="showall" value="Hiển thị tất cả"/>
+		<form action="index.php?ctr=rents&act=getIndex&currentPage=1"  method="POST">
+			<input type="submit" id="" name="" value="Hiển thị tất cả"/>
 		</form>
 	</div>
+
+
 	<br/>
 	<div class="grid_12">
 		<!-- Example table -->
@@ -88,7 +107,7 @@
 						?>
 							<tr>
 								<td class="align-center"><?php echo $value["rent_id"] ?></td>
-								<td><a href="index.php?ctr=rents&act=getEdit"><?php echo $value["rent_name"] ?></a></td>
+								<td><a href="index.php?ctr=rents&act=editPage&idRent=<?php echo $value["rent_id"] ?>"><?php echo $value["rent_name"] ?></a></td>
 								<td><?php echo $value["price"] ?> VNĐ</td>
 								<td><?php echo $value["address_detail"] ?></td>
 								<td><?php echo $value["post_time"] ?></td>
@@ -98,7 +117,7 @@
 								</td>
 								<td align="center"><input type="checkbox" name="status" value="1"></td>
 								<td align="center">
-									<a href="index.php?ctr=rents&act=getEdit">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+									<a href="index.php?ctr=rents&act=editPage&idRent=<?php echo $value["rent_id"] ?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
 									<a onclick="return confirm('B?n có mu?n xóa hay không?')" href="">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
 								</td>
 							</tr>
@@ -114,14 +133,13 @@
 				<div class="numbers">
 					<span>Trang:</span> 
 						<?php
-							$arTotalRows = $data["totalRows"];
-							$totalRows = $arTotalRows[0]["totalPage"];
+							$totalRows = $data["totalRows"];
 							$currentPage = $_GET["currentPage"];
-							$totalPage =(int)($totalRows/10+1);
+							$totalPage =(int)($totalRows/10)+1;
+							
+							if($totalPage<=5){
 
-							if($totalRows<=5){
-
-								for($i=1;$i<=($totalRows/10+1);$i++)
+								for($i=1;$i<=($totalPage);$i++)
 								{
 									if($_GET['currentPage']==$i){
 						?>

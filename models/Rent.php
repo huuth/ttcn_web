@@ -212,7 +212,7 @@ class Rent extends Model {
 	public function getTotalRent($args = []){
 		try{
 			$conn = $this->connect();
-			$sql = 'SELECT count(*) AS totalPage FROM rent WHERE 1 ';
+			$sql = 'SELECT count(*) AS totalRows FROM rent WHERE 1 ';
 
 			if (isset($args['rent_name'])){
 				$sql = $sql . " && rent_name LIKE '%" .$args['rent_name'] . "%'";
@@ -256,7 +256,7 @@ class Rent extends Model {
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				return intval($result[0]['totalPage']);
+				return intval($result[0]['totalRows']);
 			}else{
 				return false;
 			}		

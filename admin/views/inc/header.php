@@ -4,7 +4,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Quản lý phòng trọ </title>
 	<link rel="stylesheet" type="text/css" href="views/css/styles.css" media="screen" />
-	<!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
+
 </head>
 <body>
 	<!-- Header -->

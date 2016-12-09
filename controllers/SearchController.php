@@ -47,7 +47,7 @@ class SearchController extends Controller{
 			$args['limit']['numberPage'] = 6;
 			$data['pagination']['numberPage'] = 6;
 		}	
-
+		$args['status'] = 1;
 		$data['rent'] = $rentModel->getArrayRent($args);				
 		foreach ($data['rent'] as $key => $rent) {
 			$data['arrayImg'][$rent['rent_id']] = $rentModel->getArrayImgByRentId($rent['rent_id']);

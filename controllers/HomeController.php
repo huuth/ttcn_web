@@ -16,6 +16,7 @@ class HomeController extends Controller{
 		$arrayRents = [];
 		foreach ($data['type_list'] as $type) {
 			$args['type_id'] = $type['type_id'];
+			$args['status'] = 1;
 			$data['arrayRent'][$type['type_id']] = $rentModel->getArrayRent($args);			
 		}		
 		foreach ($data['arrayRent'] as $key1 => $rentByType) {

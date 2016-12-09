@@ -8,13 +8,14 @@ class User extends Model {
 	public function addUser($args = []){
 		try {
 			$conn = $this->connect();
-			$sql  = "INSERT INTO USER (username,password,name_display,email,auth) VALUES (:username,:password,:name_display,:email,:auth)";
+			$sql  = "INSERT INTO USER (username,password,name_display,email,auth,phone) VALUES (:username,:password,:name_display,:email,:auth,:phone)";
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':username',$args['username']);
 			$stmt->bindParam(':password',md5($args['password']));
 			$stmt->bindParam(':name_display',$args['name_display']);
 			$stmt->bindParam(':email',$args['email']);
-			$stmt->bindParam(':auth',$args['auth']);			
+			$stmt->bindParam(':auth',$args['auth']);	
+			$stmt->bindParam(':phone',$args['phone']);					
 			$stmt->execute();
 			return true;
 	    }catch(PDOException $e){	    	

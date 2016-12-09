@@ -8,6 +8,9 @@
 	</div> <!-- End #footer -->
 	  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 	  <script src="/admin/views/js/jquery.min.js"></script>   
+	  <script src="/admin/views/js/bootstrap.js"></script>   
+	  <script src="/admin/views/js/slick.js"></script>  
+	  <script src="/admin/views/js/custom.js"></script>  
 	  <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<!-- js moi add vo duoi nay -->
  	<script src="/admin/views/js/addnews.js"></script>

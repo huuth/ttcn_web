@@ -61,11 +61,46 @@ $(function(){
         }
     });
 
-    // Grab the files and set them to our variable
-    // function prepareUpload(id)
-    // {
-    //   console.log("image0");
-    // }
+    $('#formular_m').submit(function( event ) {
+      //alert( "Handler for .submit() called." );
+      var province_val = $(this).find('select[name="province_id"]').val();
+      var district_val = $(this).find('select[name="district_id"]').val();
+      var ward_val = $(this).find('select[name="ward_id"]').val();
+      var type_val = $(this).find('select[name="type_id"]').val();
+      console.log(type_val);
+      if (province_val == '0') {
+        document.getElementById("province_validate").setAttribute("style", "display: block;");
+        event.preventDefault();
+      }
+      else{
+        document.getElementById("province_validate").setAttribute("style", "display: none;");
+      }
+      
+      if (district_val == '0') {
+        document.getElementById("district_validate").setAttribute("style", "display: block;");
+        event.preventDefault();
+      }
+      else{
+        document.getElementById("district_validate").setAttribute("style", "display: none;");
+      }
+
+      if (ward_val == '0') {
+        document.getElementById("ward_validate").setAttribute("style", "display: block;");
+        event.preventDefault();
+      }
+      else{
+        document.getElementById("ward_validate").setAttribute("style", "display: none;");
+      }
+
+      if (type_val == '0') {
+        document.getElementById("type_validate").setAttribute("style", "display: block;");
+        event.preventDefault();
+      }
+      else{
+        document.getElementById("type_validate").setAttribute("style", "display: none;");
+      }
+
+    });
 
 });
 function ajaxP(url, method, selector, id=0){

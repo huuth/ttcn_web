@@ -209,6 +209,25 @@ class Rent extends Model {
 			return false;
 		}
 	}
+
+	public function getRentByUserId($user_id){
+		try{
+			$conn = $this->connect();
+			$sql = 'SELECT * FROM rent WHERE user_id = :user_id';
+			$stmt = $conn->prepare($sql);
+			$stmt->bindParam(':user_id',$user_id);
+			$stmt->execute();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();
+			if($result){
+				return $result;
+			}else{
+				return false;
+			}		
+		}catch(PDOException $e){
+			return false;
+		}
+	}
 	public function getTotalRent($args = []){
 		try{
 			$conn = $this->connect();

@@ -324,6 +324,7 @@
                         <span class="hidden-lg">Code</span>
                      </th>
                      <th>Ngày đăng</th>
+                     <th width="150px">Ngày ẩn</th>
                      <th>Tên tin</th>
                      <th width="150px">Trạng thái</th>
                   </tr>
@@ -334,7 +335,9 @@
                   <tr>
                      <td><a href="/sales/order/view?code=81432288"><?php echo $rent['rent_id']?></a></td>
                      <td><?php echo $rent['post_time']?></td>
-                     <td><?php echo $rent['rent_name']?></td>
+                     <td><?php if(isset($rent['drop_time'])){
+                           echo $rent['drop_time']; }?></td>
+                     <td><a href="index.php?ctr=detail&act=getIndex&rent_id=<?php echo $rent['rent_id'];?>"><?php echo $rent['rent_name']?></a></td>
                      <td><span class="color-2">Đã duyệt</span></td>
                   </tr>
                   <?php endforeach; ?>

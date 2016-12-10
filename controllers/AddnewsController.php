@@ -10,16 +10,20 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/models/Rent.php';
 class AddnewsController extends Controller{
 
 	public function getAddNews(){
+		if (!isset($_SESSION['user_infor'])){
+			$this->redirect('ctr=auth&act=getLogin');
+			return;
+		}
 		$this->render('add-news');
 	}
 
 	public function addNews(){
-		// if (!isset($_SESSION['userInfor']['user_id'])){
-		// 	$this->redirect('ctr=auth&act=getLogin');
-		// 	return;
-		// }
-		// $user_id = $_SESSION['userInfor']['user_id'];
-		$user_id = 1234;
+		if (!isset($_SESSION['user_infor'])){
+			$this->redirect('ctr=auth&act=getLogin');
+			return;
+		}
+		$user_id = $_SESSION['user_infor']['user_id'];
+		// $user_id = 1234;
 		$rent_name = $_POST['rent_name'];
 		$describe_rent = $_POST['describe_rent'];
 		$price = $_POST['price'];
@@ -46,17 +50,9 @@ class AddnewsController extends Controller{
 
 		$rentModel = new Rent();
 		$rentId = $rentModel -> addRent($args);
-		$this->redirect('ctr=addnews&act=getAddNews');
+		// $_SESSION['rent_id'] = $rentId;
+		$this->redirect('ctr=detail&act=getIndex&rent_id='.$rentId);
 	}
-
-	// public function uploadImage($rentId){
-	// 	//$thisCtr = new AddnewsController();
-	// 	$listImage = $this -> uploadImageToData();
-
-	// 	//$args = array("rent_id" => $rentId, "image_url" => $listImage);
-	// 	// $rentModel = new Rent();
-	// 	// $rentModel -> addImage($args);
-	// }
 
 	public function uploadImageToData($usr_id){
 		$valid_formats = array("jpg", "png", "gif", "bmp");

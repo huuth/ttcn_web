@@ -10,11 +10,24 @@
 			$rent= new Rent();
 			
 			$currentPage=($_GET['currentPage']-1)*10;
-			
 			$numberPage=10;
+
 			$nameFind=$_GET['keyWord'];
-			if(!empty($_POST['txtSearch'])){
-				$nameFind=$_POST['txtSearch'];
+			$province_id=$_GET['province_id'];
+			$district_id=$_GET['district_id'];
+			$ward_id=$_GET['ward_id'];
+
+			if(isset($_POST['keyWord'])){
+				$nameFind=$_POST['keyWord'];
+			}
+			if(!empty($_POST['province_id'])){
+				$province_id=$_POST['province_id'];
+			}
+			if(!empty($_POST['district_id'])){
+				$district_id=$_POST['district_id'];
+			}
+			if(!empty($_POST['ward_id'])){
+				$ward_id=$_POST['ward_id'];
 			}
 			
 			$arg = array(
@@ -23,12 +36,27 @@
 					'numberPage' => $numberPage
 				),
 				'rent_name'=>$nameFind
+				
 				);
+
+			if($province_id!=0){
+				$arg['province_id'] = $province_id;
+			}
+			if($district_id!=0){
+				$arg['district_id'] = $district_id;
+			}
+			if($ward_id!=0){
+				$arg['ward_id'] = $ward_id;
+			}
+
 			
-			//dump($arg);
+			// dump($arg);
 			$data['totalRows']=$rent->getTotalRent($arg);
 			$data['news']=$rent->getArrayRent($arg);
 			$data['keyWord']=$nameFind;
+			$data['province_id']=$province_id;
+			$data['district_id']=$district_id;
+			$data['ward_id']=$ward_id;
 
 			
 			$this->render('indexNews',$data);
@@ -55,6 +83,22 @@
 			}else{
 				$this->redirect('ctr=error&act=error404');
 			}
+		}
+		public function browsingNew(){
+			$idRent=$_GET['idRent'];
+			$status=0;
+			if(isset($_POST['-1'])){
+				$status=-1;
+			}else if (isset($_POST['1'])){
+				$status=1;
+			}
+			//dump($status);
+			$arg= array('status' => $status, 'rent_id'=>$idRent);
+			$rentModel= new Rent();
+			$check=$rentModel->browsingNew($arg);
+			//dump($check);
+			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=');
+
 		}
 	}	
  //index.php?ctr=rents&act=getIndex

@@ -4,11 +4,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Quản lý phòng trọ </title>
-	<link rel="stylesheet" type="text/css" href="views/css/styles.css" media="screen" />
+	
+	
 	<link rel="stylesheet" type="text/css" href="views/css/bootstrap.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="views/css/slick.css" media="screen" />
 	<link href="views/css/font-awesome.css" rel="stylesheet">
 	<link href="views/css/custom.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="views/css/styles.css" media="screen" />
+
 </head>
 <body>
 	<!-- Header -->
@@ -58,7 +61,8 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<ul>
-						<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo "" ?>">Quản lý bài đăng</a></li>
+						<li id="current"><a href="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo "" ?>&province_id=0&district_id=0&ward_id=0">Quản lý bài đăng</a></li>
+
 						<li><a href="index.php?ctr=type&act=getIndex">Loại hình cho thuê</a></li>
 						<li><a href="index.php?ctr=user&act=getIndex&currentPage=1">Người dùng</a></li>
 					</ul>

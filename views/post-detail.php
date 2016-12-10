@@ -56,8 +56,7 @@
                                     <div class="row">                                       
                                         <div class="col-md-3 col-xs-5 color-col"><span>Loại tin rao:</span></div>
                                         <div class="col-md-3 col-xs-7">
-                                            <a href="https://phongtro123.com/cho-thue-phong-tro">
-                                            <?php echo $type['type_name']; ?></a>
+                                            <span><?php echo $type['type_name']; ?></span>
                                         </div>                                       
                                         <div class="col-md-3 col-xs-5 color-col"><span>Ngày cập nhật:</span></div>
                                         <div class="col-md-3 col-xs-7"><span><?php echo $detail['post_time'] ;?></span></div>                                       

@@ -8,7 +8,7 @@
 <div class="container_12">
 	
 	<div>
-		<form action="" method="post">
+		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo $data['keyWord'] ?>&province_id=0&district_id=0&ward_id=0" method="POST">
 			Tìm kiếm theo khu vực:
 			<select name="province_id" id="category_group" sel_id="" ></select>
 			<span>---</span>
@@ -22,16 +22,13 @@
                         <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>
                     </select>
 			</select>
-		</form>
-		<br/>
-		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo $data['keyWord'] ?>" method="POST">
-
+			<br/>
 			Tìm kiếm theo tên:
-			<input type="search" id="txtSearch" name="txtSearch" placeholder="Từ khóa tin tức" value="<?php if(!empty($_POST['txtSearch'])) echo $_POST['txtSearch'] ?>"/>
+			<input type="text" id="keyWord" name="keyWord" placeholder="Từ khóa tin tức" value="<?php echo $data['keyWord'] ?>" />
 			<input type="submit" id="btnSearch" name="SearchName" value="Tìm kiếm"/>
 		</form>
 		<br/>
-		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo "" ?>"  method="POST">
+		<form action="index.php?ctr=rents&act=getIndex&currentPage=1&keyWord=<?php echo "" ?>&province_id=0&district_id=0&ward_id=0"  method="POST">
 			<input type="submit" id="" name="" value="Hiển thị tất cả"/>
 		</form>
 	</div>
@@ -118,11 +115,11 @@
 								{
 									if($_GET['currentPage']==$i){
 						?>
-									<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+									<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
 									<?php
 										}else{
 									?>
-									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
 						<?php
 										}
 								}
@@ -131,18 +128,18 @@
 									$back = $currentPage-5;
 									if(($currentPage-5)<1) $back=3;
 									?>
-									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $back ?>&keyWord=<?php echo $data['keyWord'] ?>">...</a>
+									<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $back ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>">...</a>
 									<?php
 									$page_for = $currentPage;
 									if(($currentPage==($totalPage-1))||($currentPage==($totalPage))) $page_for=$totalPage-2;
 									for($i=$page_for-2;$i<=$page_for+2;$i++){
 										if($_GET['currentPage']==$i){
 										?>
-											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
+											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>"><?php echo $i ?></a><?php if($currentPage+2!=($i)) echo "|" ?>
 											<?php
 												}else{
 											?>
-											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if($i!=$currentPage+2) echo "|" ?>
+											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>"><?php echo $i ?></a><?php if($i!=$currentPage+2) echo "|" ?>
 										<?php
 										}
 									}
@@ -150,24 +147,24 @@
 										$more=$currentPage+5;
 										if(($currentPage+5)>$totalPage) $more=$totalPage-2;
 										?>
-											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $more ?>&keyWord=<?php echo $data['keyWord'] ?>">...</a>
+											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $more ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>">...</a>
 										<?php
 									}
 								}else{
 									for($i=1;$i<=5;$i++){
 										if($_GET['currentPage']==$i){
 										?>
-											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
+											<a style="font: bold; color: red;" href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
 											<?php
 										}else{
 											?>
-											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
+											<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $i ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>"><?php echo $i ?></a><?php if(5!=($i)) echo "|" ?>
 
 									<?php
 										}
 									}
 									?>
-										<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $currentPage+5 ?>&keyWord=<?php echo $data['keyWord'] ?>">...</a>
+										<a  href="index.php?ctr=rents&act=getIndex&currentPage=<?php echo $currentPage+5 ?>&keyWord=<?php echo $data['keyWord'] ?>&province_id=<?php echo $data['province_id'] ?>&district_id=<?php echo $data['district_id'] ?>&ward_id=<?php echo $data['ward_id'] ?>">...</a>
 									<?php
 								}
 							}

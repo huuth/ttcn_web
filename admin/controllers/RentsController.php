@@ -7,7 +7,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
 	class RentsController extends ControllerAdmin{
 		public function getIndex(){
-			if((isset($_GET['keyWord']))&&(isset($_GET['province_id']))&&(isset($_GET['district_id']))&&(isset($_GET['ward_id']))){
+			if((isset($_GET['currentPage']))&&(isset($_GET['keyWord']))&&(isset($_GET['province_id']))&&(isset($_GET['district_id']))&&(isset($_GET['ward_id']))){
 				$rent= new Rent();
 				
 				$currentPage=($_GET['currentPage']-1)*10;
@@ -101,7 +101,7 @@
 			$rentModel= new Rent();
 			$check=$rentModel->browsingNew($arg);
 			//dump($check);
-			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=');
+			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=&province_id=0&district_id=0&ward_id=0');
 
 		}
 	}	

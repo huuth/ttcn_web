@@ -14,18 +14,19 @@ class AccountController extends Controller{
 		$userModel = new User();
 		$typeModel = new Type();
 		$addressModel = new Address();		
-		$user_id = 1;
-				//$user_id = $_GET['user_id'];
+		if(isset($_GET['user_id'])){
+		$data['user'] = $rentModel -> getRentById($_GET['user_id']);
+			if(empty($data['user'])){
+				$this->redirect('ctr=error&act=error404');
+			}else{
 				$data['user'] = $userModel -> getUserById($user_id);
 				$data['user']['rent'] = $rentModel -> getRentByUserId($user_id);
-				//dump($data['user']['rent']);
-
-
-				if(empty($data['user'])){
-					$this->redirect('ctr=error&act=error404');
-				}else{
-					$this->render('detail-acc',$data);
-				}
+				$this->render('detail-acc',$data);
+			}
+		}else{
+			$this->redirect('ctr=error&act=error404');
+		}
+			
 	}
 	
 }

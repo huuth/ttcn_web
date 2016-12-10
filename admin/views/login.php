@@ -10,11 +10,11 @@
 					<form action="index.php?ctr=login&act=getLogin" method="post">
 						<p>
 							<label>Email</label>
-							<input type="text" name="email" value="" class="input-medium" />
+							<input type="email" name="email" required="required" value="" class="input-medium" />
 						</p>
 						<p>
 							<label>Password</label>
-							<input type="password" name="password" value="" class="input-medium" />
+							<input type="password" name="password" value="" required="required" class="input-medium" />
 						</p>
 						<fieldset>
 							<input class="submit-green" name="submit" type="submit" value="Đăng nhập" /> 

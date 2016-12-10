@@ -17,10 +17,12 @@
 					$this->redirect('ctr=auth&act=getLogin');
 				}else if($check == -1){
 					$this->redirect('ctr=error&act=error404');
-				}else{
+				}else if ($check['auth']==1){
 					$_SESSION['user_infor_ad'] = $check;				
 					$this->redirect('ctr=home&act=getIndex');
-
+				}else{
+					$_SESSION['warning'] = 1;
+					$this->redirect('ctr=auth&act=getLogin');
 				}
 			}
 		}

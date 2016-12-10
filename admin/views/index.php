@@ -15,10 +15,16 @@
 				<h2><span>Quản trị hệ thống</span></h2>
 				<div class="module-body">
 					<p class="p">
-						<strong>Phần mềm</strong> được viết trên nền tảng PHP&MySQL <br />
-						<strong>Thực hiện: </strong> TEAM TTCN 13T4<br />
-						<strong>Email: </strong>thuytiendang206@gmail.com<br /> 
-						<strong>Phone: </strong>12345679<br />
+						<strong>Phần mềm được viết trên nền tảng PHP&MySQL</strong>  <br />
+						<strong>Tên dự án: </strong><span  style ="margin-left: 20px" > PHÒNG TRỌ 69</span><br />
+						<strong>GVHD: </strong> <span  style ="margin-left: 46px" >Võ Đức Hoàng</span><br />
+						<strong>Thực hiện: </strong><span  style ="margin-left: 20px" > TEAM TTCN 13T4</span><br />
+						<p><strong >Thành viên: </strong></p>
+						<p  style ="margin-left: 20px" ><strong >Võ Văn Hoan</strong></p>
+						<p style ="margin-left: 20px" ><strong >Trương Thanh Hữu</strong></p>
+						<p style ="margin-left: 20px" ><strong>Đặng Thị Thủy Tiên</strong></p>
+						<p style ="margin-left: 20px" ><strong>Nguyễn Thị Phương Thảo</strong></p>
+						<p style ="margin-left: 20px" ><strong>Nguyễn Thanh Tịnh</strong></p>
 					</p>
 				</div>
 			</div>

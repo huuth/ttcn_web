@@ -7,59 +7,63 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
 	class RentsController extends ControllerAdmin{
 		public function getIndex(){
-			$rent= new Rent();
-			
-			$currentPage=($_GET['currentPage']-1)*10;
-			$numberPage=10;
-
-			$nameFind=$_GET['keyWord'];
-			$province_id=$_GET['province_id'];
-			$district_id=$_GET['district_id'];
-			$ward_id=$_GET['ward_id'];
-
-			if(isset($_POST['keyWord'])){
-				$nameFind=$_POST['keyWord'];
-			}
-			if(!empty($_POST['province_id'])){
-				$province_id=$_POST['province_id'];
-			}
-			if(!empty($_POST['district_id'])){
-				$district_id=$_POST['district_id'];
-			}
-			if(!empty($_POST['ward_id'])){
-				$ward_id=$_POST['ward_id'];
-			}
-			
-			$arg = array(
-				'limit' => array(
-					'currentPage' => $currentPage, 
-					'numberPage' => $numberPage
-				),
-				'rent_name'=>$nameFind
+			if((isset($_GET['currentPage']))&&(isset($_GET['keyWord']))&&(isset($_GET['province_id']))&&(isset($_GET['district_id']))&&(isset($_GET['ward_id']))){
+				$rent= new Rent();
 				
-				);
+				$currentPage=($_GET['currentPage']-1)*10;
+				$numberPage=10;
 
-			if($province_id!=0){
-				$arg['province_id'] = $province_id;
-			}
-			if($district_id!=0){
-				$arg['district_id'] = $district_id;
-			}
-			if($ward_id!=0){
-				$arg['ward_id'] = $ward_id;
-			}
+				$nameFind=$_GET['keyWord'];
+				$province_id=$_GET['province_id'];
+				$district_id=$_GET['district_id'];
+				$ward_id=$_GET['ward_id'];
 
-			
-			// dump($arg);
-			$data['totalRows']=$rent->getTotalRent($arg);
-			$data['news']=$rent->getArrayRent($arg);
-			$data['keyWord']=$nameFind;
-			$data['province_id']=$province_id;
-			$data['district_id']=$district_id;
-			$data['ward_id']=$ward_id;
+				if(isset($_POST['keyWord'])){
+					$nameFind=$_POST['keyWord'];
+				}
+				if(!empty($_POST['province_id'])){
+					$province_id=$_POST['province_id'];
+				}
+				if(!empty($_POST['district_id'])){
+					$district_id=$_POST['district_id'];
+				}
+				if(!empty($_POST['ward_id'])){
+					$ward_id=$_POST['ward_id'];
+				}
+				
+				$arg = array(
+					'limit' => array(
+						'currentPage' => $currentPage, 
+						'numberPage' => $numberPage
+					),
+					'rent_name'=>$nameFind
+					
+					);
 
-			
-			$this->render('indexNews',$data);
+				if($province_id!=0){
+					$arg['province_id'] = $province_id;
+				}
+				if($district_id!=0){
+					$arg['district_id'] = $district_id;
+				}
+				if($ward_id!=0){
+					$arg['ward_id'] = $ward_id;
+				}
+
+				
+				// dump($arg);
+				$data['totalRows']=$rent->getTotalRent($arg);
+				$data['news']=$rent->getArrayRent($arg);
+				$data['keyWord']=$nameFind;
+				$data['province_id']=$province_id;
+				$data['district_id']=$district_id;
+				$data['ward_id']=$ward_id;
+
+				
+				$this->render('indexNews',$data);
+			}else{
+				$this->redirect('error-404');
+			}
 		}
 		public function browsingPage(){
 		
@@ -81,7 +85,7 @@
 					$this->render('browsingNews',$data);	
 				}
 			}else{
-				$this->redirect('ctr=error&act=error404');
+				$this->redirect('error-404');
 			}
 		}
 		public function browsingNew(){
@@ -97,7 +101,7 @@
 			$rentModel= new Rent();
 			$check=$rentModel->browsingNew($arg);
 			//dump($check);
-			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=');
+			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=&province_id=0&district_id=0&ward_id=0');
 
 		}
 	}	

@@ -1,5 +1,7 @@
 <?php
+	require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';
 	require('inc/header.php');
+
 ?>
 	<div class="container_12">
 
@@ -70,8 +72,21 @@
 							?>
 						</td>
 						<td align="center">
-							<a href="index.php?ctr=user&act=getEdit&currentPage=<?php echo $_GET['currentPage']?>&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
-							<a href="index.php?ctr=user&act=delUser&currentPage=<?php echo $_GET['currentPage']?>&idUser=<?php echo $user['user_id']?>">Xóa <img src="views/images/bin.gif" width="16" height="16" alt="delete" /></a>
+							
+							<?php
+								if (($_SESSION['user_infor_ad']['auth']=='1' && $_SESSION['user_infor_ad']['user_id']==$user['user_id'])
+									||($_SESSION['user_infor_ad']['auth']=='1' && $user['auth']=='0')
+								    ||($_SESSION['user_infor_ad']['auth']=='1' && $_SESSION['user_infor_ad']['username']=='Admin_main')){
+							?>
+								<a href="index.php?ctr=user&act=getEdit&currentPage=<?php echo $_GET['currentPage']?>&idUser=<?php echo $user['user_id']?>">Sửa <img src="views/images/pencil.gif" alt="edit" /></a>
+							<?php		
+								}else{
+							?>
+								<p style="font-weight:bolder">Không có quyền</p>
+							<?php		
+								}
+							?>
+							
 						</td>
 					</tr>
 					<?php

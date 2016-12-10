@@ -101,7 +101,7 @@
 			$rentModel= new Rent();
 			$check=$rentModel->browsingNew($arg);
 			//dump($check);
-			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=');
+			$this->redirect('ctr=rents&act=getIndex&currentPage=1&keyWord=&province_id=0&district_id=0&ward_id=0');
 
 		}
 	}	

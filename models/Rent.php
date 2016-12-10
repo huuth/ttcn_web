@@ -288,7 +288,7 @@ class Rent extends Model {
 		try {
 			$conn = $this->connect();
 			$sql  = "UPDATE rent " 
-					."SET " 
+					." SET " 
 					."status = :status "
 					."WHERE rent_id = :rent_id";
 			$stmt = $conn->prepare($sql);

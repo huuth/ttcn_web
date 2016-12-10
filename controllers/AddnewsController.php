@@ -8,7 +8,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/models/Rent.php';
 *  
 */
 class AddnewsController extends Controller{
-	
 
 	public function getAddNews(){
 		$this->render('add-news');
@@ -31,7 +30,7 @@ class AddnewsController extends Controller{
 		$address_detail = $_POST['address_detail'];
 		$type_id = $_POST['type_id'];
 
-		$listImage = $this -> uploadImageToData();
+		$listImage = $this -> uploadImageToData($user_id);
 
 		$args = array("user_id" => $user_id,
 					"rent_name" => $rent_name,
@@ -59,15 +58,13 @@ class AddnewsController extends Controller{
 	// 	// $rentModel -> addImage($args);
 	// }
 
-	public function uploadImageToData(){
+	public function uploadImageToData($usr_id){
 		$valid_formats = array("jpg", "png", "gif", "bmp");
-		$max_file_size = 2048*1028; 
+		$max_file_size = 2048*1280; 
 		$path = "data/rent-images/"; // Upload directory
 		$count = 0;
 		$listImage = array();
 		$message;
-
-		
 
 		if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST"){
 			// Loop $_FILES to exeicute all files
@@ -91,9 +88,10 @@ class AddnewsController extends Controller{
 						continue; // Skip invalid file formats
 					}
 			        else{ // No error found! Move uploaded files 
-			        	
-			            if(move_uploaded_file($fileList["tmp_name"][$i], $path.$name)){
-			            	array_push($listImage, $path.$name);
+			        	$img_path = $path."ttcn". $usr_id ."_".$name;
+		
+			            if(move_uploaded_file($fileList["tmp_name"][$i], $img_path)){
+			            	array_push($listImage, $img_path);
 			            	$count++; // Number of successfully uploaded file
 			        	}
 			        }

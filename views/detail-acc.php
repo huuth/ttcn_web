@@ -1,11 +1,40 @@
-
-
+ <script language="JavaScript">
+       function checkinput(){
+           new_password=document.form.new_password;
+           old_password= document.form.old_password;
+           confirm=document.form.confirm;
+           phone=document.form.phone;
+           
+           if(old_password != ""){
+            if(new_password.value.length<6){
+             alert("Mật khẩu phải có ít nhất 6 ký tự");
+               confirm.focus();
+               return false;
+           }
+            if(confirm.value!==new_password.value){
+               alert("Xác nhận mật khẩu không khớp");
+               confirm.focus();
+               return false;
+           }
+           
+           if( (isNaN(phone.value)) || (phone.value.length < 8)) {
+               alert("Vui lòng nhập số điện thoại hợp lệ");
+               phone.focus();
+               return false;
+           }
+           }
+           return true;
+       }
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/header.php';?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/views/inc/navigator.php';
    require_once $_SERVER['DOCUMENT_ROOT'].'/models/Rent.php';
    require_once $_SERVER['DOCUMENT_ROOT'].'/models/User.php';
    require_once $_SERVER['DOCUMENT_ROOT'].'/models/Type.php';
-   require_once $_SERVER['DOCUMENT_ROOT'].'/models/Address.php';?>
+   require_once $_SERVER['DOCUMENT_ROOT'].'/models/Address.php';
+   require_once $_SERVER['DOCUMENT_ROOT'].'/libs/CVarDumper.php';?>
+  
+   
 
 <section id="aa-property-header">
     <div class="container1">
@@ -29,8 +58,17 @@
          <div class="col-md-8">
             <div class="title-header">
                <h3>Thông tin tài khoản</h3>
+               <?php $user = $data['user'];
+
+                   if(isset($_SESSION['check_pass'])){
+                     if($_SESSION['check_pass'] == -1){
+                        echo '<h4 style="color:red">Mật khẩu hiện tại không đúng</h4>';
+                        unset($_SESSION['check_pass']);
+                    }
+                  }
+                 ?> 
             </div>
-            <form class="content" method="post" action="" id="edit-account">
+            <form class="content" name="form" method="post" onsubmit="return checkinput();" action="index.php?ctr=account&act=editUser&user_id=<?php echo $user['user_id']?>" >
                <div class="form-group row" id="register_name">
                   <div class="col-md-3">
                      <label class="control-label" for="pasword">Giới tính:</label>
@@ -48,18 +86,26 @@
                </div>
                <div class="form-group row">
                   <div class="col-md-3">
-                     <label class="control-label" for="full_name">Họ Tên </label>
+                     <label class="control-label" for="full_name">Username </label>
                   </div>
                   <div class="col-md-9">             
-                     <input type="text" enable name="full_name" class="form-control" id="full_name" value="Phương Thảo" placeholder="Họ tên">
+                     <input type="text" disabled="" class="form-control" id="full_name" value='<?php echo $user['username']?>' placeholder="Họ tên">
                   </div>
                </div>
                <div class="form-group row">
                   <div class="col-md-3">
-                     <label class="control-label" for="full_name">Số điện thoại </label>
+                     <label class="control-label" for="full_name">Họ Tên </label>
+                  </div>
+                  <div class="col-md-9">             
+                     <input type="text" name="full_name" class="form-control" required="required" value='<?php echo $user['name_display']?>' placeholder="Họ tên">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <div class="col-md-3">
+                     <label class="control-label">Số điện thoại </label>
                   </div>
                   <div class="col-md-9">            
-                     <input type="text" enable name="full_name" class="form-control" id="phone" value="0123456789">               
+                     <input type="text" required="required" name="phone" class="form-control"  value='<?php echo $user['phone']?>'>               
                   </div>
                </div>
             
@@ -68,7 +114,7 @@
                      <label class="control-label" for="email">Email</label>
                   </div>
                   <div class="col-md-9">            
-                     <input type="email" disabled="" value="heligrass.puta154@gmail.com" class="form-control" name="email" id="email" placeholder="Email">            
+                     <input type="email" readonly="readonly" value='<?php echo $user['email']?>' class="form-control" name="email"  placeholder="Email">            
                   </div>
                </div> 
                <div class="form-group row">
@@ -86,7 +132,6 @@
                   </div>
                   <div class="col-md-9">
                      <select class="form-control" id="distict" name="district_id">    
-                        <option value="0" selected="selected">&laquo;Chọn quận /  huyện&raquo;</option>           
                      </select>
                   </div>                 
                </div>                 
@@ -96,43 +141,43 @@
                   </div>
                   <div class="col-md-9">
                      <select class="form-control" id="ward" name="ward_id">  
-                        <option value="0" selected="selected">&laquo;Chọn phường / xã&raquo;</option>             
                      </select>
                   </div>               
-               </div>                                      
-               <div class="title-header">
+               </div>   
+              <div class="title-header">
                   <h3>Thay đổi mật khẩu.</h3>
-               </div>            
+               </div>
                <div class="password-group">
                    <div class="form-group row">
                         <div class="col-md-3">
-                           <label class="control-label" for="old_password">Mật khẩu cũ</label>   
+                           <label class="control-label">Mật khẩu cũ</label>  
+                           
                         </div>                           
                         <div class="col-md-9">
-                           <input type="password" name="old_password" class="form-control" id="old_password" value="" autocomplete="off" placeholder="Nhập mật khẩu cũ">                           
+                           <input type="password" name="old_password" class="form-control" value="" autocomplete="off" >                           
                        </div>
                    </div>
+
                    <div class="form-group row">
                         <div class="col-md-3">
                            <label class="control-label" for="new-password">Mật khẩu mới</label>   
                         </div>                        
                         <div class="col-md-9">
-                           <input type="password" name="new_password" class="form-control" id="new_password" value="" autocomplete="off" placeholder="Nhập mật khẩu mới">                           
+                           <input type="password" name="new_password" class="form-control" value="" autocomplete="off" >                           
                         </div>
                    </div>
                    <div class="form-group row">
                         <div class="col-md-3">
-                           <label class="control-label" for="re_new_password">Nhập lại</label>   
+                           <label class="control-label" >Nhập lại</label>   
                         </div>
                         
                         <div class="col-md-9">
-                           <input type="password" name="re_new_password" class="form-control" id="re_new_password" value="" autocomplete="off" placeholder="Nhập lại mật khẩu mới">                           
+                           <input type="password" name="confirm" class="form-control" value="" autocomplete="off" >                           
                         </div>
                    </div>
-               </div>
+               </div> 
                <div class="form-group">
                    <div class="input-wrap">
-                       <input type="hidden" name="customer_birthdate" value="1995-04-15">
                        <button type="submit" class="btn btn-info btn-block btn-update">Cập nhật</button>
                    </div>
                </div>
@@ -146,7 +191,7 @@
             </div>
             <div class="dashboard-header">
                <h2>Các tin đã đăng</h2>
-               <a href="/sales/order/history">Xem tất cả</a>
+               
             </div>
             <div>
                <table class="table" border="1px">
@@ -163,7 +208,8 @@
                     </tr>
                   </thead>
                   <?php 
-                  foreach($data['user']['rent'] as $rent):?>
+                  if (!empty($data['user']['rent'])){
+                     foreach($data['user']['rent'] as $rent):?>
                   <tbody>
                      <tr>
                         <td>
@@ -183,9 +229,18 @@
                                 <?php echo $rent['rent_name']?>
                             </a>
                         </td>
-                        <td><span class="color-2">Đã duyệt</span></td>
+                        <td><span class="color-2">
+                           <?php if($rent['status']==1){
+                                    echo 'Đã duyệt';
+                                 }elseif ($rent['status']==0) {
+                                    echo 'Đã ẩn';
+                                 }else{
+                                    echo 'Không được duyệt';
+                                 }
+                              ?>
+                        </span></td>
                      </tr>
-                     <?php endforeach; ?>
+                     <?php endforeach;} ?>
                   </tbody>
                </table>
            </div>

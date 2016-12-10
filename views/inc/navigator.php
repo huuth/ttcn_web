@@ -27,12 +27,12 @@
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="aa-header-right">
                   <?php if(isset($_SESSION['user_infor'])):?>
-                    <div class="dropdown">
+                    </a>
+                      <div class="dropdown">
                       <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $_SESSION['user_infor']['name_display'];?>
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu">
-                        <li><a href="index.php?ctr=post&act=getIndex">Tin đã đăng</a></li>
-                        <li><a href="index.php?ctr=post&act=getIndex">Thông tin cá nhân</a></li>
+                        <li><a href='index.php?ctr=account&act=getIndex&user_id=<?php echo $_SESSION['user_infor']['user_id'];?>'>Thông tin cá nhân</a></li>
                         <li><a href="index.php?ctr=auth&act=logout">Thoát</a></li>                        
                       </ul>
                     </div>

@@ -3,7 +3,6 @@
         password=document.form.password;
         confirm=document.form.confirm;
         phone=document.form.phone;
-        reg1=/^[0-9A-Za-z]+[0-9A-Za-z_]*@[\w\d.]+.\w{2,4}$/;
         if(password.value.length<6){
           alert("Mật khẩu phải có ít nhất 6 ký tự");
             confirm.focus();
@@ -15,7 +14,7 @@
             return false;
         }
         
-        if(isNaN(phone.value)){
+        if(isNaN(phone.value) || (phone.value.length < 8)){
             alert("Vui lòng nhập số điện thoại hợp lệ");
             phone.focus();
             return false;

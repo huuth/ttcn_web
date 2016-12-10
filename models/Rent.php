@@ -213,7 +213,7 @@ class Rent extends Model {
 	public function getRentByUserId($user_id){
 		try{
 			$conn = $this->connect();
-			$sql = 'SELECT * FROM rent WHERE user_id = :user_id';
+			$sql = 'SELECT * FROM rent WHERE user_id = :user_id order by rent_id desc';
 			$stmt = $conn->prepare($sql);
 			$stmt->bindParam(':user_id',$user_id);
 			$stmt->execute();

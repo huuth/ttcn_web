@@ -104,7 +104,6 @@ class User extends Model {
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll();
 			if($result){
-				unset($result[0]['password']);
 				return $result[0];
 			}else{
 				return false;

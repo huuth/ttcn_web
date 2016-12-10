@@ -28,7 +28,7 @@
 					</p>
 				</div>
 			</div>
-			<div style="clear:both;"></div>
+			
 			<div class="padding-bottom"></div>
 		</div> <!-- End .grid_5 -->
 	</div>    

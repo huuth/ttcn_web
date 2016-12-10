@@ -12,7 +12,7 @@
 	<div class="module">
 		 <h2><span>Duyệt tin tức</span></h2>		
 		 <div class="browsing">
-            <span>Bài đăng 
+            <span style="font-size: large; color: darkblue;">Bài đăng 
             <?php
                 if ($data['rent']['status']==0) echo " đang bị ẩn";
                 if ($data['rent']['status']==1) echo " đang được đăng tải";
@@ -20,7 +20,7 @@
             ?>
             <br>
             </span>
-             <form action="index.php?ctr=rents&act=browsingNew&idRent=<?php echo $data['rent']['rent_id'] ?>" method="post">
+             <form action="index.php?ctr=rents&act=browsingNew&idRent=<?php echo $data['rent']['rent_id'] ?>" method="post" style="margin-top: 10px;">
                 <input class="submit-green" name="1" type="submit" value="DUYỆT ĐĂNG" />
                 <input class="submit-gray" name="0" type="submit" value="ẨN BÀI" />
                 <input class="submit-blue" name="-1" type="submit" value="KHÔNG DUYỆT" /> 
